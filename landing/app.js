@@ -65,14 +65,14 @@ function initializeIndexPage() {
 
 // Page.html functionality (social links, contact modal, arrow)
 function initializePagePage() {
-    // Add click event to arrow
+    // Add click and touch events to arrow down
     const arrowDown = document.getElementById('arrowDown');
     if (arrowDown) {
-        arrowDown.addEventListener('click', function() {
+        function handleArrowDownClick() {
             // Add a subtle click animation
-            this.style.transform = 'scale(0.95)';
+            arrowDown.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                this.style.transform = 'scale(1)';
+                arrowDown.style.transform = 'scale(1)';
             }, 150);
             
             // Smooth scroll to facts section
@@ -83,6 +83,51 @@ function initializePagePage() {
                     block: 'start'
                 });
             }
+        }
+        
+        // Add both click and touch events for better mobile support
+        arrowDown.addEventListener('click', handleArrowDownClick);
+        arrowDown.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            handleArrowDownClick();
+        });
+        
+        // Prevent default touch behavior to avoid conflicts
+        arrowDown.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+        });
+    }
+    
+    // Add click and touch events to arrow up
+    const arrowUp = document.getElementById('arrowUp');
+    if (arrowUp) {
+        function handleArrowUpClick() {
+            // Add a subtle click animation
+            arrowUp.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                arrowUp.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Smooth scroll back to hero section
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                heroSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        // Add both click and touch events for better mobile support
+        arrowUp.addEventListener('click', handleArrowUpClick);
+        arrowUp.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            handleArrowUpClick();
+        });
+        
+        // Prevent default touch behavior to avoid conflicts
+        arrowUp.addEventListener('touchstart', function(e) {
+            e.preventDefault();
         });
     }
     

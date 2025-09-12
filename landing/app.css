@@ -375,6 +375,13 @@ body.page-body {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    padding: 10px;
+    min-width: 70px;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .question-text {
@@ -413,6 +420,10 @@ body.page-body {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     animation: bounce 2s infinite, pulse 2s infinite;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .arrow-down:hover {
@@ -444,6 +455,67 @@ body.page-body {
     }
     100% { 
         box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+    }
+}
+
+/* Arrow Up Section - for page.html */
+.arrow-up-section {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 200;
+    padding: 10px;
+    min-width: 70px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-up {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    animation: bounce 2s infinite, pulse-up 2s infinite;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.arrow-up:hover {
+    background: linear-gradient(45deg, #3bb5b3, #3a9bc7);
+    transform: scale(1.1);
+}
+
+.arrow-up svg {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+}
+
+.arrow-up:hover svg {
+    color: #ff6b6b;
+}
+
+@keyframes pulse-up {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.4);
+    }
+    70% { 
+        box-shadow: 0 0 0 10px rgba(78, 205, 196, 0);
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(78, 205, 196, 0);
     }
 }
 
@@ -662,6 +734,11 @@ body.page-body {
         height: 45px;
     }
     
+    .arrow-up {
+        width: 45px;
+        height: 45px;
+    }
+    
     .facts-section {
         padding-top: 1.5rem;
     }
@@ -735,6 +812,11 @@ body.page-body {
     }
     
     .arrow-down {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .arrow-up {
         width: 40px;
         height: 40px;
     }
