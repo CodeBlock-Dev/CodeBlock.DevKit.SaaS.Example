@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hey It's Me! - Create Your Personal Fact Page</title>
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+    <!-- Floating Dots Background -->
+    <div class="floating-dots" id="floatingDots"></div>
     
     <div class="hero-container">
         <div class="logo">
@@ -23,33 +25,47 @@
             </div>
         </div>
         
+        <!-- Tips Data -->
+        <div id="tipsData" style="display: none;">
+            <div data-tip="Show your success"></div>
+            <div data-tip="Show your failures"></div>
+            <div data-tip="Share your hobbies"></div>
+            <div data-tip="Share a secret no one knows"></div>
+            <div data-tip="Share your art"></div>
+            <div data-tip="Tell your story"></div>
+            <div data-tip="Show your achievements"></div>
+            <div data-tip="Share your dreams"></div>
+            <div data-tip="Reveal your passions"></div>
+            <div data-tip="Show your personality"></div>
+        </div>
+        
         <div class="buttons-container">
             <a href="#" class="btn btn-primary">Create Your Page</a>
-            <a href="#" class="btn btn-secondary">See Sample Page</a>
+            <a href="page.html" class="btn btn-secondary sample-btn">
+                <span class="sample-text">See sample page</span>
+                <div class="sample-link-wrapper">
+                   <i class="bi bi-globe"></i>
+                    <span class="sample-link">hey-it-is.me/hamed</span>
+                </div>
+            </a>
         </div>
     </div>
 
     <script>
         // Typing animation
-        const tips = [
-            "Show your success",
-            "Show your failures", 
-            "Share your hobbies",
-            "Share a secret no one knows",
-            "Share your art",
-            "Tell your story",
-            "Show your achievements",
-            "Share your dreams",
-            "Reveal your passions",
-            "Show your personality"
-        ];
+        function getTipsFromHTML() {
+            const tipsContainer = document.getElementById('tipsData');
+            const tipElements = tipsContainer.querySelectorAll('[data-tip]');
+            return Array.from(tipElements).map(el => el.getAttribute('data-tip'));
+        }
 
+        const tips = getTipsFromHTML();
         let currentTipIndex = 0;
         let currentCharIndex = 0;
         let isDeleting = false;
-        let typingSpeed = 100;
-        let deletingSpeed = 50;
-        let pauseTime = 2000;
+        let typingSpeed = 10;
+        let deletingSpeed = 15;
+        let pauseTime = 1000;
 
         function typeText() {
             const textElement = document.getElementById('text');
@@ -77,30 +93,30 @@
             setTimeout(typeText, typingSpeed);
         }
 
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        // Create floating dots
+        function createFloatingDots() {
+            const dotsContainer = document.getElementById('floatingDots');
+            const dotCount = 30;
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
                 
-                const size = Math.random() * 4 + 1;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                const size = Math.random() * 6 + 2;
+                dot.style.width = size + 'px';
+                dot.style.height = size + 'px';
+                dot.style.left = Math.random() * 100 + '%';
+                dot.style.top = Math.random() * 100 + '%';
+                dot.style.animationDelay = Math.random() * 8 + 's';
+                dot.style.animationDuration = (Math.random() * 4 + 8) + 's';
                 
-                particlesContainer.appendChild(particle);
+                dotsContainer.appendChild(dot);
             }
         }
 
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+            createFloatingDots();
             typeText();
         });
     </script>
