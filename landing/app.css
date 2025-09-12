@@ -81,11 +81,15 @@ body {
     position: relative;
     padding: 2rem;
     overflow: hidden;
+<<<<<<< HEAD
     padding-top: 2rem;
+=======
+>>>>>>> 376e2b52bd4016adcc3b5d1136c9a6386a46d4ca
 }
 
 .hero-content {
     max-width: 1000px;
+<<<<<<< HEAD
     z-index: 100;
     margin-bottom: 17rem;
 }
@@ -98,6 +102,17 @@ body {
     line-height: 1.1;
     margin-bottom: 2rem;
     font-family: 'Poppins', sans-serif;
+=======
+    z-index: 2;
+    margin-bottom: 4rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #e8f4fd;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+>>>>>>> 376e2b52bd4016adcc3b5d1136c9a6386a46d4ca
 }
 
 /* Hero Container - for index.html */
@@ -127,7 +142,7 @@ body {
 }
 
 .logo img {
-    width: 350px;
+    width: 150px;
     height: auto;
 }
 
@@ -317,7 +332,11 @@ body {
 /* Question Section - for page.html */
 .question-section {
     position: absolute;
+<<<<<<< HEAD
     bottom: 13rem;
+=======
+    bottom: 3rem;
+>>>>>>> 376e2b52bd4016adcc3b5d1136c9a6386a46d4ca
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -528,7 +547,7 @@ body {
     }
 
     .logo img {
-        width: 180px;
+        width: 90px;
     }
     
     /* Page-specific responsive logo */
@@ -607,6 +626,29 @@ body {
         width: 45px;
         height: 45px;
     }
+
+    /* Page.html responsive styles */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .social-links {
+        gap: 0.8rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .question-text {
+        font-size: 1.5rem;
+    }
+    
+    .arrow-down {
+        width: 45px;
+        height: 45px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -617,6 +659,7 @@ body {
     .typing-text {
         font-size: 1.3rem;
     }
+<<<<<<< HEAD
 
     .typing-container {
         height: 50px;
@@ -836,5 +879,29 @@ body {
         font-size: 0.75rem;
         min-width: auto;
         width: auto;
+=======
+
+    /* Page.html responsive styles */
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .social-links {
+        gap: 0.5rem;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .question-text {
+        font-size: 1.2rem;
+    }
+    
+    .arrow-down {
+        width: 40px;
+        height: 40px;
+>>>>>>> 376e2b52bd4016adcc3b5d1136c9a6386a46d4ca
     }
 }
