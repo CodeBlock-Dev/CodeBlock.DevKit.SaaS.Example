@@ -89,9 +89,7 @@ body.page-body {
     text-align: center;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
     position: relative;
-    padding: 2rem;
     overflow: hidden;
-    padding-top: 2rem;
     box-sizing: border-box;
     z-index: 1;
 }
@@ -376,8 +374,8 @@ body.page-body {
     transform: translateX(-50%);
     text-align: center;
     padding: 10px;
-    min-width: 70px;
-    min-height: 70px;
+    min-width: 100px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -461,7 +459,7 @@ body.page-body {
 /* Arrow Up Section - for page.html */
 .arrow-up-section {
     position: absolute;
-    top: 5rem;
+    top: 4rem;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -962,7 +960,7 @@ body {
 }
 
 .hero-section {
-    padding-top: 10rem;
+    padding-top: 4rem;
 }
 
 .facts-section {
