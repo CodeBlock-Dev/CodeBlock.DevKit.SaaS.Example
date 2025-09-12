@@ -373,8 +373,7 @@ body.page-body {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    padding: 10px;
-    min-width: 100px;
+    min-width: 200px;
     min-height: 100px;
     display: flex;
     flex-direction: column;
@@ -960,7 +959,7 @@ body {
 }
 
 .hero-section {
-    padding-top: 4rem;
+    padding-top: 1rem;
 }
 
 .facts-section {
