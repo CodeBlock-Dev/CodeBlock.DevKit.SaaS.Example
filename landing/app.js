@@ -75,8 +75,14 @@ function initializePagePage() {
                 this.style.transform = 'scale(1)';
             }, 150);
             
-            // You can add your navigation logic here
-            console.log('Arrow clicked! Ready to navigate to facts section.');
+            // Smooth scroll to facts section
+            const factsSection = document.getElementById('facts');
+            if (factsSection) {
+                factsSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     }
     
@@ -128,11 +134,20 @@ function initializePagePage() {
 
 // Floating dots functionality (shared between both pages)
 function createFloatingDots() {
-    const dotsContainer = document.getElementById('floatingDots');
-    if (!dotsContainer) return;
+    // Create dots for hero section
+    const heroDotsContainer = document.getElementById('floatingDots');
+    if (heroDotsContainer) {
+        createDotsForContainer(heroDotsContainer, 50);
+    }
     
-    const numberOfDots = 50; // Adjust number of dots as needed
-    
+    // Create dots for facts section
+    const factsDotsContainer = document.getElementById('factsFloatingDots');
+    if (factsDotsContainer) {
+        createDotsForContainer(factsDotsContainer, 50);
+    }
+}
+
+function createDotsForContainer(container, numberOfDots) {
     for (let i = 0; i < numberOfDots; i++) {
         const dot = document.createElement('div');
         dot.className = 'dot';
@@ -156,6 +171,6 @@ function createFloatingDots() {
         const opacity = Math.random() * 0.4 + 0.4; // Between 0.4 and 0.8
         dot.style.opacity = opacity;
         
-        dotsContainer.appendChild(dot);
+        container.appendChild(dot);
     }
 }
