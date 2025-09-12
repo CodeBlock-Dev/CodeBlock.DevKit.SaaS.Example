@@ -1,71 +1,57 @@
-// Scroll animations for facts
+// Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    const factItems = document.querySelectorAll('.fact-item');
+    initializePage();
+});
+
+function createFloatingDots() {
+    const dotsContainer = document.getElementById('floatingDots');
+    const numberOfDots = 50; // Adjust number of dots as needed
     
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-    
-    // Observe all fact items
-    factItems.forEach(item => {
-        observer.observe(item);
-    });
-    
-    // Smooth scrolling for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Add parallax effect to hero section
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
-    
-    // Add typing effect to display name
-    const displayName = document.querySelector('.display-name');
-    if (displayName) {
-        const originalText = displayName.textContent;
-        displayName.textContent = '';
+    for (let i = 0; i < numberOfDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
         
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                displayName.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        };
+        // Random size between 1px and 3px
+        const size = Math.random() * 2 + 1;
+        dot.style.width = size + 'px';
+        dot.style.height = size + 'px';
         
-        // Start typing after a short delay
-        setTimeout(typeWriter, 500);
+        // Random position
+        dot.style.left = Math.random() * 100 + '%';
+        dot.style.top = Math.random() * 100 + '%';
+        
+        // Random animation delay
+        dot.style.animationDelay = Math.random() * 8 + 's';
+        
+        // Random opacity variation
+        const opacity = Math.random() * 0.4 + 0.4; // Between 0.4 and 0.8
+        dot.style.opacity = opacity;
+        
+        dotsContainer.appendChild(dot);
     }
+}
+
+function initializePage() {
+    // Create floating dots
+    createFloatingDots();
+    // Add click event to arrow
+    const arrowDown = document.getElementById('arrowDown');
+    arrowDown.addEventListener('click', function() {
+        // Add a subtle click animation
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+        
+        // You can add your navigation logic here
+        console.log('Arrow clicked! Ready to navigate to facts section.');
+    });
     
     // Add hover effects to social links
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.1)';
+            this.style.transform = 'translateY(-5px) scale(1.1)';
         });
         
         link.addEventListener('mouseleave', function() {
@@ -73,34 +59,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add click animation to fact items
-    factItems.forEach(item => {
-        item.addEventListener('click', function() {
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 150);
-        });
+    // Contact modal functionality
+    const contactButton = document.getElementById('contactButton');
+    const contactModal = document.getElementById('contactModal');
+    const closeModal = document.getElementById('closeModal');
+    
+    contactButton.addEventListener('click', function() {
+        contactModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
     });
     
-    // Add progress indicator
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-        z-index: 1000;
-        transition: width 0.3s ease;
-    `;
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + '%';
+    closeModal.addEventListener('click', function() {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scrolling
     });
-});
+    
+    // Close modal when clicking outside
+    contactModal.addEventListener('click', function(e) {
+        if (e.target === contactModal) {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
