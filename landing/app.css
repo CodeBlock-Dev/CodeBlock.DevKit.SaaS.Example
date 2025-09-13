@@ -171,9 +171,9 @@ body.page-body {
     left: 0;
     right: 0;
     height: 80px;
-    background: linear-gradient(135deg, rgba(78, 205, 196, 0.2) 0%, rgba(69, 183, 209, 0.2) 100%);
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,16 +182,13 @@ body.page-body {
 }
 
 .facts-title-bar .facts-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    text-shadow: none;
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: 0.5px;
 }
 
 .fact-card {
@@ -250,11 +247,11 @@ body.page-body {
 
 .fact-text {
     font-size: 2rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.4;
-    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    font-weight: 400;
     font-family: 'Poppins', sans-serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
     flex: 1;
     display: flex;
     align-items: center;
@@ -262,6 +259,7 @@ body.page-body {
     overflow: visible;
     word-wrap: break-word;
     max-height: 100%;
+    letter-spacing: 0.3px;
 }
 
 /* Facts Navigation */
@@ -952,7 +950,9 @@ body.page-body {
     }
     
     .facts-title-bar .facts-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.4);
     }
     
     .fact-number {
@@ -972,6 +972,9 @@ body.page-body {
         width: 100%;
         max-height: none;
         overflow: visible;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        font-weight: 400;
     }
     
     .facts-navigation {
@@ -1105,7 +1108,9 @@ body.page-body {
     }
     
     .facts-title-bar .facts-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.4);
     }
     
     .fact-number {
@@ -1119,13 +1124,15 @@ body.page-body {
     
     .fact-text {
         font-size: 1.1rem;
-        line-height: 1.3;
+        line-height: 1.6;
         padding-left: 0;
         text-align: center;
         flex: none;
         width: 100%;
         max-height: none;
         overflow: visible;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 400;
     }
     
     .facts-navigation {
