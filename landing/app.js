@@ -230,16 +230,9 @@ function initializeFactsSlideshow() {
     const factCards = document.querySelectorAll('.fact-card');
     const prevBtn = document.getElementById('prevFact');
     const nextBtn = document.getElementById('nextFact');
-    const currentFactSpan = document.getElementById('currentFact');
-    const totalFactsSpan = document.getElementById('totalFacts');
     
     let currentFactIndex = 0;
     const totalFacts = factCards.length;
-    
-    // Set total facts count
-    if (totalFactsSpan) {
-        totalFactsSpan.textContent = totalFacts;
-    }
     
     // Function to update the display
     function updateDisplay() {
@@ -251,11 +244,6 @@ function initializeFactsSlideshow() {
         // Add active class to current card
         if (factCards[currentFactIndex]) {
             factCards[currentFactIndex].classList.add('active');
-        }
-        
-        // Update counter
-        if (currentFactSpan) {
-            currentFactSpan.textContent = currentFactIndex + 1;
         }
         
         // Update button states
