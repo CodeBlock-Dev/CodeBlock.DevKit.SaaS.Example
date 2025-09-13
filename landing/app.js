@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
         initializePagePage();
     }
     
+    // Check if we're on the page.html (has facts slideshow)
+    if (document.querySelector('.facts-slideshow')) {
+        initializeFactsSlideshow();
+    }
+    
     // Create floating dots for both pages
     createFloatingDots();
 });
@@ -218,4 +223,135 @@ function createDotsForContainer(container, numberOfDots) {
         
         container.appendChild(dot);
     }
+}
+
+// Facts slideshow functionality
+function initializeFactsSlideshow() {
+    const factCards = document.querySelectorAll('.fact-card');
+    const prevBtn = document.getElementById('prevFact');
+    const nextBtn = document.getElementById('nextFact');
+    const currentFactSpan = document.getElementById('currentFact');
+    const totalFactsSpan = document.getElementById('totalFacts');
+    
+    let currentFactIndex = 0;
+    const totalFacts = factCards.length;
+    
+    // Set total facts count
+    if (totalFactsSpan) {
+        totalFactsSpan.textContent = totalFacts;
+    }
+    
+    // Function to update the display
+    function updateDisplay() {
+        // Remove active class from all cards
+        factCards.forEach(card => {
+            card.classList.remove('active', 'prev', 'next');
+        });
+        
+        // Add active class to current card
+        if (factCards[currentFactIndex]) {
+            factCards[currentFactIndex].classList.add('active');
+        }
+        
+        // Update counter
+        if (currentFactSpan) {
+            currentFactSpan.textContent = currentFactIndex + 1;
+        }
+        
+        // Update button states
+        if (prevBtn) {
+            prevBtn.disabled = currentFactIndex === 0;
+        }
+        if (nextBtn) {
+            nextBtn.disabled = currentFactIndex === totalFacts - 1;
+        }
+    }
+    
+    // Function to go to next fact
+    function nextFact() {
+        if (currentFactIndex < totalFacts - 1) {
+            // Add animation classes for smooth transition
+            const currentCard = factCards[currentFactIndex];
+            if (currentCard) {
+                currentCard.classList.add('prev');
+            }
+            
+            currentFactIndex++;
+            
+            setTimeout(() => {
+                updateDisplay();
+            }, 50);
+        }
+    }
+    
+    // Function to go to previous fact
+    function prevFact() {
+        if (currentFactIndex > 0) {
+            // Add animation classes for smooth transition
+            const currentCard = factCards[currentFactIndex];
+            if (currentCard) {
+                currentCard.classList.add('next');
+            }
+            
+            currentFactIndex--;
+            
+            setTimeout(() => {
+                updateDisplay();
+            }, 50);
+        }
+    }
+    
+    // Add event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextFact);
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevFact);
+    }
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextFact();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            prevFact();
+        }
+    });
+    
+    // Add touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const slideshow = document.querySelector('.facts-slideshow');
+    if (slideshow) {
+        slideshow.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        slideshow.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+    }
+    
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum distance for a swipe
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                // Swipe right - go to previous fact
+                prevFact();
+            } else {
+                // Swipe left - go to next fact
+                nextFact();
+            }
+        }
+    }
+    
+    // Initialize display
+    updateDisplay();
 }
