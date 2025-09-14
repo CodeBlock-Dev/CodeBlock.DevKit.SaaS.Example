@@ -60,18 +60,23 @@ body.page-body {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) translateX(0px);
         opacity: 0.6;
     }
+
     25% {
         transform: translateY(-20px) translateX(10px);
         opacity: 0.9;
     }
+
     50% {
         transform: translateY(-10px) translateX(-5px);
         opacity: 0.7;
     }
+
     75% {
         transform: translateY(-30px) translateX(15px);
         opacity: 1;
@@ -171,7 +176,7 @@ body.page-body {
     left: 0;
     right: 0;
     height: 80px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgb(68 89 90);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
@@ -227,11 +232,10 @@ body.page-body {
 .fact-number {
     font-size: 8rem;
     font-weight: 800;
-    color: rgba(78, 205, 196, 0.25);
+    color: rgba(78, 205, 196, 0.35);
     line-height: 1;
     margin-right: 3rem;
     font-family: 'Poppins', sans-serif;
-    text-shadow: 0 0 30px rgba(78, 205, 196, 0.2);
     flex-shrink: 0;
     min-width: 200px;
     display: flex;
@@ -256,7 +260,7 @@ body.page-body {
 
 .fact-text {
     font-size: 2rem;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.6;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;
@@ -429,9 +433,12 @@ body.page-body {
 }
 
 @keyframes subtlePulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
+
     50% {
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(78, 205, 196, 0.1);
     }
@@ -519,8 +526,16 @@ body.page-body {
 }
 
 @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
 }
 
 /* Social Links - for page.html */
@@ -552,10 +567,21 @@ body.page-body {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.social-link.twitter:hover { background: #1da1f2; }
-.social-link.linkedin:hover { background: #0077b5; }
-.social-link.github:hover { background: #333; }
-.social-link.instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-link.twitter:hover {
+    background: #1da1f2;
+}
+
+.social-link.linkedin:hover {
+    background: #0077b5;
+}
+
+.social-link.github:hover {
+    background: #333;
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
 
 .contact-button {
     width: 45px;
@@ -725,19 +751,34 @@ body.page-body {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
 @keyframes pulse {
-    0% { 
+    0% {
         box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
     }
-    70% { 
+
+    70% {
         box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
     }
-    100% { 
+
+    100% {
         box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
     }
 }
@@ -933,7 +974,7 @@ body.page-body {
     .logo img {
         width: 180px;
     }
-    
+
     /* Page-specific responsive logo */
     .hero-section .logo img {
         width: 90px;
@@ -966,18 +1007,18 @@ body.page-body {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
     }
-    
+
     .sample-btn {
         padding: 0.6rem 1rem;
         min-width: 280px;
         max-width: 300px;
         width: 100%;
     }
-    
+
     .sample-text {
         font-size: 0.65rem;
     }
-    
+
     .sample-link {
         font-size: 0.65rem;
         font-weight: 600;
@@ -987,48 +1028,48 @@ body.page-body {
     .hero-section {
         padding-top: 1.5rem;
     }
-    
+
     .hero-title {
         font-size: 3.5rem;
         line-height: 1.2;
     }
-    
+
     .social-links {
         gap: 0.8rem;
     }
-    
+
     .social-link {
         width: 40px;
         height: 40px;
     }
-    
+
     .question-text {
         font-size: 1.3rem;
     }
-    
+
     .arrow-down {
         width: 45px;
         height: 45px;
     }
-    
+
     .arrow-up {
         width: 45px;
         height: 45px;
     }
-    
+
     .facts-section {
         padding-top: 1.5rem;
     }
-    
+
     .facts-title {
         font-size: 2.5rem;
         line-height: 1.2;
     }
-    
+
     .facts-text {
         font-size: 1.2rem;
     }
-    
+
     /* Facts slideshow responsive */
     .facts-slideshow {
         height: 400px;
@@ -1036,7 +1077,7 @@ body.page-body {
         width: calc(100% - 2rem);
         max-width: none;
     }
-    
+
     .fact-card {
         padding: 5rem 2rem 2rem 2rem;
         flex-direction: column;
@@ -1044,17 +1085,17 @@ body.page-body {
         align-items: center;
         justify-content: flex-start;
     }
-    
+
     .facts-title-bar {
         height: 60px;
     }
-    
+
     .facts-title-bar .facts-title {
         font-size: 1.4rem;
         font-weight: 400;
         color: rgba(255, 255, 255, 0.4);
     }
-    
+
     .fact-number {
         font-size: 4rem;
         margin-right: 0;
@@ -1064,12 +1105,12 @@ body.page-body {
         height: 120px;
         flex-direction: column;
     }
-    
+
     .fact-label {
         font-size: 0.7rem;
         margin-bottom: 0.3rem;
     }
-    
+
     .fact-text {
         font-size: 1.3rem;
         padding-left: 0;
@@ -1082,7 +1123,7 @@ body.page-body {
         line-height: 1.6;
         font-weight: 400;
     }
-    
+
     /* CTA Card responsive */
     .cta-card .fact-icon {
         font-size: 4rem;
@@ -1093,34 +1134,34 @@ body.page-body {
         height: 120px;
         flex-direction: column;
     }
-    
+
     .cta-card .fact-text {
         padding-left: 0;
         text-align: center;
         align-items: center;
     }
-    
+
     .cta-card .fact-text h3 {
         font-size: 1.8rem;
         text-align: center;
     }
-    
+
     .cta-card .fact-text p {
         font-size: 1.1rem;
         text-align: center;
     }
-    
+
     .cta-button {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
         min-width: 180px;
     }
-    
+
     .facts-navigation {
         gap: 2rem;
         margin-top: 1.5rem;
     }
-    
+
     .nav-btn {
         width: 60px;
         height: 60px;
@@ -1146,17 +1187,17 @@ body.page-body {
         padding: 0.5rem 0.8rem;
         font-size: 0.85rem;
     }
-    
+
     .sample-btn {
         min-width: 260px;
         max-width: 280px;
         padding: 0.5rem 0.8rem;
     }
-    
+
     .sample-text {
         font-size: 0.65rem;
     }
-    
+
     .sample-link {
         font-size: 0.65rem;
         font-weight: 600;
@@ -1166,48 +1207,48 @@ body.page-body {
     .hero-section {
         padding-top: 1rem;
     }
-    
+
     .hero-title {
         font-size: 2.8rem;
         line-height: 1.3;
     }
-    
+
     .social-links {
         gap: 0.5rem;
     }
-    
+
     .social-link {
         width: 35px;
         height: 35px;
     }
-    
+
     .question-text {
         font-size: 1.83rem;
     }
-    
+
     .arrow-down {
         width: 40px;
         height: 40px;
     }
-    
+
     .arrow-up {
         width: 40px;
         height: 40px;
     }
-    
+
     .facts-section {
         padding-top: 1rem;
     }
-    
+
     .facts-title {
         font-size: 2rem;
         line-height: 1.3;
     }
-    
+
     .facts-text {
         font-size: 1rem;
     }
-    
+
     /* Facts slideshow responsive for small screens */
     .facts-slideshow {
         height: 350px;
@@ -1216,7 +1257,7 @@ body.page-body {
         border-radius: 15px;
         max-width: none;
     }
-    
+
     .fact-card {
         padding: 4rem 1.5rem 1.5rem 1.5rem;
         border-radius: 15px;
@@ -1225,17 +1266,17 @@ body.page-body {
         align-items: center;
         justify-content: flex-start;
     }
-    
+
     .facts-title-bar {
         height: 50px;
     }
-    
+
     .facts-title-bar .facts-title {
         font-size: 1.1rem;
         font-weight: 400;
         color: rgba(255, 255, 255, 0.4);
     }
-    
+
     .fact-number {
         font-size: 3rem;
         width: 80px;
@@ -1245,12 +1286,12 @@ body.page-body {
         margin-right: 0;
         flex-direction: column;
     }
-    
+
     .fact-label {
         font-size: 0.6rem;
         margin-bottom: 0.2rem;
     }
-    
+
     .fact-text {
         font-size: 1.1rem;
         line-height: 1.6;
@@ -1263,7 +1304,7 @@ body.page-body {
         color: rgba(255, 255, 255, 0.75);
         font-weight: 400;
     }
-    
+
     /* CTA Card responsive for small screens */
     .cta-card .fact-icon {
         font-size: 3rem;
@@ -1272,26 +1313,26 @@ body.page-body {
         margin-bottom: 1rem;
         border-radius: 15px;
     }
-    
+
     .cta-card .fact-text h3 {
         font-size: 1.4rem;
     }
-    
+
     .cta-card .fact-text p {
         font-size: 1rem;
     }
-    
+
     .cta-button {
         font-size: 0.9rem;
         padding: 0.7rem 1.2rem;
         min-width: 160px;
     }
-    
+
     .facts-navigation {
         gap: 1.5rem;
         margin-top: 1rem;
     }
-    
+
     .nav-btn {
         width: 55px;
         height: 55px;
@@ -1446,19 +1487,19 @@ body {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
-    
+
     .navbar-container {
         padding: 0 1rem;
     }
-    
+
     .navbar-links {
         gap: 1rem;
     }
-    
+
     .navbar-link {
         font-size: 0.9rem;
     }
-    
+
     .navbar-cta {
         padding: 0.4rem 1rem;
         font-size: 0.8rem;
@@ -1480,15 +1521,15 @@ body {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
-    
+
     .navbar-links {
         gap: 0.5rem;
     }
-    
+
     .navbar-link {
         font-size: 0.8rem;
     }
-    
+
     .navbar-cta {
         padding: 0.3rem 0.8rem;
         font-size: 0.75rem;
