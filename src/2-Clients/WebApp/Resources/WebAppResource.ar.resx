@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Hero_Title" xml:space="preserve">
+    <value>حوّل فكرتك للبرمجيات كخدمة إلى واقع</value>
+  </data>
+  <data name="Hero_Tagline" xml:space="preserve">
+    <value>يمكن أن يكون لك!</value>
+  </data>
+  <data name="Hero_Subtitle" xml:space="preserve">
+    <value>هذه شركة ناشئة نموذجية مبنية بـ &lt;strong&gt;CodeBlock.DevKit&lt;/strong&gt;. كل ما تراه هنا يأتي من وحدات مدمجة - لا تحتاج لبرمجة. ببساطة خصص التصميم والمحتوى والميزات لتتناسب مع رؤيتك، ثم أطلق شركتك الناشئة.</value>
+  </data>
+  <data name="System_Access_Title" xml:space="preserve">
+    <value>استكشف النظام الكامل:</value>
+  </data>
+  <data name="System_Access_Subtitle" xml:space="preserve">
+    <value>أولاً قم بتشغيل تطبيقات الويب من src/2-clients، ثم انقر على أي مكون أدناه لترى ما يوفره CodeBlock.DevKit</value>
+  </data>
+  <data name="System_Website" xml:space="preserve">
+    <value>الموقع الإلكتروني</value>
+  </data>
+  <data name="System_Website_Status" xml:space="preserve">
+    <value>الحالي</value>
+  </data>
+  <data name="System_UserPanel" xml:space="preserve">
+    <value>لوحة المستخدم</value>
+  </data>
+  <data name="System_UserPanel_Status" xml:space="preserve">
+    <value>لوحة القيادة</value>
+  </data>
+  <data name="System_AdminPanel" xml:space="preserve">
+    <value>لوحة الإدارة</value>
+  </data>
+  <data name="System_AdminPanel_Status" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
+  <data name="System_API" xml:space="preserve">
+    <value>وثائق API</value>
+  </data>
+  <data name="System_API_Status" xml:space="preserve">
+    <value>مطور</value>
+  </data>
+  <data name="System_ChatBot" xml:space="preserve">
+    <value>روبوت المحادثة بالذكاء الاصطناعي</value>
+  </data>
+  <data name="System_ChatBot_Status" xml:space="preserve">
+    <value>الدعم</value>
+  </data>
+  <data name="Feature_EnterpriseSecurity" xml:space="preserve">
+    <value>أمان على مستوى المؤسسات</value>
+  </data>
+  <data name="CTA_TryAI" xml:space="preserve">
+    <value>جرب مساعدنا الذكي</value>
+  </data>
+  <data name="CTA_GetDevKit" xml:space="preserve">
+    <value>احصل على DevKit الخاص بك</value>
+  </data>
+  <data name="AI_Section_Title" xml:space="preserve">
+    <value>اختبر مساعدنا الذكي المتقدم</value>
+  </data>
+  <data name="AI_Section_Description" xml:space="preserve">
+    <value>في "يمكن أن يكون لك"، دمجنا تقنية ذكاء اصطناعي متطورة لتوفير دعم فوري وذكي. تم تدريب مساعدنا الذكي على قاعدة معرفتنا ويمكنه الإجابة على أسئلة حول خدماتنا وأسعارنا والمزيد.</value>
+  </data>
+  <data name="AI_Status_Online" xml:space="preserve">
+    <value>متصل</value>
+  </data>
+  <data name="AI_Service_Info" xml:space="preserve">
+    <value>معلومات الخدمات والأسعار</value>
+  </data>
+  <data name="AI_Integration_Options" xml:space="preserve">
+    <value>خيارات التكامل والتخصيص</value>
+  </data>
+  <data name="AI_User_Question" xml:space="preserve">
+    <value>كيف يمكنكم مساعدة عملي على النمو؟</value>
+  </data>
+  <data name="AI_Response" xml:space="preserve">
+    <value>سؤال رائع! يمكنني إرشادك عبر خدمات التحول الرقمي لدينا، والتوصية بالخطة المناسبة بناءً على احتياجاتك، وشرح كيف تتكامل منصتنا مع أنظمتك الحالية. هل تود معرفة المزيد عن أي مجال محدد؟</value>
+  </data>
+  <data name="AI_Start_Conversation" xml:space="preserve">
+    <value>بدء محادثة مباشرة</value>
+  </data>
+  <data name="AI_Feature_DocumentProcessing" xml:space="preserve">
+    <value>معالجة ذكية للوثائق</value>
+  </data>
+  <data name="AI_Feature_DocumentProcessing_Desc" xml:space="preserve">
+    <value>ذكاء اصطناعي مدرب على كامل قاعدة معرفتنا ووثائقنا</value>
+  </data>
+  <data name="AI_Feature_NaturalConversations" xml:space="preserve">
+    <value>محادثات طبيعية</value>
+  </data>
+  <data name="AI_Feature_24x7_Availability_Desc" xml:space="preserve">
+    <value>ردود فورية في أي وقت، مع تصعيد للوكلاء البشريين</value>
+  </data>
+  <data name="AI_Feature_ContinuousLearning_Desc" xml:space="preserve">
+    <value>يصبح أذكى مع الوقت بناءً على التفاعلات والملاحظات</value>
+  </data>
+  <data name="AI_DevKit_Integration_Alert" xml:space="preserve">
+    <value>&lt;strong&gt;تكامل الذكاء الاصطناعي DevKit:&lt;/strong&gt; هذه الوظيفة للذكاء الاصطناعي مدمجة مع CodeBlock.DevKit! ببساطة قدم مفتاح API لنموذج الذكاء الاصطناعي (OpenAI، Claude، Gemini، إلخ)، واستضف وثائقك واحصل على مساعد ذكي يعمل بشكل كامل لشركتك الناشئة. لا حاجة لإعداد معقد!</value>
+  </data>
+  <data name="Pricing_Section_Title" xml:space="preserve">
+    <value>خطط أسعار نموذجية لشركتك الناشئة</value>
+  </data>
+  <data name="Pricing_Section_Description" xml:space="preserve">
+    <value>هذه خطط أسعار نموذجية لتوضيح كيف يمكنك هيكلة تحقيق الإيرادات لشركتك الناشئة. ببساطة حدد خطط أسعار تناسب أهدافك ورؤيتك - المنصة تجعل من السهل تخصيص أي نموذج تسعير لعملك.</value>
+  </data>
+  <data name="Pricing_Demo_Alert" xml:space="preserve">
+    <value>&lt;strong&gt;عرض الأسعار:&lt;/strong&gt; هذه خطط أسعار نموذجية لهذه الشركة التوضيحية. مع CodeBlock.DevKit، يمكنك إنشاء أي هيكل تسعير وميزات ونموذج عمل يناسب فكرة شركتك الناشئة.</value>
+  </data>
+  <data name="Features_Section_Description" xml:space="preserve">
+    <value>في "يمكن أن يكون لك"، نوفر كل ما تحتاجه الشركات لإنشاء وتنمية حضورها الرقمي. منصتنا الشاملة تغطي جميع جوانب العمليات التجارية الحديثة.</value>
+  </data>
+  <data name="Feature_WebsiteCreation_Title" xml:space="preserve">
+    <value>إنشاء المواقع الإلكترونية</value>
+  </data>
+  <data name="Feature_CustomerManagement_Title" xml:space="preserve">
+    <value>إدارة العملاء</value>
+  </data>
+  <data name="Feature_CustomerManagement_Description" xml:space="preserve">
+    <value>إدارة متقدمة لعلاقات العملاء مع لوحات قيادة المستخدمين وإدارة الحسابات وتجارب مخصصة لعملائك.</value>
+  </data>
+  <data name="Feature_BusinessAnalytics_Title" xml:space="preserve">
+    <value>تحليلات الأعمال</value>
+  </data>
+  <data name="Feature_BusinessAnalytics_Description" xml:space="preserve">
+    <value>لوحة قيادة شاملة للتحليلات والتقارير لتتبع أداء عملك وسلوك العملاء ومؤشرات النمو في الوقت الفعلي.</value>
+  </data>
+  <data name="Feature_PaymentProcessing_Title" xml:space="preserve">
+    <value>معالجة المدفوعات</value>
+  </data>
+  <data name="Feature_AIPoweredSupport_Title" xml:space="preserve">
+    <value>دعم مدعوم بالذكاء الاصطناعي</value>
+  </data>
+  <data name="Feature_SystemIntegration_Title" xml:space="preserve">
+    <value>تكامل الأنظمة</value>
+  </data>
+  <data name="Testimonial_3_Name" xml:space="preserve">
+    <value>ديفيد كيم</value>
+  </data>
+  <data name="CTA_Final_Title" xml:space="preserve">
+    <value>مستعد لبناء قصة نجاحك الخاصة؟</value>
+  </data>
+  <data name="CTA_Final_Description" xml:space="preserve">
+    <value>لقد استكشفت ما هو ممكن مع "يمكن أن يكون لك" - عمل برمجيات كخدمة مكتمل مبني بالكامل مع CodeBlock.DevKit. الآن تخيل إنشاء &lt;strong&gt;شركتك الناشئة الخاصة&lt;/strong&gt; بنفس الأساس القوي، مخصص لرؤيتك وأهدافك الفريدة.</value>
+  </data>
+  <data name="CTA_GetDevKit_Button" xml:space="preserve">
+    <value>الحصول على CodeBlock.DevKit</value>
+  </data>
+  <data name="CTA_ExploreDemo_Button" xml:space="preserve">
+    <value>استكشاف هذا العرض</value>
+  </data>
+  <data name="CTA_DevKit_Info" xml:space="preserve">
+    <value>&lt;strong&gt;ما هو CodeBlock.DevKit؟&lt;/strong&gt; إطار عمل شامل لتطوير البرمجيات كخدمة يساعد رواد الأعمال على إطلاق شركاتهم الناشئة بشكل أسرع. وثائق وكل ما تحتاجه لبناء قصة نجاح "يمكن أن يكون لك" الخاصة بك.</value>
+  </data>
+  <data name="CTA_Features_Info" xml:space="preserve">
+    <value>وثائق كاملة ودعم | جاهز للإنتاج</value>
+  </data>
+  <data name="Nav_Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="Nav_Services" xml:space="preserve">
+    <value>الخدمات</value>
+  </data>
+  <data name="Nav_Pricing" xml:space="preserve">
+    <value>الأسعار</value>
+  </data>
+  <data name="Nav_SuccessStories" xml:space="preserve">
+    <value>قصص النجاح</value>
+  </data>
+  <data name="Nav_Contact" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+  <data name="Nav_Dashboard" xml:space="preserve">
+    <value>لوحة القيادة</value>
+  </data>
+  <data name="Nav_GetStarted" xml:space="preserve">
+    <value>ابدأ</value>
+  </data>
+  <data name="Steps_Section_Title" xml:space="preserve">
+    <value>اتبع هذه الخطوات الـ6 لإطلاق شركتك الناشئة</value>
+  </data>
+  <data name="Step_1_Title" xml:space="preserve">
+    <value>مراجعة وثائق DevKit</value>
+  </data>
+  <data name="Step_1_Button" xml:space="preserve">
+    <value>قراءة الوثائق</value>
+  </data>
+  <data name="Step_2_Title" xml:space="preserve">
+    <value>تصميم موقع إلكتروني</value>
+  </data>
+  <data name="Step_2_Description" xml:space="preserve">
+    <value>استخدم وكلاء الذكاء الاصطناعي مثل Cursor وChatGPT وغيرها لتصميم موقعك واتبع الوثائق لاستبداله بالموقع الحالي.</value>
+  </data>
+  <data name="Step_3_Title" xml:space="preserve">
+    <value>تطبيق منطقك</value>
+  </data>
+  <data name="Step_3_Description" xml:space="preserve">
+    <value>استخدم وثائقنا لتعلم الهندسة المعمارية والأنماط لتطبيق منطق أعمال عالي الجودة. اكتشف مدى بساطة دمج منطق أعمالك مع وحدات DevKit الموجودة.</value>
+  </data>
+  <data name="Step_4_Title" xml:space="preserve">
+    <value>إنشاء خطط الأسعار</value>
+  </data>
+  <data name="Step_4_Description" xml:space="preserve">
+    <value>ببساطة استخدم قسم الأسعار في لوحة الإدارة لتحديد خططك وخصوماتك. كل شيء جاهز لإعداد استراتيجية تحقيق الإيرادات بدون عناء.</value>
+  </data>
+  <data name="Step_5_Title" xml:space="preserve">
+    <value>إنشاء روبوت محادثة ذكي</value>
+  </data>
+  <data name="Step_5_Description" xml:space="preserve">
+    <value>فقط قدم مفتاح API من OpenAI أو Google أو مقدمي ذكاء اصطناعي آخرين، بالإضافة لبعض وثائق الأعمال، وستحصل على روبوت محادثة مصمم جيداً وأداة للتفاعل مع المستخدمين.</value>
+  </data>
+  <data name="Step_6_Title" xml:space="preserve">
+    <value>نشر شركتك الناشئة</value>
+  </data>
+  <data name="Step_6_Description" xml:space="preserve">
+    <value>انشر أينما تريد. إنه تطبيق .NET متعدد المنصات يمكن نشره على Windows وLinux ومنصات أخرى بسهولة.</value>
+  </data>
+  <data name="Video_Section_Title" xml:space="preserve">
+    <value>تريد أن ترى كيف يتم ذلك؟</value>
+  </data>
+  <data name="Video_Section_Description" xml:space="preserve">
+    <value>شاهد دليلاً كاملاً لبناء شركة ناشئة من الصفر، ثم اتبع نفس العملية لمشروعك الخاص.</value>
+  </data>
+  <data name="Video_Button_Text" xml:space="preserve">
+    <value>شاهد إطلاق شركة ناشئة نموذجية مع CodeBlock DevKit</value>
+  </data>
+  <data name="Video_Section_Subtitle" xml:space="preserve">
+    <value>عملية تطوير كاملة من البداية للنهاية</value>
+  </data>
+  <data name="Step_1_Description" xml:space="preserve">
+    <value>CodeBlock لديه وثائق شاملة تغطي كل ما تحتاج لمعرفته حول إطلاق شركة ناشئة باستخدام DevKit.</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+  <data name="Privacy_Introduction" xml:space="preserve">
+    <value>خصوصيتك مهمة بالنسبة لنا. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية معلوماتك عند استخدام تطبيقنا وخدماتنا.</value>
+  </data>
+  <data name="Privacy_InformationWeCollect_Title" xml:space="preserve">
+    <value>المعلومات التي نجمعها</value>
+  </data>
+  <data name="Privacy_InformationWeCollect_Content" xml:space="preserve">
+    <value>&lt;p&gt;عند استخدام منصتنا، قد نجمع المعلومات التالية:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;عنوان البريد الإلكتروني: يستخدم لإنشاء وإدارة حسابك، وكذلك لإرسال رسائل استعادة كلمة المرور إذا طلبت ذلك.&lt;/li&gt;
+    &lt;li&gt;معلومات الملف الشخصي الأساسية: قد تتضمن اسمك أو صورة ملفك الشخصي إذا قدمها موفر تسجيل الدخول الخارجي.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;نحن نجمع فقط المعلومات الضرورية لتقديم وتحسين خدماتنا.&lt;/p&gt;</value>
+  </data>
+  <data name="Privacy_HowWeUseInfo_Title" xml:space="preserve">
+    <value>كيف نستخدم معلوماتك</value>
+  </data>
+  <data name="Privacy_HowWeUseInfo_Content" xml:space="preserve">
+    <value>&lt;p&gt;نستخدم معلوماتك للأغراض التالية:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;للتحقق من هويتك وتسجيل دخولك إلى منصتنا.&lt;/li&gt;
+    &lt;li&gt;لإدارة حسابك وتقديم الاتصالات الأساسية المتعلقة بالحساب.&lt;/li&gt;
+    &lt;li&gt;لإرسال رسائل استعادة كلمة المرور إذا طلبت ذلك.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;نحن لا نبيع أو نشارك أو نستخدم معلوماتك لأغراض تسويقية.&lt;/strong&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="Privacy_DataSharing_Title" xml:space="preserve">
+    <value>مشاركة البيانات</value>
+  </data>
+  <data name="Privacy_DataSharing_Content" xml:space="preserve">
+    <value>نحن لا نشارك بياناتك مع أطراف ثالثة، إلا عندما يكون ذلك مطلوباً بموجب القانون أو للامتثال لشروط موفري تسجيل الدخول الخارجيين (مثل Google وMicrosoft وTwitter وFacebook).</value>
+  </data>
+  <data name="Privacy_DataRetention_Title" xml:space="preserve">
+    <value>الاحتفاظ بالبيانات</value>
+  </data>
+  <data name="Privacy_DataRetention_Content" xml:space="preserve">
+    <value>نحتفظ بمعلوماتك طالما كان ذلك ضرورياً لتقديم خدماتنا أو وفقاً لما يقتضيه القانون. إذا اخترت حذف حسابك، سنقوم بإزالة بياناتك من أنظمتنا خلال فترة زمنية معقولة.</value>
+  </data>
+  <data name="Privacy_SecurityMeasures_Title" xml:space="preserve">
+    <value>التدابير الأمنية</value>
+  </data>
+  <data name="Privacy_SecurityMeasures_Content" xml:space="preserve">
+    <value>نقوم بتنفيذ تدابير أمنية قياسية في الصناعة لحماية بياناتك. ومع ذلك، لا توجد طريقة آمنة تماماً لنقل البيانات عبر الإنترنت أو تخزينها إلكترونياً، ولا يمكننا ضمان الأمان المطلق.</value>
+  </data>
+  <data name="Privacy_YourRights_Title" xml:space="preserve">
+    <value>حقوقك</value>
+  </data>
+  <data name="Privacy_YourRights_Content" xml:space="preserve">
+    <value>&lt;p&gt;لديك الحقوق التالية فيما يتعلق بمعلوماتك الشخصية:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;الوصول: يمكنك طلب نسخة من المعلومات التي نحتفظ بها عنك.&lt;/li&gt;
+    &lt;li&gt;التصحيح: يمكنك طلب تصحيح المعلومات غير الدقيقة أو غير المكتملة.&lt;/li&gt;
+    &lt;li&gt;الحذف: يمكنك طلب حذف حسابك والبيانات المرتبطة به.&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Privacy_PolicyChanges_Title" xml:space="preserve">
+    <value>التغييرات في سياسة الخصوصية</value>
+  </data>
+  <data name="Privacy_PolicyChanges_Content" xml:space="preserve">
+    <value>نحتفظ بالحق في تحديث سياسة الخصوصية هذه في أي وقت. سيتم نشر أي تغييرات على هذه الصفحة، وسيتم تحديث تاريخ السريان وفقاً لذلك.</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>شروط الخدمة</value>
+  </data>
+  <data name="Terms_Introduction" xml:space="preserve">
+    <value>مرحباً بك في منصتنا! تحكم شروط الخدمة ("الشروط") هذه استخدامك لتطبيقنا وميزاته المرتبطة به.</value>
+  </data>
+  <data name="Terms_ExternalLogin_Title" xml:space="preserve">
+    <value>موفرو تسجيل الدخول الخارجيون</value>
+  </data>
+  <data name="Terms_ExternalLogin_Content" xml:space="preserve">
+    <value>تتيح منصتنا تسجيل الدخول باستخدام موفري خدمات خارجيين، بما في ذلك على سبيل المثال لا الحصر Google وMicrosoft وTwitter وFacebook. باستخدام خدمات تسجيل الدخول الخارجية هذه، فإنك توافق على الشروط والسياسات الخاصة بموفر تسجيل الدخول الذي تختاره.</value>
+  </data>
+  <data name="Terms_EmailUsage_Title" xml:space="preserve">
+    <value>استخدام عنوان بريدك الإلكتروني</value>
+  </data>
+  <data name="Terms_EmailUsage_Content" xml:space="preserve">
+    <value>&lt;p&gt;عند تسجيل الدخول من خلال أي موفر خارجي، قد نطلب الوصول إلى عنوان بريدك الإلكتروني. يستخدم عنوان البريد الإلكتروني هذا للأغراض التالية:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;لإنشاء وإدارة حسابك على منصتنا.&lt;/li&gt;
+    &lt;li&gt;لاستخدامه كاسم مستخدم لأغراض المصادقة.&lt;/li&gt;
+    &lt;li&gt;لإرسال رسائل استعادة كلمة المرور، إذا طلبت ذلك.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;نحن لا نستخدم عنوان بريدك الإلكتروني لأغراض تسويقية، أو نشاركه مع أطراف ثالثة، أو نستخدمه لأي أهداف أخرى.&lt;/strong&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="Terms_PrivacyHandling_Title" xml:space="preserve">
+    <value>الخصوصية ومعالجة البيانات</value>
+  </data>
+  <data name="Terms_PrivacyHandling_Content" xml:space="preserve">
+    <value>نحن نعطي الأولوية لخصوصيتك ونتعامل مع معلوماتك وفقاً لسياسة الخصوصية الخاصة بنا. سيتم استخدام أي بيانات يتم الحصول عليها أثناء عملية تسجيل الدخول فقط لتسهيل وصولك إلى منصتنا.</value>
+  </data>
+  <data name="Terms_ProviderResponsibility_Title" xml:space="preserve">
+    <value>مسؤولية الموفرين الخارجيين</value>
+  </data>
+  <data name="Terms_ProviderResponsibility_Content" xml:space="preserve">
+    <value>باستخدام موفر تسجيل دخول خارجي، فإنك توافق على الشروط والأحكام وسياسات الخصوصية الخاصة بذلك الموفر. نحن لسنا مسؤولين عن أي إجراءات تتخذها خدمات تسجيل الدخول الخارجية.</value>
+  </data>
+  <data name="Terms_AccountResponsibility_Title" xml:space="preserve">
+    <value>مسؤوليات حسابك</value>
+  </data>
+  <data name="Terms_AccountResponsibility_Content" xml:space="preserve">
+    <value>أنت مسؤول عن الحفاظ على سرية بيانات اعتماد حسابك. يرجى الاتصال بنا على الفور إذا كنت تعتقد أن حسابك قد تم اختراقه.</value>
+  </data>
+  <data name="Terms_Modifications_Title" xml:space="preserve">
+    <value>التعديلات على الشروط</value>
+  </data>
+  <data name="Terms_Modifications_Content" xml:space="preserve">
+    <value>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. إذا تم إجراء تغييرات مهمة، سنخطرك من خلال منصتنا أو عبر البريد الإلكتروني.</value>
+  </data>
+  <data name="Terms_EffectiveDate" xml:space="preserve">
+    <value>تاريخ السريان:</value>
+  </data>
+  <data name="Terms_ContactUs" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+  <data name="Terms_ContactUsInfo" xml:space="preserve">
+    <value>إذا كانت لديك أي أسئلة حول سياساتنا أو كيفية تعاملنا مع بياناتك، يرجى الاتصال بنا.</value>
+  </data>
+  <data name="Terms_AgreeToPolicy" xml:space="preserve">
+    <value>باستخدام منصتنا، فإنك توافق على هذه السياسة.</value>
+  </data>
+  <data name="Terms_AgreeToTerms" xml:space="preserve">
+    <value>باستخدام منصتنا، فإنك توافق على شروط الخدمة هذه.</value>
+  </data>
+  <data name="Terms_ThankYou" xml:space="preserve">
+    <value>شكراً لاستخدام منصتنا!</value>
+  </data>
+  <data name="Nav_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+</root>

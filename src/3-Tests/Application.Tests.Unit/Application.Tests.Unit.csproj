@@ -1,0 +1,34 @@
+<!--
+  Unit test project for the Application layer that demonstrates how to write comprehensive unit tests
+  for command handlers, use cases, and business logic. This project shows testing patterns including
+  mocking, test fixtures, and validation testing. The DemoThing functionality shown here is just an
+  example to help you learn how to implement your own unique features into the current codebase.
+  You can use this testing pattern to verify your actual business logic works correctly in isolation.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>HeyItIsMe.Application.Tests.Unit</AssemblyName>
+    <RootNamespace>HeyItIsMe.Application.Tests.Unit</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\codeblock.dev.license.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+    <PackageReference Include="CodeBlock.DevKit.Test" Version="1.4.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1-Libraries\Application\Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

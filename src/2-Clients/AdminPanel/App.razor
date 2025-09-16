@@ -1,0 +1,30 @@
+@using CodeBlock.DevKit.Clients.AdminPanel.Pages.Shared
+@using CodeBlock.DevKit.Web.Blazor.Server
+@inject IModuleRegistry ModuleRegistry
+@inherits AppBase
+
+<CascadingBlazoredModal FocusFirstElement="false" HideCloseButton="false" ContentScrollable="true" DisableBackgroundCancel="true" Animation="@ModalAnimation.FadeIn(0.4)">
+    <CascadingAuthenticationState>
+        <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="@ModuleRegistry.GetUIModuleAssemblies()">
+            <Found Context="routeData">
+                <CustomAuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(AdminPanelLayout)">
+                    <Authorizing>
+                        <LayoutView Layout="@typeof(SimpleLayout)">
+                            <Alert ShowLinkedButtons=false Title="@CoreLocalizer[CoreResource.Error_Authorization_Title]" Message="@CoreLocalizer[CoreResource.Error_Authorization_Message]" />
+                        </LayoutView>
+                    </Authorizing>
+                    <NotAuthorized>
+                        <LayoutView Layout="@typeof(SimpleLayout)">
+                            <RedirectToLogin />
+                        </LayoutView>
+                    </NotAuthorized>
+                </CustomAuthorizeRouteView>
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(SimpleLayout)">
+                    <Alert Title="@CoreLocalizer[CoreResource.Error_NotFound_Title]" Message="@CoreLocalizer[CoreResource.Error_NotFound_Message]" />
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
+</CascadingBlazoredModal>

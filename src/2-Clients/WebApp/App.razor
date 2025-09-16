@@ -1,0 +1,38 @@
+@* 
+ * Main application component for the WebApp client.
+ * This component demonstrates how to set up the root application structure using CodeBlock.DevKit.
+ * It includes routing, authentication, modal support, and layout management.
+ * The current functionality serves as a learning example - you can customize the routing,
+ * authentication flow, and error handling while maintaining the same structure.
+ *@
+@using CodeBlock.DevKit.Web.Blazor.Server
+@using CodeBlock.DevKit.Web.Blazor.Server.Components
+@using HeyItIsMe.WebApp.Pages.Website.Shared
+@inject IModuleRegistry ModuleRegistry
+@inherits AppBase
+
+<CascadingBlazoredModal FocusFirstElement="false" HideCloseButton="false" ContentScrollable="true" DisableBackgroundCancel="true" Animation="@ModalAnimation.FadeIn(0.4)">
+    <CascadingAuthenticationState>
+        <Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="@ModuleRegistry.GetUIModuleAssemblies()">
+            <Found Context="routeData">
+                <CustomAuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(WebsiteLayout)">
+                    <Authorizing>
+                        <LayoutView Layout="@typeof(SimpleLayout)">
+                            <Alert ShowLinkedButtons=false Title="@CoreLocalizer[CoreResource.Error_Authorization_Title]" Message="@CoreLocalizer[CoreResource.Error_Authorization_Message]" />
+                        </LayoutView>
+                    </Authorizing>
+                    <NotAuthorized>
+                        <LayoutView Layout="@typeof(SimpleLayout)">
+                            <RedirectToLogin />
+                        </LayoutView>
+                    </NotAuthorized>
+                </CustomAuthorizeRouteView>
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(SimpleLayout)">
+                    <Alert Title="@CoreLocalizer[CoreResource.Error_NotFound_Title]" Message="@CoreLocalizer[CoreResource.Error_NotFound_Message]" />
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
+</CascadingBlazoredModal>

@@ -1,0 +1,38 @@
+@page "/terms-of-service"
+@using CodeBlock.DevKit.Contracts.Models
+@inject ApplicationSettings ApplicationSettings
+
+@{
+    Layout = "_SimpleLayout";
+    ViewData["Title"] = @WebAppLocalizer[WebAppResource.TermsOfService];
+}
+
+<h1>@WebAppLocalizer[WebAppResource.TermsOfService]</h1>
+<p>@WebAppLocalizer[WebAppResource.Terms_EffectiveDate] <strong>@DateTime.Now.ToString("d")</strong></p>
+
+<p>@WebAppLocalizer[WebAppResource.Terms_Introduction]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_ExternalLogin_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_ExternalLogin_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_EmailUsage_Title]</h2>
+@Html.Raw(WebAppLocalizer[WebAppResource.Terms_EmailUsage_Content])
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_PrivacyHandling_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_PrivacyHandling_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_ProviderResponsibility_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_ProviderResponsibility_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_AccountResponsibility_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_AccountResponsibility_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_Modifications_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_Modifications_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_ContactUs]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_ContactUsInfo] (@ApplicationSettings.Default.SupportEmail)</p>
+
+<p>@WebAppLocalizer[WebAppResource.Terms_AgreeToTerms]</p>
+
+<p>@WebAppLocalizer[WebAppResource.Terms_ThankYou]</p>

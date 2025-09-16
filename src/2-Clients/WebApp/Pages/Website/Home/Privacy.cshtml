@@ -1,0 +1,39 @@
+@page "/privacy-policy"
+@using CodeBlock.DevKit.Contracts.Models
+@inject ApplicationSettings ApplicationSettings
+
+@{
+    Layout = "_SimpleLayout";
+    ViewData["Title"] = WebAppLocalizer[WebAppResource.PrivacyPolicy];
+}
+
+<h1>@WebAppLocalizer[WebAppResource.PrivacyPolicy]</h1>
+<p>@WebAppLocalizer[WebAppResource.Terms_EffectiveDate] <strong>@DateTime.Now.ToString("d")</strong></p>
+
+<p>@WebAppLocalizer[WebAppResource.Privacy_Introduction]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_InformationWeCollect_Title]</h2>
+@Html.Raw(WebAppLocalizer[WebAppResource.Privacy_InformationWeCollect_Content])
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_HowWeUseInfo_Title]</h2>
+@Html.Raw(WebAppLocalizer[WebAppResource.Privacy_HowWeUseInfo_Content])
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_DataSharing_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Privacy_DataSharing_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_DataRetention_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Privacy_DataRetention_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_SecurityMeasures_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Privacy_SecurityMeasures_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_YourRights_Title]</h2>
+@Html.Raw(WebAppLocalizer[WebAppResource.Privacy_YourRights_Content])
+
+<h2>@WebAppLocalizer[WebAppResource.Privacy_PolicyChanges_Title]</h2>
+<p>@WebAppLocalizer[WebAppResource.Privacy_PolicyChanges_Content]</p>
+
+<h2>@WebAppLocalizer[WebAppResource.Terms_ContactUs]</h2>
+<p>@WebAppLocalizer[WebAppResource.Terms_ContactUsInfo] (@ApplicationSettings.Default.SupportEmail)</p>
+
+<p>@WebAppLocalizer[WebAppResource.Terms_AgreeToPolicy]</p>

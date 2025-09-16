@@ -1,0 +1,37 @@
+# This workflow is configured for Windows deployment by default.
+# If you're deploying to a different platform (Linux, Cloud, etc.),
+# you'll need to modify this configuration accordingly.
+
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    # Using GitHub-hosted Windows runner
+    runs-on: windows-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET 6 and .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            6.0.x
+            8.0.x
+
+      - name: Build
+        run: ./build.ps1 Compile
+
+      - name: Lint Check
+        run: ./build.ps1 LintCheck --skip Compile
+
+      - name: Unit Test
+        run: ./build.ps1 RunUnitTests --skip LintCheck
+
+# Note: This workflow focuses on building and testing.
+# The CD workflow will handle publishing and deployment.

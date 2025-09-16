@@ -1,0 +1,13 @@
+@using HeyItIsMe.Core.Resources
+@using HeyItIsMe.WebApp.Resources
+@using CodeBlock.DevKit.Core.Resources
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@attribute [AllowAnonymous]
+
+HeyItIsMe.WebApp.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject IStringLocalizer<WebAppResource> WebAppLocalizer
+@inject IStringLocalizer<CoreResource> CoreLocalizer
+@inject IStringLocalizer<SharedResource> SharedLocalizer

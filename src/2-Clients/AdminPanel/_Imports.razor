@@ -1,0 +1,45 @@
+@using HeyItIsMe.AdminPanel.Pages
+@using HeyItIsMe.AdminPanel.Pages.Shared
+@using HeyItIsMe.Core.Resources
+@using CodeBlock.DevKit.Clients.AdminPanel.Pages
+@using CodeBlock.DevKit.Clients.AdminPanel.Pages.Shared
+@using System.Net.Http
+@using Blazored.Modal.Services
+@using Blazored.Toast.Services
+@using Blazored.Modal
+@using CodeBlock.DevKit.Application.Srvices
+@using CodeBlock.DevKit.Web.Blazor.Server.Services
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using HeyItIsMe.AdminPanel
+@using CodeBlock.DevKit.Core.Extensions
+@using CodeBlock.DevKit.Web.Blazor.Server.Extensions
+@using CodeBlock.DevKit.Web.Blazor.Server.Components
+@using CodeBlock.DevKit.Core.Resources
+@using Microsoft.Extensions.Localization
+@using HeyItIsMe.AdminPanel.Resources
+@using CodeBlock.DevKit.Web.Security;
+@using CodeBlock.DevKit.Contracts.Models
+@using HeyItIsMe.Application.Dtos
+@using HeyItIsMe.Application.Services.DemoThings
+@using HeyItIsMe.AdminPanel.Resources
+@using CodeBlock.DevKit.Core.Helpers
+
+@using HeyItIsMe.AdminPanel.Pages.DemoThings.Components
+@using CodeBlock.DevKit.Contracts.Dtos
+
+@attribute [Authorize(Policies.OPERATOR)]
+@inject IStringLocalizer<AdminPanelResource> AdminPanelLocalizer
+@inject IStringLocalizer<SharedResource> SharedLocalizer
+@inject IStringLocalizer<CoreResource> CoreLocalizer
+@inject NavigationManager NavigationManager
+@inject MessageService MessageService
+@inject IDemoThingService DemoThingService
+@inject IToastService ToastService
+@inject IModalService ModalService
+@inject ICurrentUser CurrentUser

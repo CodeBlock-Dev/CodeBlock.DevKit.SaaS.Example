@@ -1,0 +1,341 @@
+name: Deploy to Windows IIS
+
+# This workflow deploys the application to a Windows IIS server
+# Prerequisites:
+# 1. A self-hosted GitHub runner installed on your Windows server
+# 2. IIS installed with the following app pools configured:
+#    - One for WebApp
+#    - One for AdminPanel
+#    - One for API
+# 3. The following environment variables configured in your GitHub repository:
+#    - WEBAPP_APP_POOL: Name of the IIS application pool for WebApp
+#    - WEBAPP_SITE_PATH: Physical path where WebApp will be deployed
+#    - ADMIN_APP_POOL: Name of the IIS application pool for AdminPanel
+#    - ADMIN_SITE_PATH: Physical path where AdminPanel will be deployed
+#    - API_APP_POOL: Name of the IIS application pool for API
+#    - API_SITE_PATH: Physical path where API will be deployed
+
+on:
+  workflow_dispatch: # Manual trigger for production deployment
+    inputs:
+      confirm_deployment:
+        description: 'Are you sure you want to deploy to production?'
+        required: true
+        type: boolean
+
+jobs:
+  deploy_webapp:
+    runs-on: self-hosted # Requires a Windows self-hosted runner
+    environment: production
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 6 and .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            8.0.x
+
+      - name: Publish WebApp project
+        run: dotnet publish ./src/2-Clients/WebApp/WebApp.csproj -c Release -o ./output/WebApp
+
+      - name: Create WebApp.zip
+        run: |
+          Compress-Archive -Path ./output/WebApp/* -DestinationPath ./output/WebApp.zip
+
+      - name: Debug variables
+        shell: powershell
+        run: |
+          Write-Host "WEBAPP_APP_POOL: '${{ vars.WEBAPP_APP_POOL }}'"
+          Write-Host "WEBAPP_SITE_PATH: '${{ vars.WEBAPP_SITE_PATH }}'"
+
+      - name: Stop IIS App Pool
+        shell: powershell
+        run: |
+          $appPoolName = "${{ vars.WEBAPP_APP_POOL }}"
+          if ([string]::IsNullOrEmpty($appPoolName)) {
+              Write-Error "WEBAPP_APP_POOL variable is not configured"
+              exit 1
+          }
+          Write-Host "Stopping IIS App Pool: $appPoolName"
+          Stop-WebAppPool -Name $appPoolName
+          
+          # Wait for the app pool to stop (max 20 seconds)
+          $maxRetries = 10
+          $retryInterval = 2
+          $retries = 0
+          while ($retries -lt $maxRetries) {
+              $appPoolStatus = (Get-WebAppPoolState -Name $appPoolName).Value
+              if ($appPoolStatus -eq "Stopped") {
+                  Write-Host "App Pool $appPoolName has successfully stopped."
+                  break
+              }
+              Write-Host "App Pool $appPoolName is still stopping. Retrying in $retryInterval seconds..."
+              Start-Sleep -Seconds $retryInterval
+              $retries++
+          }
+
+      - name: Backup existing deployment
+        shell: powershell
+        run: |
+          $deployPath = "${{ vars.WEBAPP_SITE_PATH }}"
+          if ([string]::IsNullOrEmpty($deployPath)) {
+              Write-Error "WEBAPP_SITE_PATH variable is not configured"
+              exit 1
+          }
+          if (Test-Path $deployPath) {
+              $timestamp = Get-Date -Format "yyyyMMddHHmmss"
+              $backupPath = "${deployPath}_backup_${timestamp}"
+              Move-Item -Path $deployPath -Destination $backupPath -Force
+              Write-Host "Created backup at: $backupPath"
+          }
+
+      - name: Deploy WebApp
+        shell: powershell
+        run: |
+          $deployPath = "${{ vars.WEBAPP_SITE_PATH }}"
+          New-Item -ItemType Directory -Force -Path $deployPath
+          Expand-Archive -Path ./output/WebApp.zip -DestinationPath $deployPath -Force
+
+      - name: Start IIS App Pool
+        shell: powershell
+        run: |
+          $appPoolName = "${{ vars.WEBAPP_APP_POOL }}"
+          Start-WebAppPool -Name $appPoolName
+          
+          # Wait for the app pool to start (max 20 seconds)
+          $maxRetries = 10
+          $retryInterval = 2
+          $retries = 0
+          while ($retries -lt $maxRetries) {
+              $appPoolStatus = (Get-WebAppPoolState -Name $appPoolName).Value
+              if ($appPoolStatus -eq "Started") {
+                  Write-Host "App Pool $appPoolName has successfully started."
+                  break
+              }
+              Write-Host "App Pool $appPoolName is still starting. Retrying in $retryInterval seconds..."
+              Start-Sleep -Seconds $retryInterval
+              $retries++
+          }
+
+  deploy_admin:
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 6 and .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            8.0.x
+
+      - name: Publish AdminPanel project
+        run: dotnet publish ./src/2-Clients/AdminPanel/AdminPanel.csproj -c Release -o ./output/AdminPanel
+
+      - name: Create AdminPanel.zip
+        run: |
+          Compress-Archive -Path ./output/AdminPanel/* -DestinationPath ./output/AdminPanel.zip
+
+      - name: Debug variables
+        shell: powershell
+        run: |
+          Write-Host "ADMIN_APP_POOL: '${{ vars.ADMIN_APP_POOL }}'"
+          Write-Host "ADMIN_SITE_PATH: '${{ vars.ADMIN_SITE_PATH }}'"
+
+      - name: Stop IIS App Pool
+        shell: powershell
+        run: |
+          $appPoolName = "${{ vars.ADMIN_APP_POOL }}"
+          if ([string]::IsNullOrEmpty($appPoolName)) {
+              Write-Error "ADMIN_APP_POOL variable is not configured"
+              exit 1
+          }
+          Write-Host "Stopping IIS App Pool: $appPoolName"
+          Stop-WebAppPool -Name $appPoolName
+          
+          # Wait for the app pool to stop (max 20 seconds)
+          $maxRetries = 10
+          $retryInterval = 2
+          $retries = 0
+          while ($retries -lt $maxRetries) {
+              $appPoolStatus = (Get-WebAppPoolState -Name $appPoolName).Value
+              if ($appPoolStatus -eq "Stopped") {
+                  Write-Host "App Pool $appPoolName has successfully stopped."
+                  break
+              }
+              Write-Host "App Pool $appPoolName is still stopping. Retrying in $retryInterval seconds..."
+              Start-Sleep -Seconds $retryInterval
+              $retries++
+          }
+
+      - name: Backup existing deployment
+        shell: powershell
+        run: |
+          $deployPath = "${{ vars.ADMIN_SITE_PATH }}"
+          if ([string]::IsNullOrEmpty($deployPath)) {
+              Write-Error "ADMIN_SITE_PATH variable is not configured"
+              exit 1
+          }
+          if (Test-Path $deployPath) {
+              $timestamp = Get-Date -Format "yyyyMMddHHmmss"
+              $backupPath = "${deployPath}_backup_${timestamp}"
+              Move-Item -Path $deployPath -Destination $backupPath -Force
+              Write-Host "Created backup at: $backupPath"
+          }
+
+      - name: Deploy AdminPanel
+        shell: powershell
+        run: |
+          $deployPath = "${{ vars.ADMIN_SITE_PATH }}"
+          New-Item -ItemType Directory -Force -Path $deployPath
+          Expand-Archive -Path ./output/AdminPanel.zip -DestinationPath $deployPath -Force
+
+      - name: Start IIS App Pool
+        shell: powershell
+        run: |
+          $appPoolName = "${{ vars.ADMIN_APP_POOL }}"
+          Start-WebAppPool -Name $appPoolName
+          
+          # Wait for the app pool to start (max 20 seconds)
+          $maxRetries = 10
+          $retryInterval = 2
+          $retries = 0
+          while ($retries -lt $maxRetries) {
+              $appPoolStatus = (Get-WebAppPoolState -Name $appPoolName).Value
+              if ($appPoolStatus -eq "Started") {
+                  Write-Host "App Pool $appPoolName has successfully started."
+                  break
+              }
+              Write-Host "App Pool $appPoolName is still starting. Retrying in $retryInterval seconds..."
+              Start-Sleep -Seconds $retryInterval
+              $retries++
+          }
+
+  deploy_api:
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 6 and .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            8.0.x
+
+      - name: Publish Api project
+        run: dotnet publish ./src/2-Clients/Api/Api.csproj -c Release -o ./output/Api
+
+      - name: Create Api.zip
+        run: |
+          Compress-Archive -Path ./output/Api/* -DestinationPath ./output/Api.zip
+
+      - name: Debug variables
+        shell: powershell
+        run: |
+          Write-Host "API_APP_POOL: '${{ vars.API_APP_POOL }}'"
+          Write-Host "API_SITE_PATH: '${{ vars.API_SITE_PATH }}'"
+
+      - name: Stop IIS App Pool
+        shell: powershell
+        run: |
+          $appPoolName = "${{ vars.API_APP_POOL }}"
+          if ([string]::IsNullOrEmpty($appPoolName)) {
+              Write-Error "API_APP_POOL variable is not configured"
+              exit 1
+          }
+          Write-Host "Stopping IIS App Pool: $appPoolName"
+          Stop-WebAppPool -Name $appPoolName
+          
+          # Wait for the app pool to stop (max 20 seconds)
+          $maxRetries = 10
+          $retryInterval = 2
+          $retries = 0
+          while ($retries -lt $maxRetries) {
+              $appPoolStatus = (Get-WebAppPoolState -Name $appPoolName).Value
+              if ($appPoolStatus -eq "Stopped") {
+                  Write-Host "App Pool $appPoolName has successfully stopped."
+                  break
+              }
+              Write-Host "App Pool $appPoolName is still stopping. Retrying in $retryInterval seconds..."
+              Start-Sleep -Seconds $retryInterval
+              $retries++
+          }
+
+      - name: Backup existing deployment
+        shell: powershell
+        run: |
+          $deployPath = "${{ vars.API_SITE_PATH }}"
+          if ([string]::IsNullOrEmpty($deployPath)) {
+              Write-Error "API_SITE_PATH variable is not configured"
+              exit 1
+          }
+          if (Test-Path $deployPath) {
+              $timestamp = Get-Date -Format "yyyyMMddHHmmss"
+              $backupPath = "${deployPath}_backup_${timestamp}"
+              Move-Item -Path $deployPath -Destination $backupPath -Force
+              Write-Host "Created backup at: $backupPath"
+          }
+
+      - name: Deploy API
+        shell: powershell
+        run: |
+          $deployPath = "${{ vars.API_SITE_PATH }}"
+          New-Item -ItemType Directory -Force -Path $deployPath
+          Expand-Archive -Path ./output/Api.zip -DestinationPath $deployPath -Force
+
+      - name: Start IIS App Pool
+        shell: powershell
+        run: |
+          $appPoolName = "${{ vars.API_APP_POOL }}"
+          Start-WebAppPool -Name $appPoolName
+          
+          # Wait for the app pool to start (max 20 seconds)
+          $maxRetries = 10
+          $retryInterval = 2
+          $retries = 0
+          while ($retries -lt $maxRetries) {
+              $appPoolStatus = (Get-WebAppPoolState -Name $appPoolName).Value
+              if ($appPoolStatus -eq "Started") {
+                  Write-Host "App Pool $appPoolName has successfully started."
+                  break
+              }
+              Write-Host "App Pool $appPoolName is still starting. Retrying in $retryInterval seconds..."
+              Start-Sleep -Seconds $retryInterval
+              $retries++
+          }
+
+# Setup instructions for users:
+# 1. Install a GitHub self-hosted runner on your Windows server
+#    - Go to repo Settings > Actions > Runners
+#    - Click "New self-hosted runner" and follow the instructions
+#
+# 2. Configure IIS on your Windows server:
+#    - Create three application pools (for WebApp, AdminPanel, and API)
+#    - Create three websites/applications in IIS
+#    - Note down the physical paths and app pool names
+#
+# 3. Add the following environment variables to your GitHub repository:
+#    - WEBAPP_APP_POOL: The name of your WebApp's application pool
+#    - WEBAPP_SITE_PATH: The physical path where WebApp files should be deployed
+#    - ADMIN_APP_POOL: The name of your AdminPanel's application pool
+#    - ADMIN_SITE_PATH: The physical path where AdminPanel files should be deployed
+#    - API_APP_POOL: The name of your API's application pool
+#    - API_SITE_PATH: The physical path where API files should be deployed
+#
+# 4. The workflow will:
+#    - Run on the self-hosted runner
+#    - Publish the projects
+#    - Create zip files
+#    - Stop the appropriate app pool
+#    - Backup existing deployment
+#    - Deploy new files
+#    - Start the app pool
+#    - Monitor app pool status
