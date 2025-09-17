@@ -147,4 +147,31 @@
   <data name="Email" xml:space="preserve">
     <value>ایمیل کاربر</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>صفحه</value>
+  </data>
+  <data name="Page_Route" xml:space="preserve">
+    <value>مسیر</value>
+  </data>
+  <data name="Page_DisplayName" xml:space="preserve">
+    <value>نام نمایشی</value>
+  </data>
+  <data name="Page_UserId" xml:space="preserve">
+    <value>شناسه ی کاربر</value>
+  </data>
+  <data name="Page_SubscriptionId" xml:space="preserve">
+    <value>شناسه ی اشتراک</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>تماس</value>
+  </data>
+  <data name="Contact_Content" xml:space="preserve">
+    <value>محتوای تماس</value>
+  </data>
+  <data name="Fact" xml:space="preserve">
+    <value>واقعیت</value>
+  </data>
+  <data name="Fact_Content" xml:space="preserve">
+    <value>محتوای واقعیت</value>
+  </data>
 </root>

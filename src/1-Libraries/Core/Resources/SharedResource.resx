@@ -147,4 +147,31 @@
   <data name="Email" xml:space="preserve">
     <value>User Email</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Page_Route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="Page_DisplayName" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="Page_UserId" xml:space="preserve">
+    <value>User Id</value>
+  </data>
+  <data name="Page_SubscriptionId" xml:space="preserve">
+    <value>Subscription Id</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Contact_Content" xml:space="preserve">
+    <value>Contact Content</value>
+  </data>
+  <data name="Fact" xml:space="preserve">
+    <value>Fact</value>
+  </data>
+  <data name="Fact_Content" xml:space="preserve">
+    <value>Fact Content</value>
+  </data>
 </root>
