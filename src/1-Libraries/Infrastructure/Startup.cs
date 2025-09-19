@@ -1,11 +1,12 @@
-using HeyItIsMe.Application;
-using HeyItIsMe.Core.Domain.DemoThings;
-using HeyItIsMe.Infrastructure.DbContext;
-using HeyItIsMe.Infrastructure.Mapping;
-using HeyItIsMe.Infrastructure.Repositories;
 using CodeBlock.DevKit.Application.Extensions;
 using CodeBlock.DevKit.Infrastructure.Mapping;
 using FluentValidation;
+using HeyItIsMe.Application;
+using HeyItIsMe.Core.Domain.DemoThings;
+using HeyItIsMe.Core.Domain.Pages;
+using HeyItIsMe.Infrastructure.DbContext;
+using HeyItIsMe.Infrastructure.Mapping;
+using HeyItIsMe.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HeyItIsMe.Infrastructure;
@@ -14,7 +15,7 @@ namespace HeyItIsMe.Infrastructure;
 /// Infrastructure module startup class that demonstrates how to configure and register all infrastructure services.
 /// This class serves as a learning example showing how to set up dependency injection, database context,
 /// repositories, mapping profiles, and other infrastructure components.
-/// 
+///
 /// IMPORTANT: This is an example implementation for learning purposes. Replace the DemoThing-related services
 /// with your actual business domain services and repositories.
 /// </summary>
@@ -24,7 +25,7 @@ public static class Startup
     /// Registers all infrastructure services with the dependency injection container.
     /// This method demonstrates the proper order of service registration and how to integrate
     /// different modules together.
-    /// 
+    ///
     /// Example usage in Program.cs:
     /// builder.Services.AddInfrastructureModule();
     /// </summary>
@@ -35,14 +36,14 @@ public static class Startup
         services.RegisterHandlers(typeof(Startup));
         services.AddMongoDbContext();
         services.AddDomainServices();
-        services.AddMappingProfileFromAssemblyContaining<DemoThingMappingProfile>();
+        services.AddMappingProfileFromAssemblyContaining<MappingProfile>();
         services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
     }
 
     /// <summary>
     /// Initializes the infrastructure module after the service provider is built.
     /// This method runs database migrations and seeds initial data like permissions.
-    /// 
+    ///
     /// Example usage in Program.cs:
     /// app.UseInfrastructureModule();
     /// </summary>
@@ -57,7 +58,7 @@ public static class Startup
     /// Safely drops test databases for testing purposes.
     /// Only drops databases that start with "Test_" prefix to prevent accidental
     /// deletion of production databases.
-    /// 
+    ///
     /// Example usage in test cleanup:
     /// serviceProvider.DropTestDatabase();
     /// </summary>
@@ -88,5 +89,6 @@ public static class Startup
     public static void AddDomainServices(this IServiceCollection services)
     {
         services.AddScoped<IDemoThingRepository, DemoThingRepository>();
+        services.AddScoped<IPageRepository, PageRepository>();
     }
 }
