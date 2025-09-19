@@ -1,5 +1,5 @@
-using HeyItIsMe.Infrastructure;
 using CodeBlock.DevKit.Clients.Api;
+using HeyItIsMe.Infrastructure;
 
 namespace HeyItIsMe.Api;
 
