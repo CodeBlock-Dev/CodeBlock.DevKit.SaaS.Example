@@ -1,7 +1,7 @@
-using HeyItIsMe.Core.Domain.DemoThings;
 using CodeBlock.DevKit.Contracts.Dtos;
+using HeyItIsMe.Core.Domain.DemoThings;
 
-namespace HeyItIsMe.Application.Dtos;
+namespace HeyItIsMe.Application.Dtos.DemoThings;
 
 /// <summary>
 /// Data Transfer Object for search input parameters when searching DemoThing entities.

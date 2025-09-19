@@ -1,8 +1,8 @@
-using HeyItIsMe.Application.Dtos;
-using HeyItIsMe.Core.Domain.DemoThings;
 using CodeBlock.DevKit.Application.Queries;
 using CodeBlock.DevKit.Contracts.Dtos;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Dtos.DemoThings;
+using HeyItIsMe.Core.Domain.DemoThings;
 
 namespace HeyItIsMe.Application.UseCases.DemoThings.SearchDemoThings;
 
@@ -54,32 +54,32 @@ internal class SearchDemoThingsRequest : BaseQuery<SearchOutputDto<GetDemoThingD
     /// Optional filter by demo thing type. When null, all types are included in the search.
     /// </summary>
     public DemoThingType? Type { get; }
-    
+
     /// <summary>
     /// The sort order for the search results.
     /// </summary>
     public SortOrder SortOrder { get; }
-    
+
     /// <summary>
     /// The search term for filtering by name, description, or user information.
     /// </summary>
     public string Term { get; }
-    
+
     /// <summary>
     /// The number of records to return per page.
     /// </summary>
     public int RecordsPerPage { get; }
-    
+
     /// <summary>
     /// The page number for pagination (1-based).
     /// </summary>
     public int PageNumber { get; }
-    
+
     /// <summary>
     /// Optional start date for filtering by creation date.
     /// </summary>
     public DateTime? FromDateTime { get; }
-    
+
     /// <summary>
     /// Optional end date for filtering by creation date.
     /// </summary>

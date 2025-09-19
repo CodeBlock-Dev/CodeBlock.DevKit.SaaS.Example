@@ -1,11 +1,11 @@
 using AutoMapper;
-using HeyItIsMe.Application.Dtos;
-using HeyItIsMe.Core.Domain.DemoThings;
 using CodeBlock.DevKit.Application.Queries;
 using CodeBlock.DevKit.Contracts.Dtos;
 using CodeBlock.DevKit.Contracts.Services;
 using CodeBlock.DevKit.Core.Extensions;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Dtos.DemoThings;
+using HeyItIsMe.Core.Domain.DemoThings;
 using MediatR;
 using Microsoft.Extensions.Logging;
 

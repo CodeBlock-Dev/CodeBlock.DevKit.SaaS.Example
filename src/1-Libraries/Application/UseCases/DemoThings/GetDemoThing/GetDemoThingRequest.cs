@@ -1,6 +1,6 @@
-using HeyItIsMe.Application.Dtos;
 using CodeBlock.DevKit.Application.Queries;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Dtos.DemoThings;
 
 namespace HeyItIsMe.Application.UseCases.DemoThings.GetDemoThing;
 

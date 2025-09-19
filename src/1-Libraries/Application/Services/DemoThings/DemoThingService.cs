@@ -1,11 +1,11 @@
-using HeyItIsMe.Application.Dtos;
+using CodeBlock.DevKit.Application.Srvices;
+using CodeBlock.DevKit.Contracts.Dtos;
+using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Dtos.DemoThings;
 using HeyItIsMe.Application.UseCases.DemoThings.CreateDemoThing;
 using HeyItIsMe.Application.UseCases.DemoThings.GetDemoThing;
 using HeyItIsMe.Application.UseCases.DemoThings.SearchDemoThings;
 using HeyItIsMe.Application.UseCases.DemoThings.UpdateDemoThing;
-using CodeBlock.DevKit.Application.Srvices;
-using CodeBlock.DevKit.Contracts.Dtos;
-using CodeBlock.DevKit.Core.Helpers;
 
 namespace HeyItIsMe.Application.Services.DemoThings;
 

@@ -1,10 +1,10 @@
-using HeyItIsMe.Application.Dtos;
-using HeyItIsMe.Application.Services.DemoThings;
-using HeyItIsMe.Core.Domain.DemoThings;
 using CodeBlock.DevKit.Contracts.Dtos;
 using CodeBlock.DevKit.Core.Helpers;
 using CodeBlock.DevKit.Web.Api.Filters;
 using CodeBlock.DevKit.Web.Security;
+using HeyItIsMe.Application.Dtos.DemoThings;
+using HeyItIsMe.Application.Services.DemoThings;
+using HeyItIsMe.Core.Domain.DemoThings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +17,7 @@ namespace HeyItIsMe.Api.Controllers;
 /// - Authorization using policies
 /// - Input validation and DTOs
 /// - Service layer integration
-/// 
+///
 /// The current functionality is just for you to learn and understand how to implement
 /// your own unique features into the current codebase.
 /// </summary>
