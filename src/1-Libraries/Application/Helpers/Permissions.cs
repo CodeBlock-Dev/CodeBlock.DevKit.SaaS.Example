@@ -28,6 +28,17 @@ public static class Permissions
     }
 
     /// <summary>
+    /// This class name is used as a group name for permissions related to pages.
+    /// </summary>
+    public static class Page
+    {
+        /// <summary>
+        /// This property represents the permission to manage pages.
+        /// </summary>
+        public const string PAGES = "Pages";
+    }
+
+    /// <summary>
     /// Retrieves all permissions dynamically using reflection.
     /// This method demonstrates how to automatically discover and register permissions
     /// from nested static classes, making the permission system maintainable and extensible.
