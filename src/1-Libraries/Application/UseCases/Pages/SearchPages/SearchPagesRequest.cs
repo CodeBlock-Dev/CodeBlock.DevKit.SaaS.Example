@@ -5,26 +5,8 @@ using HeyItIsMe.Application.Dtos.Pages;
 
 namespace HeyItIsMe.Application.UseCases.Pages.SearchPages;
 
-/// <summary>
-/// Query request for searching Page entities with various filtering and pagination options.
-/// This class demonstrates how to implement search query requests that include:
-/// - Multiple search criteria (term, date range)
-/// - Pagination parameters (page number, records per page)
-/// - Sorting options
-/// - Flexible filtering capabilities
-/// </summary>
 internal class SearchPagesRequest : BaseQuery<SearchOutputDto<GetPageDto>>
 {
-    /// <summary>
-    /// Initializes a new instance of the SearchPagesRequest with comprehensive search parameters.
-    /// </summary>
-    /// <param name="term">The search term for filtering by route, display name, or user information</param>
-    /// <param name="pageNumber">The page number for pagination (1-based)</param>
-    /// <param name="recordsPerPage">The number of records per page</param>
-    /// <param name="sortOrder">The sort order for the results</param>
-    /// <param name="fromDateTime">Optional start date for filtering by creation date</param>
-    /// <param name="toDateTime">Optional end date for filtering by creation date</param>
-    /// <param name="options">Optional query options for customizing the search behavior</param>
     public SearchPagesRequest(
         string term,
         int pageNumber,

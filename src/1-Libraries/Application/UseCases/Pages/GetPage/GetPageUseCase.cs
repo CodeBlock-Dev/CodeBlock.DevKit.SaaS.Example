@@ -11,28 +11,12 @@ using Microsoft.Extensions.Logging;
 
 namespace HeyItIsMe.Application.UseCases.Pages.GetPage;
 
-/// <summary>
-/// Use case for retrieving a Page entity by its identifier.
-/// This class demonstrates how to implement query handlers that include:
-/// - Permission-based access control
-/// - User context validation
-/// - AutoMapper integration for DTO mapping
-/// - Proper error handling with custom exceptions
-/// </summary>
 internal class GetPageUseCase : BaseQueryHandler, IRequestHandler<GetPageRequest, GetPageDto>
 {
     private readonly IPageRepository _pageRepository;
     private readonly ICurrentUser _currentUser;
     private readonly IUserAccessorService _userAccessorService;
 
-    /// <summary>
-    /// Initializes a new instance of the GetPageUseCase with the required dependencies.
-    /// </summary>
-    /// <param name="pageRepository">The repository for page operations</param>
-    /// <param name="mapper">The AutoMapper instance for object mapping</param>
-    /// <param name="logger">The logger for this use case</param>
-    /// <param name="currentUser">The current user context</param>
-    /// <param name="userAccessorService">The service for accessing user information</param>
     public GetPageUseCase(
         IPageRepository pageRepository,
         IMapper mapper,
@@ -47,18 +31,6 @@ internal class GetPageUseCase : BaseQueryHandler, IRequestHandler<GetPageRequest
         _userAccessorService = userAccessorService;
     }
 
-    /// <summary>
-    /// Handles the retrieval of a page by its identifier.
-    /// This method demonstrates a complete query flow including:
-    /// 1. Entity retrieval from repository
-    /// 2. Permission-based access control
-    /// 3. DTO mapping with AutoMapper
-    /// 4. Enriching DTO with additional user information
-    /// </summary>
-    /// <param name="request">The query request containing the page identifier</param>
-    /// <param name="cancellationToken">Cancellation token for the operation</param>
-    /// <returns>The page DTO with enriched user information</returns>
-    /// <exception cref="PageApplicationExceptions">Thrown when the page is not found</exception>
     public async Task<GetPageDto> Handle(GetPageRequest request, CancellationToken cancellationToken)
     {
         var page = await _pageRepository.GetByIdAsync(request.Id);

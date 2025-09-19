@@ -1,24 +1,12 @@
 using System.ComponentModel.DataAnnotations;
-using HeyItIsMe.Core.Resources;
 using CodeBlock.DevKit.Application.Commands;
 using CodeBlock.DevKit.Core.Resources;
+using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.UseCases.Pages.CreatePage;
 
-/// <summary>
-/// Command request for creating a new Page entity.
-/// This class demonstrates how to implement command requests with validation attributes,
-/// immutable properties, and proper resource-based localization.
-/// </summary>
 internal class CreatePageRequest : BaseCommand
 {
-    /// <summary>
-    /// Initializes a new instance of the CreatePageRequest with the required data.
-    /// </summary>
-    /// <param name="route">The unique route for the page</param>
-    /// <param name="displayName">The display name of the page</param>
-    /// <param name="userId">Identifier of the user who owns this page</param>
-    /// <param name="subscriptionId">Identifier of the subscription associated with this page</param>
     public CreatePageRequest(string route, string displayName, string userId, string subscriptionId)
     {
         Route = route;

@@ -1,23 +1,12 @@
 using System.ComponentModel.DataAnnotations;
-using HeyItIsMe.Core.Resources;
 using CodeBlock.DevKit.Application.Commands;
 using CodeBlock.DevKit.Core.Resources;
+using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.UseCases.Pages.UpdatePage;
 
-/// <summary>
-/// Command request for updating an existing Page entity.
-/// This class demonstrates how to implement update command requests with validation attributes,
-/// immutable properties, and proper resource-based localization.
-/// </summary>
 internal class UpdatePageRequest : BaseCommand
 {
-    /// <summary>
-    /// Initializes a new instance of the UpdatePageRequest with the required data.
-    /// </summary>
-    /// <param name="id">The unique identifier of the page to update</param>
-    /// <param name="route">The new route for the page</param>
-    /// <param name="displayName">The new display name for the page</param>
     public UpdatePageRequest(string id, string route, string displayName)
     {
         Id = id;

@@ -4,10 +4,6 @@ using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.Dtos.Pages;
 
-/// <summary>
-/// Data Transfer Object for creating a new Page entity.
-/// This class demonstrates how to create DTOs with validation attributes and resource-based localization.
-/// </summary>
 public class CreatePageDto
 {
     /// <summary>

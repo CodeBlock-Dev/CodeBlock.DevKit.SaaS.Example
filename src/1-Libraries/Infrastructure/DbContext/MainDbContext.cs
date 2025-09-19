@@ -1,5 +1,6 @@
-using HeyItIsMe.Core.Domain.DemoThings;
 using CodeBlock.DevKit.Infrastructure.Database;
+using HeyItIsMe.Core.Domain.DemoThings;
+using HeyItIsMe.Core.Domain.Pages;
 using MongoDB.Driver;
 
 namespace HeyItIsMe.Infrastructure.DbContext;
@@ -8,10 +9,10 @@ namespace HeyItIsMe.Infrastructure.DbContext;
 /// Main database context for the application that extends MongoDbContext to provide
 /// MongoDB-specific functionality. This class demonstrates how to set up a database context
 /// with collections, indexes, and custom database operations.
-/// 
+///
 /// IMPORTANT: This is an example implementation for learning purposes. Replace DemoThing
 /// with your actual domain entities and collections.
-/// 
+///
 /// Key features demonstrated:
 /// - MongoDB collection management
 /// - Database index creation
@@ -32,11 +33,12 @@ internal class MainDbContext : MongoDbContext
     /// This property provides access to the DemoThings collection for CRUD operations.
     /// </summary>
     public IMongoCollection<DemoThing> DemoThings { get; private set; }
+    public IMongoCollection<Page> Pages { get; private set; }
 
     /// <summary>
     /// Creates database indexes for optimal query performance.
     /// This method demonstrates how to set up indexes on commonly queried fields.
-    /// 
+    ///
     /// Example: Creates a non-unique index on the Name field for faster text searches.
     /// </summary>
     protected override void CreateIndexes()
@@ -47,13 +49,34 @@ internal class MainDbContext : MongoDbContext
                 new CreateIndexOptions() { Name = nameof(DemoThing.Name), Unique = false }
             )
         );
+
+        Pages.Indexes.CreateOne(
+            new CreateIndexModel<Page>(
+                Builders<Page>.IndexKeys.Ascending(x => x.Route),
+                new CreateIndexOptions() { Name = nameof(Page.Route), Unique = true }
+            )
+        );
+
+        Pages.Indexes.CreateOne(
+            new CreateIndexModel<Page>(
+                Builders<Page>.IndexKeys.Ascending(x => x.UserId),
+                new CreateIndexOptions() { Name = nameof(Page.UserId), Unique = false }
+            )
+        );
+
+        Pages.Indexes.CreateOne(
+            new CreateIndexModel<Page>(
+                Builders<Page>.IndexKeys.Ascending(x => x.SubscriptionId),
+                new CreateIndexOptions() { Name = nameof(Page.SubscriptionId), Unique = false }
+            )
+        );
     }
 
     /// <summary>
     /// Safely drops test databases for testing purposes.
     /// Only drops databases that start with "Test_" prefix to prevent accidental
     /// deletion of production databases.
-    /// 
+    ///
     /// Example usage in test cleanup:
     /// dbContext.DropTestDatabase();
     /// </summary>

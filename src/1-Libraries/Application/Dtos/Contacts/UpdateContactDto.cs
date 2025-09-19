@@ -4,10 +4,6 @@ using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.Dtos.Contacts;
 
-/// <summary>
-/// Data Transfer Object for updating an existing Contact on a Page.
-/// This class demonstrates how to create update DTOs with validation attributes and resource-based localization.
-/// </summary>
 public class UpdateContactDto
 {
     /// <summary>

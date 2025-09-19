@@ -1,13 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using CodeBlock.DevKit.Core.Resources;
 using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.Dtos.Pages;
 
-/// <summary>
-/// Data Transfer Object for updating an existing Page entity.
-/// This class demonstrates how to create update DTOs with validation attributes and resource-based localization.
-/// </summary>
 public class UpdatePageDto
 {
     /// <summary>

@@ -1,13 +1,9 @@
 using CodeBlock.DevKit.Contracts.Dtos;
-using HeyItIsMe.Core.Domain.Pages;
+using HeyItIsMe.Application.Dtos.Contacts;
+using HeyItIsMe.Application.Dtos.Facts;
 
 namespace HeyItIsMe.Application.Dtos.Pages;
 
-/// <summary>
-/// Data Transfer Object for retrieving Page entity data.
-/// This class demonstrates how to create response DTOs that extend base DTOs and include
-/// additional properties for display purposes.
-/// </summary>
 public class GetPageDto : GetEntityDto
 {
     /// <summary>

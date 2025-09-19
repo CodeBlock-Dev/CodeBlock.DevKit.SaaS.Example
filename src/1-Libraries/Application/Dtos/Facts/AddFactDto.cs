@@ -4,10 +4,6 @@ using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.Dtos.Facts;
 
-/// <summary>
-/// Data Transfer Object for adding a new Fact to a Page.
-/// This class demonstrates how to create DTOs with validation attributes and resource-based localization.
-/// </summary>
 public class AddFactDto
 {
     /// <summary>

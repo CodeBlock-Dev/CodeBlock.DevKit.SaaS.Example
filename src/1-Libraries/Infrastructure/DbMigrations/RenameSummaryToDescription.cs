@@ -1,9 +1,9 @@
 // Copyright (c) CodeBlock.Dev. All rights reserved.
 // For more information visit https://codeblock.dev
 
+using CodeBlock.DevKit.Infrastructure.Database.Migrations;
 using HeyItIsMe.Core.Domain.DemoThings;
 using HeyItIsMe.Infrastructure.DbContext;
-using CodeBlock.DevKit.Infrastructure.Database.Migrations;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -13,10 +13,10 @@ namespace HeyItIsMe.Infrastructure.DbMigrations;
 /// Database migration that renames the 'Summary' field to 'Description' in the DemoThings collection.
 /// This class demonstrates how to implement database migrations for schema evolution,
 /// showing how to safely update existing data structures without data loss.
-/// 
+///
 /// IMPORTANT: This is an example implementation for learning purposes. Replace this migration
 /// with your actual business domain schema changes and migrations.
-/// 
+///
 /// Key features demonstrated:
 /// - Database migration pattern implementation
 /// - Safe field renaming using MongoDB operations
@@ -54,7 +54,7 @@ internal class RenameSummaryToDescription : IDbMigration
     /// Executes the migration to rename the 'Summary' field to 'Description'.
     /// This method demonstrates how to perform safe schema changes on existing
     /// MongoDB collections using the UpdateMany operation.
-    /// 
+    ///
     /// The migration:
     /// 1. Finds all documents that have a 'Summary' field
     /// 2. Renames the field to 'Description' without losing data
