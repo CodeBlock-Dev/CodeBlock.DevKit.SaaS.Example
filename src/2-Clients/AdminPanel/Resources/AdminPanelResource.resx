@@ -153,4 +153,19 @@
   <data name="ViewAvailablePlans" xml:space="preserve">
     <value>View Available Plans</value>
   </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>Update Page</value>
+  </data>
+  <data name="PageImplementationInfo" xml:space="preserve">
+    <value>This demo shows how to implement create, update, search, and pagination for pages across UI, application, and domain levels.</value>
+  </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>Page Details</value>
+  </data>
 </root>

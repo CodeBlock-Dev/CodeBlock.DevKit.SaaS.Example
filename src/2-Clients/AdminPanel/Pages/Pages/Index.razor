@@ -1,0 +1,91 @@
+@page "/pages"
+@using HeyItIsMe.AdminPanel.Helpers
+@using HeyItIsMe.Application.Dtos.Pages
+@using HeyItIsMe.Application.Helpers
+@implements IDisposable
+@attribute [Authorize(Permissions.Page.PAGES)]
+
+<PageTitle>@AdminPanelLocalizer[AdminPanelResource.Pages]</PageTitle>
+
+<h1 class="page-title">
+    @AdminPanelLocalizer[AdminPanelResource.Pages]
+</h1>
+
+<div class="alert alert-info">
+    @AdminPanelLocalizer[AdminPanelResource.PageImplementationInfo]
+    <a href="https://docs.codeblock.dev/" target="_blank" rel="noopener noreferrer">@AdminPanelLocalizer[AdminPanelResource.SeeDocs]</a>.
+</div>
+
+<SearchPages SearchChangedCallback="OnSearchChanged" />
+
+@if (IsLoading)
+{
+    <ComponentLoading />
+}
+else
+{
+    <div class="fade-in-animation">
+        <Pages Model="@SearchPagesOutputDto.Items" />
+        <Pagination RecordsPerPage="@SearchPagesInputDto.RecordsPerPage" TotalRecords="@SearchPagesOutputDto.TotalRecords" CurrentPage="@SearchPagesInputDto.PageNumber" PageChangedCallback="OnPageChanged" />
+    </div>
+}
+
+@code {
+    protected SearchPagesInputDto SearchPagesInputDto = new();
+    protected SearchOutputDto<GetPageDto> SearchPagesOutputDto = new();
+    protected bool IsLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        MessageService.OnMessage += HandleReceivedMessage;
+        await GetPages();
+    }
+
+    protected virtual async Task GetPages()
+    {
+        var result = await PageService.SearchPages(SearchPagesInputDto);
+
+        if (result.IsSuccess)
+        {
+            SearchPagesOutputDto = result.Value;
+        }
+        else
+        {
+            result.ShowErrorToast(ToastService);
+        }
+
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    protected virtual async Task OnPageChanged(int pageNumber)
+    {
+        IsLoading = true;
+        StateHasChanged();
+        SearchPagesInputDto.PageNumber = pageNumber;
+        await GetPages();
+    }
+
+    protected virtual async Task OnSearchChanged(SearchPagesInputDto searchPagesInputDto)
+    {
+        IsLoading = true;
+        StateHasChanged();
+        SearchPagesInputDto = searchPagesInputDto;
+        await GetPages();
+    }
+
+    protected virtual async void HandleReceivedMessage(string messageKey)
+    {
+        if (messageKey==Constants.PAGE_CREATED || messageKey==Constants.PAGE_UPDATED)
+        {
+            IsLoading = true;
+            StateHasChanged();
+            await GetPages();
+        }
+    }
+
+    public void Dispose()
+    {
+        MessageService.OnMessage -= HandleReceivedMessage;
+    }
+}

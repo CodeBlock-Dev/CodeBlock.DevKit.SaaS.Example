@@ -1,5 +1,6 @@
 @using HeyItIsMe.AdminPanel.Pages
 @using HeyItIsMe.AdminPanel.Pages.Shared
+@using HeyItIsMe.Application.Services.Pages
 @using HeyItIsMe.Core.Resources
 @using CodeBlock.DevKit.Clients.AdminPanel.Pages
 @using CodeBlock.DevKit.Clients.AdminPanel.Pages.Shared
@@ -31,6 +32,7 @@
 @using CodeBlock.DevKit.Core.Helpers
 
 @using HeyItIsMe.AdminPanel.Pages.DemoThings.Components
+@using HeyItIsMe.AdminPanel.Pages.Pages.Components
 @using CodeBlock.DevKit.Contracts.Dtos
 
 @attribute [Authorize(Policies.OPERATOR)]
@@ -40,6 +42,7 @@
 @inject NavigationManager NavigationManager
 @inject MessageService MessageService
 @inject IDemoThingService DemoThingService
+@inject IPageService PageService
 @inject IToastService ToastService
 @inject IModalService ModalService
 @inject ICurrentUser CurrentUser

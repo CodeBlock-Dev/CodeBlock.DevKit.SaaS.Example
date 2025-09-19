@@ -19,4 +19,16 @@ public static class Constants
     /// Used by the notification system to display appropriate messages to users.
     /// </summary>
     public const string DEMO_THING_UPDATED = "DEMO_THING_UPDATED";
+    
+    /// <summary>
+    /// Notification message key for when a page is successfully created.
+    /// Used by the notification system to display appropriate messages to users.
+    /// </summary>
+    public const string PAGE_CREATED = "PAGE_CREATED";
+    
+    /// <summary>
+    /// Notification message key for when a page is successfully updated.
+    /// Used by the notification system to display appropriate messages to users.
+    /// </summary>
+    public const string PAGE_UPDATED = "PAGE_UPDATED";
 }

@@ -39,6 +39,17 @@ public static class Permissions
     }
 
     /// <summary>
+    /// This class name is used as a group name for permissions related to tracking.
+    /// </summary>
+    public static class Tracking
+    {
+        /// <summary>
+        /// This property represents the permission to view changes history.
+        /// </summary>
+        public const string CHANGES = "Changes";
+    }
+
+    /// <summary>
     /// Retrieves all permissions dynamically using reflection.
     /// This method demonstrates how to automatically discover and register permissions
     /// from nested static classes, making the permission system maintainable and extensible.

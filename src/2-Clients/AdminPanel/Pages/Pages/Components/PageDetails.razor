@@ -1,0 +1,156 @@
+@using HeyItIsMe.Application.Dtos.Pages
+
+<div class="page-details">
+    @if (Page != null)
+    {
+        <div class="row">
+            <!-- Page Information -->
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">@SharedLocalizer[SharedResource.Page_Information]</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="detail-item-enhanced mb-3">
+                            <div class="detail-icon">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <div class="detail-content">
+                                <label class="detail-label">@SharedLocalizer[SharedResource.Email]</label>
+                                <div class="detail-value">
+                                    <a class="text-decoration-none text-primary" href="/user/details/@Page.UserId">@Page.UserEmail</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="f-sm text-secondary">@SharedLocalizer[SharedResource.Page_Route]:</label>
+                            <div class="form-control-plaintext f-sm">@Page.Route</div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="f-sm text-secondary">@SharedLocalizer[SharedResource.Page_DisplayName]:</label>
+                            <div class="form-control-plaintext f-sm">@Page.DisplayName</div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="f-sm text-secondary">@CoreLocalizer[CoreResource.CreateDateTime]:</label>
+                            <div class="form-control-plaintext f-sm">@Page.CreationTime.FullDateLongTime</div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="f-sm text-secondary">@CoreLocalizer[CoreResource.ModifiedDateTime]:</label>
+                            <div class="form-control-plaintext f-sm">@Page.ModificationTime.FullDateLongTime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacts and Facts -->
+            <div class="col-md-6">
+                <!-- Contacts Section -->
+                <div class="card mb-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">@SharedLocalizer[SharedResource.Contacts] (@Page.Contacts?.Count ?? 0)</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Page.Contacts == null || !Page.Contacts.Any())
+                        {
+                            <p class="text-muted mb-0">@CoreLocalizer[CoreResource.No_Items_Found]</p>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>@SharedLocalizer[SharedResource.Contact_Name]</th>
+                                            <th>@SharedLocalizer[SharedResource.Contact_Email]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var contact in Page.Contacts)
+                                        {
+                                            <tr>
+                                                <td>@contact.Content</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Facts Section -->
+                <div class="card mb-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">@SharedLocalizer[SharedResource.Facts] (@Page.Facts?.Count ?? 0)</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Page.Facts == null || !Page.Facts.Any())
+                        {
+                            <p class="text-muted mb-0">@CoreLocalizer[CoreResource.No_Items_Found]</p>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>@SharedLocalizer[SharedResource.Fact_Title]</th>
+                                            <th>@SharedLocalizer[SharedResource.Fact_Description]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var fact in Page.Facts)
+                                        {
+                                            <tr>
+                                                <td>@fact.Content</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string PageId { get; set; }
+
+    private GetPageDto Page;
+
+    [CascadingParameter]
+    protected BlazoredModalInstance ModalInstance { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetPage();
+    }
+
+    protected virtual async Task GetPage()
+    {
+        var result = await PageService.GetPage(PageId);
+        if (!result.IsSuccess)
+        {
+            result.ShowErrorToast(ToastService);
+            return;
+        }
+
+        Page = result.Value;
+    }
+}

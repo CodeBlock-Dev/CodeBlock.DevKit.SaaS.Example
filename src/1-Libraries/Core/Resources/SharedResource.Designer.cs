@@ -79,6 +79,33 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact Email.
+        /// </summary>
+        public static string Contact_Email {
+            get {
+                return ResourceManager.GetString("Contact_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Name.
+        /// </summary>
+        public static string Contact_Name {
+            get {
+                return ResourceManager.GetString("Contact_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        public static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Demo Thing.
         /// </summary>
         public static string DemoThing {
@@ -187,6 +214,33 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fact Description.
+        /// </summary>
+        public static string Fact_Description {
+            get {
+                return ResourceManager.GetString("Fact_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fact Title.
+        /// </summary>
+        public static string Fact_Title {
+            get {
+                return ResourceManager.GetString("Fact_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facts.
+        /// </summary>
+        public static string Facts {
+            get {
+                return ResourceManager.GetString("Facts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -201,6 +255,15 @@ namespace HeyItIsMe.Core.Resources {
         public static string Page_DisplayName {
             get {
                 return ResourceManager.GetString("Page_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Information.
+        /// </summary>
+        public static string Page_Information {
+            get {
+                return ResourceManager.GetString("Page_Information", resourceCulture);
             }
         }
         

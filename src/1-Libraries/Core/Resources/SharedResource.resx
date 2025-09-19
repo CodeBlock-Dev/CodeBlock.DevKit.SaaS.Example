@@ -174,4 +174,25 @@
   <data name="Fact_Content" xml:space="preserve">
     <value>Fact Content</value>
   </data>
+  <data name="Contact_Name" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="Contact_Email" xml:space="preserve">
+    <value>Contact Email</value>
+  </data>
+  <data name="Fact_Title" xml:space="preserve">
+    <value>Fact Title</value>
+  </data>
+  <data name="Fact_Description" xml:space="preserve">
+    <value>Fact Description</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="Facts" xml:space="preserve">
+    <value>Facts</value>
+  </data>
+  <data name="Page_Information" xml:space="preserve">
+    <value>Page Information</value>
+  </data>
 </root>
