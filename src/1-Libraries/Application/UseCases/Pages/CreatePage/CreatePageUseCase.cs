@@ -19,7 +19,7 @@ internal class CreatePageUseCase : BaseCommandHandler, IRequestHandler<CreatePag
 
     public async Task<CommandResult> Handle(CreatePageRequest request, CancellationToken cancellationToken)
     {
-        var page = Page.Create(request.Route, request.DisplayName, request.UserId, request.SubscriptionId, _pageRepository);
+        var page = Page.Create(request.Route, request.DisplayName, request.UserId, _pageRepository);
 
         await _pageRepository.AddAsync(page);
 

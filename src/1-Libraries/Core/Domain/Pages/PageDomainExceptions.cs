@@ -68,20 +68,6 @@ internal static class PageDomainExceptions
     }
 
     /// <summary>
-    /// Creates a domain exception when the Page subscription ID is missing or invalid.
-    /// This exception is thrown when business rules require a valid subscription ID for billing tracking.
-    /// </summary>
-    /// <returns>A domain exception with localized error message for missing subscription ID</returns>
-    public static DomainException SubscriptionIdIsRequired()
-    {
-        return new DomainException(
-            nameof(CoreResource.Required),
-            typeof(CoreResource),
-            new List<MessagePlaceholder> { MessagePlaceholder.CreateResource(SharedResource.Page_SubscriptionId, typeof(SharedResource)) }
-        );
-    }
-
-    /// <summary>
     /// Creates a domain exception when the Contact content is missing or invalid.
     /// This exception is thrown when business rules require valid contact content but none is provided.
     /// </summary>

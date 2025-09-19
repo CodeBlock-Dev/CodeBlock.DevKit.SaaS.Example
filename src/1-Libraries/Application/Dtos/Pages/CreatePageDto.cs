@@ -26,11 +26,4 @@ public class CreatePageDto
     [Display(Name = nameof(SharedResource.Page_UserId), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
     public string UserId { get; set; }
-
-    /// <summary>
-    /// Identifier of the subscription associated with this page. Required field for billing tracking.
-    /// </summary>
-    [Display(Name = nameof(SharedResource.Page_SubscriptionId), ResourceType = typeof(SharedResource))]
-    [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
-    public string SubscriptionId { get; set; }
 }

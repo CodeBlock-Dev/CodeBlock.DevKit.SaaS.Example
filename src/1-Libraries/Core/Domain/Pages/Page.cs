@@ -5,12 +5,11 @@ namespace HeyItIsMe.Core.Domain.Pages;
 
 public sealed class Page : AggregateRoot
 {
-    private Page(string route, string displayName, string userId, string subscriptionId, IPageRepository pageRepository)
+    private Page(string route, string displayName, string userId, IPageRepository pageRepository)
     {
         Route = route;
         DisplayName = displayName;
         UserId = userId;
-        SubscriptionId = subscriptionId;
         Contacts = new List<Contact>();
         Facts = new List<Fact>();
 
@@ -36,11 +35,6 @@ public sealed class Page : AggregateRoot
     public string UserId { get; private set; }
 
     /// <summary>
-    /// Identifier of the subscription associated with this page. Required field for billing tracking.
-    /// </summary>
-    public string SubscriptionId { get; private set; }
-
-    /// <summary>
     /// Collection of contacts associated with this page. Managed through domain methods.
     /// </summary>
     public ICollection<Contact> Contacts { get; private set; }
@@ -50,9 +44,9 @@ public sealed class Page : AggregateRoot
     /// </summary>
     public ICollection<Fact> Facts { get; private set; }
 
-    public static Page Create(string route, string displayName, string userId, string subscriptionId, IPageRepository pageRepository)
+    public static Page Create(string route, string displayName, string userId, IPageRepository pageRepository)
     {
-        return new Page(route, displayName, userId, subscriptionId, pageRepository);
+        return new Page(route, displayName, userId, pageRepository);
     }
 
     public void Update(string route, string displayName, IPageRepository pageRepository)
@@ -161,9 +155,6 @@ public sealed class Page : AggregateRoot
 
         if (UserId.IsNullOrEmptyOrWhiteSpace())
             throw PageDomainExceptions.UserIdIsRequired();
-
-        if (SubscriptionId.IsNullOrEmptyOrWhiteSpace())
-            throw PageDomainExceptions.SubscriptionIdIsRequired();
 
         var isRouteInUse = pageRepository.IsRouteInUse(Route, Id);
         if (isRouteInUse)

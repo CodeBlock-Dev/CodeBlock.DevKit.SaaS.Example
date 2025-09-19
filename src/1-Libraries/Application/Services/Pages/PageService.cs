@@ -21,7 +21,7 @@ internal class PageService : ApplicationService, IPageService
 
     public async Task<Result<CommandResult>> CreatePage(CreatePageDto input)
     {
-        return await _requestDispatcher.SendCommand(new CreatePageRequest(input.Route, input.DisplayName, input.UserId, input.SubscriptionId));
+        return await _requestDispatcher.SendCommand(new CreatePageRequest(input.Route, input.DisplayName, input.UserId));
     }
 
     public async Task<Result<CommandResult>> UpdatePage(string id, UpdatePageDto input)

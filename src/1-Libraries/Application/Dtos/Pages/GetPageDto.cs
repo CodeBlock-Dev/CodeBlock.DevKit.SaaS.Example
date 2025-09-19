@@ -28,11 +28,6 @@ public class GetPageDto : GetEntityDto
     public string UserEmail { get; set; }
 
     /// <summary>
-    /// Identifier of the subscription associated with this page.
-    /// </summary>
-    public string SubscriptionId { get; set; }
-
-    /// <summary>
     /// Collection of contacts associated with this page.
     /// </summary>
     public ICollection<GetContactDto> Contacts { get; set; }

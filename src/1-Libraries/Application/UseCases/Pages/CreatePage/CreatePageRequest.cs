@@ -7,12 +7,11 @@ namespace HeyItIsMe.Application.UseCases.Pages.CreatePage;
 
 internal class CreatePageRequest : BaseCommand
 {
-    public CreatePageRequest(string route, string displayName, string userId, string subscriptionId)
+    public CreatePageRequest(string route, string displayName, string userId)
     {
         Route = route;
         DisplayName = displayName;
         UserId = userId;
-        SubscriptionId = subscriptionId;
     }
 
     /// <summary>
@@ -35,11 +34,4 @@ internal class CreatePageRequest : BaseCommand
     [Display(Name = nameof(SharedResource.Page_UserId), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
     public string UserId { get; }
-
-    /// <summary>
-    /// Identifier of the subscription associated with this page. Required field for billing tracking.
-    /// </summary>
-    [Display(Name = nameof(SharedResource.Page_SubscriptionId), ResourceType = typeof(SharedResource))]
-    [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
-    public string SubscriptionId { get; }
 }

@@ -63,13 +63,6 @@ internal class MainDbContext : MongoDbContext
                 new CreateIndexOptions() { Name = nameof(Page.UserId), Unique = false }
             )
         );
-
-        Pages.Indexes.CreateOne(
-            new CreateIndexModel<Page>(
-                Builders<Page>.IndexKeys.Ascending(x => x.SubscriptionId),
-                new CreateIndexOptions() { Name = nameof(Page.SubscriptionId), Unique = false }
-            )
-        );
     }
 
     /// <summary>
