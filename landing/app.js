@@ -171,7 +171,7 @@ function initializePagePage() {
     }
 }
 
-// Floating fact images functionality for page.html
+// Floating fact images functionality for both page.html and index.html
 function createFloatingFactImages() {
     const container = document.getElementById('floatingFactImages');
     if (!container) return;

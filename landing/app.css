@@ -164,10 +164,23 @@ body.page-body {
     animation: slideWall 60s linear infinite;
 }
 
+/* Floating fact images for index.html hero container */
+.hero-container .floating-fact-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    animation: slideWall 60s linear infinite;
+}
+
 .floating-fact-image {
     position: absolute;
     border-radius: 8px;
-    opacity: 0.15;
+    opacity: 0.08;
     filter: blur(1px);
     transition: opacity 0.3s ease;
     object-fit: cover;
@@ -321,7 +334,6 @@ body.page-body {
 /* Hero Container - for index.html */
 .hero-container {
     text-align: center;
-    max-width: 800px;
     padding: 2rem;
     position: relative;
     z-index: 100;
@@ -331,6 +343,8 @@ body.page-body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -339,6 +353,9 @@ body.page-body {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
 }
 
 .logo a {
@@ -362,9 +379,10 @@ body.page-body {
 }
 
 .slogan {
+    max-width: 45rem;
     font-size: 2.5rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.95);
     margin-bottom: 3rem;
     line-height: 1.2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -373,6 +391,9 @@ body.page-body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-family: 'Poppins', sans-serif;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
 }
 
 .typing-container {
@@ -385,13 +406,16 @@ body.page-body {
 
 .typing-text {
     font-size: 2rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 500;
     min-height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Poppins', sans-serif;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
 }
 
 .cursor {
@@ -565,6 +589,9 @@ body.page-body {
     justify-content: center;
     flex-wrap: nowrap;
     align-items: stretch;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
 }
 
 .btn {
@@ -583,12 +610,13 @@ body.page-body {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
+    opacity: 1;
+    z-index: 10;
 }
 
 .btn-primary {
     background: linear-gradient(45deg, #ff6b6b, #ee5a24);
     color: white;
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary:hover {
@@ -630,15 +658,15 @@ body.page-body {
 }
 
 .sample-link-wrapper {
-    background: transparent;
-    border: 1px solid rgba(100, 149, 237, 0.3);
+    background: #53538575;
+    border: 1px solid rgba(100, 149, 237, 0.6);
     border-radius: 15px;
     padding: 0.3rem 0.6rem;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
 }
 
 .bi-globe {
@@ -650,7 +678,7 @@ body.page-body {
 .sample-link {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #6495ed;
+    color: #ffffff;
     font-family: 'Courier New', monospace;
     letter-spacing: 0.5px;
 }
