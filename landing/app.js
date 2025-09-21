@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeFactsSlideshow();
     }
     
+    // Initialize pricing section functionality
+    initializePricingSection();
+    
+    // Initialize testimonials section functionality
+    initializeTestimonialsSection();
+    
     // Create floating dots for both pages
     createFloatingDots();
 });
@@ -342,4 +348,148 @@ function initializeFactsSlideshow() {
     
     // Initialize display
     updateDisplay();
+}
+
+// Pricing section functionality
+function initializePricingSection() {
+    // Handle smooth scrolling to pricing section
+    const createPageBtn = document.getElementById('createPageBtn');
+    if (createPageBtn) {
+        createPageBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pricingSection = document.getElementById('pricing');
+            if (pricingSection) {
+                pricingSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+    
+    // Handle pricing plan button clicks
+    const planButtons = document.querySelectorAll('.plan-btn');
+    planButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const planTitle = this.closest('.pricing-card').querySelector('.plan-title').textContent;
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Here you would typically redirect to checkout or signup
+            // For now, we'll just show an alert
+            alert(`You selected the ${planTitle} plan! This would redirect to checkout/signup.`);
+        });
+    });
+    
+    // Add hover effects to pricing cards
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    pricingCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Testimonials section functionality
+function initializeTestimonialsSection() {
+    // Add hover effects to testimonial cards
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Add click effects to stat items (hearts, comments, retweets)
+    const statItems = document.querySelectorAll('.stat-item');
+    statItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Simulate interaction (in a real app, this would update the count)
+            const icon = this.querySelector('i');
+            const count = this.querySelector('span');
+            
+            if (icon.classList.contains('bi-heart')) {
+                // Heart animation
+                icon.style.color = '#e74c3c';
+                setTimeout(() => {
+                    icon.style.color = '';
+                }, 1000);
+            } else if (icon.classList.contains('bi-chat')) {
+                // Comment animation
+                icon.style.color = '#3498db';
+                setTimeout(() => {
+                    icon.style.color = '';
+                }, 1000);
+            } else if (icon.classList.contains('bi-repeat')) {
+                // Retweet animation
+                icon.style.color = '#2ecc71';
+                setTimeout(() => {
+                    icon.style.color = '';
+                }, 1000);
+            }
+        });
+    });
+    
+    // Pause animation on hover for better readability
+    const testimonialsTrack = document.querySelector('.testimonials-track');
+    const testimonialsCarousel = document.querySelector('.testimonials-carousel');
+    
+    if (testimonialsTrack && testimonialsCarousel) {
+        testimonialsCarousel.addEventListener('mouseenter', function() {
+            testimonialsTrack.style.animationPlayState = 'paused';
+        });
+        
+        testimonialsCarousel.addEventListener('mouseleave', function() {
+            testimonialsTrack.style.animationPlayState = 'running';
+        });
+    }
+    
+    // Add touch/swipe support for mobile (optional enhancement)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    if (testimonialsCarousel) {
+        testimonialsCarousel.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        testimonialsCarousel.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleTestimonialSwipe();
+        });
+    }
+    
+    function handleTestimonialSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            // Add a subtle visual feedback for swipe
+            testimonialsTrack.style.transform = `translateX(${swipeDistance * 0.1}px)`;
+            setTimeout(() => {
+                testimonialsTrack.style.transform = '';
+            }, 200);
+        }
+    }
 }

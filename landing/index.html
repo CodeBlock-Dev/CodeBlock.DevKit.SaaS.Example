@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="app.css?v=13">
+    <link rel="stylesheet" href="app.css?v=14">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
@@ -29,7 +29,7 @@
             <img src="logo.png" alt="Hey It's Me Logo">
         </div>
         
-        <h1 class="slogan">Create a personal fact page and share it on your social media accounts</h1>
+        <h1 class="slogan">Create a personal fact page and share it on your social media</h1>
         
         <div class="typing-container">
             <div class="typing-text" id="typingText">
@@ -53,7 +53,7 @@
         </div>
         
         <div class="buttons-container">
-            <a href="#" class="btn btn-primary">Create Your Page</a>
+            <a href="#pricing" class="btn btn-primary" id="createPageBtn">Create Your Page</a>
             <a href="page.html" class="btn btn-secondary sample-btn">
                 <span class="sample-text">See sample page</span>
                 <div class="sample-link-wrapper">
@@ -64,6 +64,496 @@
         </div>
     </div>
 
+    <!-- Recent Pages Section -->
+    <section class="recent-pages-section" id="recentPages">
+        <div class="recent-pages-container">
+            <div class="recent-pages-header">
+                <h2 class="recent-pages-title">Recently Created Pages</h2>
+                <p class="recent-pages-description">See what others are sharing about themselves</p>
+            </div>
+            
+            <div class="pages-carousel">
+                <div class="pages-track">
+                    <!-- Page Cards -->
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sarah" />
+                        </div>
+                        <h3 class="page-name">Sarah</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">3 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Alex Johnson" />
+                        </div>
+                        <h3 class="page-name">Alex Johnson</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">8 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Maria" />
+                        </div>
+                        <h3 class="page-name">Maria</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">5 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="David Chen" />
+                        </div>
+                        <h3 class="page-name">David Chen</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">12 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face" alt="Emma" />
+                        </div>
+                        <h3 class="page-name">Emma</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">4 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" alt="Michael Rodriguez" />
+                        </div>
+                        <h3 class="page-name">Michael Rodriguez</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">15 facts</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Duplicate cards for seamless loop -->
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sarah" />
+                        </div>
+                        <h3 class="page-name">Sarah</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">3 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Alex Johnson" />
+                        </div>
+                        <h3 class="page-name">Alex Johnson</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">8 facts</span>
+                        </div>
+                    </a>
+                    
+                    <a href="page.html" class="page-card">
+                        <div class="page-image">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Maria" />
+                        </div>
+                        <h3 class="page-name">Maria</h3>
+                        <div class="page-stats">
+                            <span class="facts-count">5 facts</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="pricing-container">
+            <div class="pricing-header">
+                <h2 class="pricing-title">Choose Your Plan</h2>
+                <p class="pricing-description">Buy your plan now and create your page later in your user dashboard.</p>
+            </div>
+            
+            <div class="pricing-plans">
+                <!-- Free Plan -->
+                <div class="pricing-card free-plan">
+                    <div class="plan-header">
+                        <h3 class="plan-title">Free</h3>
+                        <div class="plan-price">
+                            <span class="price-current">$0</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                    </div>
+                    <div class="plan-description">
+                        <p>Perfect for getting started with your personal fact page</p>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-label">Facts:</span>
+                            <span class="feature-value">5 facts</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">Contacts:</span>
+                            <span class="feature-value">2 contacts</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">Analytics:</span>
+                            <span class="feature-value">❌</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">Website Promotion:</span>
+                            <span class="feature-value">❌</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-secondary plan-btn">Get Started Free</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card pro-plan">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3 class="plan-title">Pro</h3>
+                        <div class="plan-price">
+                            <span class="price-current">$9</span>
+                            <span class="price-original">$15</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                    </div>
+                    <div class="plan-description">
+                        <p>Unlimited everything for power users and professionals</p>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <span class="feature-label">Facts:</span>
+                            <span class="feature-value unlimited-text">Unlimited</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">Contacts:</span>
+                            <span class="feature-value unlimited-text">Unlimited</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">Analytics:</span>
+                            <span class="feature-value">✅</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label">Website Promotion:</span>
+                            <span class="feature-value">✅</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary plan-btn">Choose Pro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonials-header">
+                <h2 class="testimonials-title">What People Are Saying</h2>
+                <p class="testimonials-description">Real feedback from users who love sharing their stories</p>
+            </div>
+            
+            <div class="testimonials-carousel">
+                <div class="testimonials-track">
+                    <!-- Testimonial Cards -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sarah Chen" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Sarah Chen</h4>
+                                    <span class="user-handle">@sarahchen</span>
+                                </div>
+                            </div>
+                            <div class="post-time">2h</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>Just created my personal fact page with @heyitsme and I'm obsessed! 🎉 Finally found a way to share my story that feels authentic and fun. The interface is so clean and easy to use!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>8</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Alex Rodriguez" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Alex Rodriguez</h4>
+                                    <span class="user-handle">@alexrod</span>
+                                </div>
+                            </div>
+                            <div class="post-time">5h</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>This is exactly what I needed for my personal brand! 💯 The Pro plan gives me unlimited facts and analytics - perfect for tracking engagement. Highly recommend!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>47</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>12</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>7</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" alt="Maria Garcia" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Maria Garcia</h4>
+                                    <span class="user-handle">@mariag</span>
+                                </div>
+                            </div>
+                            <div class="post-time">1d</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>Love how @heyitsme lets me showcase my personality! 🎨 Shared some fun facts about my art journey and got so many positive responses. The design is beautiful!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>89</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>23</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>15</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="David Kim" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">David Kim</h4>
+                                    <span class="user-handle">@davidkim</span>
+                                </div>
+                            </div>
+                            <div class="post-time">2d</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>Finally a platform that gets it! 🚀 @heyitsme makes it so easy to tell your story. Used it for my startup pitch and investors loved the personal touch. Game changer!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>156</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>34</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>28</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=50&h=50&fit=crop&crop=face" alt="Emma Thompson" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Emma Thompson</h4>
+                                    <span class="user-handle">@emmathompson</span>
+                                </div>
+                            </div>
+                            <div class="post-time">3d</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>This is so much better than traditional bios! ✨ @heyitsme helped me connect with my audience on a deeper level. The analytics feature is incredible for understanding engagement.</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>72</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>19</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>11</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=face" alt="Michael Brown" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Michael Brown</h4>
+                                    <span class="user-handle">@mikebrown</span>
+                                </div>
+                            </div>
+                            <div class="post-time">4d</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>Best investment I made for my personal brand! 💎 @heyitsme Pro plan is worth every penny. The unlimited facts feature let me share my entire journey. Highly recommend!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>203</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>45</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>32</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Duplicate cards for seamless loop -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sarah Chen" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Sarah Chen</h4>
+                                    <span class="user-handle">@sarahchen</span>
+                                </div>
+                            </div>
+                            <div class="post-time">2h</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>Just created my personal fact page with @heyitsme and I'm obsessed! 🎉 Finally found a way to share my story that feels authentic and fun. The interface is so clean and easy to use!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>8</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Alex Rodriguez" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Alex Rodriguez</h4>
+                                    <span class="user-handle">@alexrod</span>
+                                </div>
+                            </div>
+                            <div class="post-time">5h</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>This is exactly what I needed for my personal brand! 💯 The Pro plan gives me unlimited facts and analytics - perfect for tracking engagement. Highly recommend!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>47</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>12</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>7</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" alt="Maria Garcia" />
+                                </div>
+                                <div class="user-details">
+                                    <h4 class="user-name">Maria Garcia</h4>
+                                    <span class="user-handle">@mariag</span>
+                                </div>
+                            </div>
+                            <div class="post-time">1d</div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>Love how @heyitsme lets me showcase my personality! 🎨 Shared some fun facts about my art journey and got so many positive responses. The design is beautiful!</p>
+                        </div>
+                        <div class="testimonial-stats">
+                            <div class="stat-item">
+                                <i class="bi bi-heart"></i>
+                                <span>89</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-chat"></i>
+                                <span>23</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="bi bi-repeat"></i>
+                                <span>15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -71,6 +561,6 @@
         </div>
     </footer>
 
-    <script src="app.js?v=13"></script>
+    <script src="app.js?v=14"></script>
 </body>
 </html>

@@ -10,15 +10,12 @@ body {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
     color: #ffffff;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
     line-height: 1.6;
     scroll-behavior: smooth;
     width: 100vw;
-    height: 100vh;
 }
 
 /* Page-specific body styles */
@@ -160,9 +157,9 @@ body.page-body {
     position: relative;
     width: 100%;
     max-width: 1000px;
-    height: 400px;
+    min-height: 400px;
     margin: 2rem auto;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
@@ -201,10 +198,10 @@ body.page-body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    padding: 6rem 3rem 3rem 3rem;
+    min-height: 100%;
+    padding: 3rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     opacity: 0;
     transform: translateX(100%);
@@ -232,7 +229,7 @@ body.page-body {
 .fact-number {
     font-size: 8rem;
     font-weight: 800;
-    color: rgba(78, 205, 196, 0.35);
+    color: rgba(78, 205, 196, 0.6);
     line-height: 1;
     margin-right: 3rem;
     font-family: 'Poppins', sans-serif;
@@ -244,14 +241,14 @@ body.page-body {
     justify-content: center;
     border-radius: 20px;
     padding: 1rem;
-    border: 1px solid rgba(78, 205, 196, 0.2);
+    border: 1px solid rgba(78, 205, 196, 0.6);
     height: 200px;
 }
 
 .fact-label {
     font-size: 0.9rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -303,9 +300,10 @@ body.page-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     padding-left: 2rem;
     text-align: left;
+    flex: 1;
 }
 
 .cta-card .fact-text h3 {
@@ -453,6 +451,12 @@ body.page-body {
     padding: 2rem;
     position: relative;
     z-index: 100;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
@@ -1072,18 +1076,18 @@ body.page-body {
 
     /* Facts slideshow responsive */
     .facts-slideshow {
-        height: 400px;
+        min-height: 400px;
         margin: 1rem;
         width: calc(100% - 2rem);
         max-width: none;
     }
 
     .fact-card {
-        padding: 5rem 2rem 2rem 2rem;
+        padding: 2rem;
         flex-direction: column;
         text-align: center;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     .facts-title-bar {
@@ -1166,6 +1170,138 @@ body.page-body {
         width: 60px;
         height: 60px;
     }
+
+    /* Pricing section responsive */
+    .pricing-section {
+        padding: 2rem 1rem;
+    }
+
+    .pricing-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .pricing-description {
+        font-size: 1.1rem;
+    }
+
+    .pricing-plans {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 400px;
+    }
+
+    .pricing-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .plan-title {
+        font-size: 1.8rem;
+    }
+
+    .price-current {
+        font-size: 2.5rem;
+    }
+
+    .price-original {
+        font-size: 1.2rem;
+    }
+
+    .price-period {
+        font-size: 1rem;
+    }
+
+    .plan-description p {
+        font-size: 1rem;
+    }
+
+    .feature-label,
+    .feature-value {
+        font-size: 0.9rem;
+    }
+
+    .plan-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    /* Recent pages section responsive */
+    .recent-pages-section {
+        padding: 2rem 1rem;
+    }
+
+    .recent-pages-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .recent-pages-description {
+        font-size: 1.1rem;
+    }
+
+    .page-card {
+        min-width: 250px;
+        padding: 1.5rem 1rem;
+    }
+
+    .page-image {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 0.8rem;
+    }
+
+    .page-name {
+        font-size: 1.3rem;
+    }
+
+    .facts-count {
+        font-size: 0.9rem;
+    }
+
+    /* Testimonials section responsive */
+    .testimonials-section {
+        padding: 2rem 1rem;
+    }
+
+    .testimonials-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .testimonials-description {
+        font-size: 1.1rem;
+    }
+
+    .testimonial-card {
+        min-width: 300px;
+        padding: 1.2rem;
+    }
+
+    .user-avatar {
+        width: 45px;
+        height: 45px;
+    }
+
+    .user-name {
+        font-size: 0.9rem;
+    }
+
+    .user-handle {
+        font-size: 0.8rem;
+    }
+
+    .testimonial-content p {
+        font-size: 0.9rem;
+    }
+
+    .stat-item {
+        font-size: 0.8rem;
+        gap: 1rem;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -1251,7 +1387,7 @@ body.page-body {
 
     /* Facts slideshow responsive for small screens */
     .facts-slideshow {
-        height: 350px;
+        min-height: 350px;
         margin: 0.5rem;
         width: calc(100% - 1rem);
         border-radius: 15px;
@@ -1259,12 +1395,12 @@ body.page-body {
     }
 
     .fact-card {
-        padding: 4rem 1.5rem 1.5rem 1.5rem;
+        padding: 1.5rem;
         border-radius: 15px;
         flex-direction: column;
         text-align: center;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     .facts-title-bar {
@@ -1336,6 +1472,142 @@ body.page-body {
     .nav-btn {
         width: 55px;
         height: 55px;
+    }
+
+    /* Recent pages section responsive for small screens */
+    .recent-pages-section {
+        padding: 1.5rem 0.5rem;
+        min-height: 50vh !important;
+    }
+
+    .recent-pages-title {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+    }
+
+    .recent-pages-description {
+        font-size: 1rem;
+    }
+
+    .page-card {
+        min-width: 200px;
+        padding: 1.2rem 0.8rem;
+    }
+
+    .page-image {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.6rem;
+    }
+
+    .page-name {
+        font-size: 1.1rem;
+    }
+
+    .facts-count {
+        font-size: 0.8rem;
+    }
+
+    /* Testimonials section responsive for small screens */
+    .testimonials-section {
+        padding: 1.5rem 0.5rem;
+        min-height: 50vh !important;
+    }
+
+    .testimonials-title {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+    }
+
+    .testimonials-description {
+        font-size: 1rem;
+    }
+
+    .testimonial-card {
+        min-width: 250px;
+        padding: 1rem;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .user-name {
+        font-size: 0.85rem;
+    }
+
+    .user-handle {
+        font-size: 0.75rem;
+    }
+
+    .testimonial-content p {
+        font-size: 0.85rem;
+    }
+
+    .stat-item {
+        font-size: 0.75rem;
+        gap: 0.8rem;
+    }
+
+    /* Pricing section responsive for small screens */
+    .pricing-section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .pricing-title {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+    }
+
+    .pricing-description {
+        font-size: 1rem;
+    }
+
+    .pricing-plans {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 350px;
+    }
+
+    .pricing-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .plan-title {
+        font-size: 1.5rem;
+    }
+
+    .price-current {
+        font-size: 2rem;
+    }
+
+    .price-original {
+        font-size: 1rem;
+    }
+
+    .price-period {
+        font-size: 0.9rem;
+    }
+
+    .plan-description p {
+        font-size: 0.9rem;
+    }
+
+    .feature-label,
+    .feature-value {
+        font-size: 0.8rem;
+    }
+
+    .plan-btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
     }
 }
 
@@ -1419,16 +1691,549 @@ body.page-body {
     background: linear-gradient(45deg, #ff5252, #ff9800);
 }
 
+/* Recent Pages Section */
+.recent-pages-section {
+    width: 100vw;
+    min-height: 70vh;
+    background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 50%, #ff9800 100%);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.recent-pages-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+.recent-pages-header {
+    margin-bottom: 4rem;
+}
+
+.recent-pages-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.recent-pages-description {
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pages-carousel {
+    width: 100%;
+    position: relative;
+}
+
+.pages-track {
+    padding: 0 2rem;
+    display: flex;
+    animation: scroll-left 30s linear infinite;
+    gap: 2rem;
+    width: fit-content;
+}
+
+.page-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    min-width: 280px;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.page-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.page-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.page-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.page-card:hover .page-image img {
+    transform: scale(1.1);
+}
+
+
+.page-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.facts-count {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pricing Section */
+.pricing-section {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.pricing-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+.pricing-header {
+    margin-bottom: 4rem;
+}
+
+.pricing-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: rgba(232, 244, 253, 0.75);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pricing-description {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pricing-plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.pro-plan {
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+.pro-plan:hover {
+    border-color: rgba(78, 205, 196, 0.5);
+    box-shadow: 0 30px 60px rgba(78, 205, 196, 0.2);
+}
+
+.plan-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.plan-header {
+    margin-bottom: 2rem;
+}
+
+.plan-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.price-current {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4ecdc4;
+    font-family: 'Poppins', sans-serif;
+}
+
+.price-original {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: line-through;
+    font-family: 'Poppins', sans-serif;
+}
+
+.price-period {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Poppins', sans-serif;
+}
+
+.plan-description {
+    margin-bottom: 2rem;
+}
+
+.plan-description p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
+
+.plan-features {
+    margin-bottom: 2.5rem;
+}
+
+.feature-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-item:last-child {
+    border-bottom: none;
+}
+
+.feature-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.feature-value {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.unlimited-text {
+    color: #4ecdc4 !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+}
+
+.plan-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.free-plan .plan-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.free-plan .plan-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.pro-plan .plan-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.pro-plan .plan-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(45deg, #ff5252, #ff9800);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    width: 100vw;
+    min-height: 70vh;
+    background: linear-gradient(135deg, #4ecdc4 0%, #45b7d1 50%, #96ceb4 100%);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+.testimonials-header {
+    margin-bottom: 4rem;
+}
+
+.testimonials-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.testimonials-description {
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.testimonials-carousel {
+    width: 100%;
+    position: relative;
+}
+
+.testimonials-track {
+    padding: 0 2rem;
+    display: flex;
+    animation: scroll-testimonials 40s linear infinite;
+    gap: 2rem;
+    width: fit-content;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 1.5rem;
+    min-width: 350px;
+    max-width: 400px;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.user-handle {
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+.post-time {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+
+.testimonial-content {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.testimonial-content p {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.5;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.testimonial-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    transition: color 0.3s ease;
+}
+
+.stat-item:hover {
+    color: rgba(78, 205, 196, 0.8);
+}
+
+.stat-item i {
+    font-size: 1rem;
+}
+
+@keyframes scroll-testimonials {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
 /* Footer */
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem 0;
-    z-index: 400;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
+    position: relative;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-content {
@@ -1462,7 +2267,7 @@ body {
 
 /* Adjust hero sections for navbar */
 .hero-container {
-    margin-top: -5rem;
+    margin-top: 0;
 }
 
 .hero-section {
