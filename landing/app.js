@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize testimonials section functionality
     initializeTestimonialsSection();
     
+    // Initialize steps section functionality
+    initializeStepsSection();
+    
     // Create floating dots for both pages
     createFloatingDots();
 });
@@ -492,4 +495,114 @@ function initializeTestimonialsSection() {
             }, 200);
         }
     }
+}
+
+// Steps section functionality
+function initializeStepsSection() {
+    // Add hover effects to step items
+    const stepItems = document.querySelectorAll('.step-item');
+    stepItems.forEach((item, index) => {
+        // Add staggered animation delay for visual appeal
+        item.style.animationDelay = `${index * 0.1}s`;
+        
+        // Add click interaction for mobile
+        item.addEventListener('click', function() {
+            // Add click animation
+            this.style.transform = 'translateY(-5px) scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = 'translateY(-10px) scale(1)';
+            }, 150);
+            
+            // Add a subtle pulse effect
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.4)';
+            setTimeout(() => {
+                this.style.boxShadow = '';
+            }, 300);
+        });
+        
+        // Add touch support for mobile
+        item.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.style.transform = 'translateY(-5px) scale(0.98)';
+        });
+        
+        item.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            this.style.transform = 'translateY(-10px) scale(1)';
+        });
+    });
+    
+    // Add intersection observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const stepsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe step items for scroll animations
+    stepItems.forEach((item, index) => {
+        // Set initial state for animation
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+        
+        stepsObserver.observe(item);
+    });
+    
+    // Add special hover effect for step icons
+    const stepIcons = document.querySelectorAll('.step-icon');
+    stepIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+            // Add a subtle rotation effect
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+    });
+    
+    // Add click effect to step numbers
+    const stepNumbers = document.querySelectorAll('.step-number');
+    stepNumbers.forEach(number => {
+        number.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Add click animation
+            this.style.transform = 'translateX(-50%) scale(1.2)';
+            this.style.boxShadow = '0 6px 20px rgba(255, 193, 7, 0.6)';
+            
+            setTimeout(() => {
+                this.style.transform = 'translateX(-50%) scale(1)';
+                this.style.boxShadow = '0 4px 15px rgba(255, 193, 7, 0.4)';
+            }, 200);
+        });
+    });
+    
+    // Add keyboard navigation support
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            // Add focus styles for accessibility
+            const focusedElement = document.activeElement;
+            if (focusedElement.classList.contains('step-item')) {
+                focusedElement.style.outline = '2px solid #4ecdc4';
+                focusedElement.style.outlineOffset = '2px';
+            }
+        }
+    });
+    
+    // Remove focus outline when clicking
+    stepItems.forEach(item => {
+        item.addEventListener('click', function() {
+            this.style.outline = 'none';
+        });
+    });
 }
