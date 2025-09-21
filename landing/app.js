@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
         initializePagePage();
     }
     
-    // Check if we're on the page.html (has facts slideshow)
-    if (document.querySelector('.facts-slideshow')) {
-        initializeFactsSlideshow();
+    // Check if we're on the page.html (has new fact items)
+    if (document.querySelector('.fact-item')) {
+        initializeFactItems();
     }
     
     // Initialize pricing section functionality
@@ -26,8 +26,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize steps section functionality
     initializeStepsSection();
     
-    // Create floating dots for both pages
-    createFloatingDots();
+    // Create floating fact images for both page.html and index.html
+    createFloatingFactImages();
+    
+    // Handle window resize to recreate the wall
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            const container = document.getElementById('floatingFactImages');
+            if (container) {
+                container.innerHTML = ''; // Clear existing images
+                createFloatingFactImages(); // Recreate the wall
+            }
+        }, 250);
+    });
 });
 
 // Index page functionality (typing animation)
@@ -77,16 +90,16 @@ function initializeIndexPage() {
     typeText();
 }
 
-// Page.html functionality (social links, contact modal, arrow)
+// Page.html functionality (social links, contact modal, scroll indicator)
 function initializePagePage() {
-    // Add click and touch events to arrow down
-    const arrowDown = document.getElementById('arrowDown');
-    if (arrowDown) {
-        function handleArrowDownClick() {
+    // Add click and touch events to scroll arrow
+    const scrollArrow = document.querySelector('.scroll-arrow');
+    if (scrollArrow) {
+        function handleScrollClick() {
             // Add a subtle click animation
-            arrowDown.style.transform = 'scale(0.95)';
+            scrollArrow.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                arrowDown.style.transform = 'scale(1)';
+                scrollArrow.style.transform = 'scale(1)';
             }, 150);
             
             // Smooth scroll to facts section
@@ -100,47 +113,14 @@ function initializePagePage() {
         }
         
         // Add both click and touch events for better mobile support
-        arrowDown.addEventListener('click', handleArrowDownClick);
-        arrowDown.addEventListener('touchend', function(e) {
+        scrollArrow.addEventListener('click', handleScrollClick);
+        scrollArrow.addEventListener('touchend', function(e) {
             e.preventDefault();
-            handleArrowDownClick();
+            handleScrollClick();
         });
         
         // Prevent default touch behavior to avoid conflicts
-        arrowDown.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-        });
-    }
-    
-    // Add click and touch events to arrow up
-    const arrowUp = document.getElementById('arrowUp');
-    if (arrowUp) {
-        function handleArrowUpClick() {
-            // Add a subtle click animation
-            arrowUp.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                arrowUp.style.transform = 'scale(1)';
-            }, 150);
-            
-            // Smooth scroll back to hero section
-            const heroSection = document.getElementById('hero');
-            if (heroSection) {
-                heroSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-        
-        // Add both click and touch events for better mobile support
-        arrowUp.addEventListener('click', handleArrowUpClick);
-        arrowUp.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            handleArrowUpClick();
-        });
-        
-        // Prevent default touch behavior to avoid conflicts
-        arrowUp.addEventListener('touchstart', function(e) {
+        scrollArrow.addEventListener('touchstart', function(e) {
             e.preventDefault();
         });
     }
@@ -191,166 +171,269 @@ function initializePagePage() {
     }
 }
 
-// Floating dots functionality (shared between both pages)
-function createFloatingDots() {
-    // Create dots for hero section
-    const heroDotsContainer = document.getElementById('floatingDots');
-    if (heroDotsContainer) {
-        createDotsForContainer(heroDotsContainer, 50);
+// Floating fact images functionality for page.html
+function createFloatingFactImages() {
+    const container = document.getElementById('floatingFactImages');
+    if (!container) return;
+    
+    // Get fact images from HTML data attributes
+    const factImagesData = document.querySelectorAll('[data-fact-image]');
+    const factImages = Array.from(factImagesData).map(img => img.getAttribute('data-fact-image'));
+    
+    // Fallback images if no data attributes are found
+    if (factImages.length === 0) {
+        const fallbackImages = [
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=300&h=200&fit=crop'
+        ];
+        factImages.push(...fallbackImages);
     }
     
-    // Create dots for facts section
-    const factsDotsContainer = document.getElementById('factsFloatingDots');
-    if (factsDotsContainer) {
-        createDotsForContainer(factsDotsContainer, 50);
+    // Create a seamless tiled wall
+    const imageSize = 200; // Base size for images
+    const rows = Math.ceil(window.innerHeight / imageSize) + 2; // Extra rows for seamless effect
+    const colsPerSet = Math.ceil(window.innerWidth / imageSize) + 2; // Extra cols for seamless effect
+    
+    // Create two identical sets for seamless looping
+    for (let set = 0; set < 2; set++) {
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < colsPerSet; col++) {
+                const image = document.createElement('img');
+                image.className = 'floating-fact-image';
+                
+                // Randomly select an image from the fact images
+                const randomImageIndex = Math.floor(Math.random() * factImages.length);
+                image.src = factImages[randomImageIndex];
+                image.alt = `Fact Image ${randomImageIndex + 1}`;
+                
+                // Calculate position
+                const x = (col * imageSize) + (set * colsPerSet * imageSize);
+                const y = row * imageSize;
+                
+                // Set size with slight variation for more natural look
+                const sizeVariation = Math.random() * 40 + 20; // ±20px variation
+                const width = imageSize + sizeVariation;
+                const height = imageSize + sizeVariation;
+                
+                image.style.width = width + 'px';
+                image.style.height = height + 'px';
+                image.style.left = x + 'px';
+                image.style.top = y + 'px';
+                
+                // Add slight rotation for more dynamic look
+                const rotation = (Math.random() - 0.5) * 4; // ±2 degrees
+                image.style.transform = `rotate(${rotation}deg)`;
+                
+                container.appendChild(image);
+            }
+        }
     }
-}
-
-function createDotsForContainer(container, numberOfDots) {
-    for (let i = 0; i < numberOfDots; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot';
+    
+    // Add some additional random images for more variety
+    for (let i = 0; i < 20; i++) {
+        const image = document.createElement('img');
+        image.className = 'floating-fact-image';
         
-        // Random size between 1px and 3px
-        const size = Math.random() * 2 + 1;
-        dot.style.width = size + 'px';
-        dot.style.height = size + 'px';
+        const randomImageIndex = Math.floor(Math.random() * factImages.length);
+        image.src = factImages[randomImageIndex];
+        image.alt = `Fact Image ${randomImageIndex + 1}`;
         
         // Random position
-        dot.style.left = Math.random() * 100 + '%';
-        dot.style.top = Math.random() * 100 + '%';
+        const x = Math.random() * (window.innerWidth * 2);
+        const y = Math.random() * window.innerHeight;
         
-        // Random animation delay
-        dot.style.animationDelay = Math.random() * 8 + 's';
+        // Random size
+        const size = Math.random() * 100 + 150; // 150-250px
+        image.style.width = size + 'px';
+        image.style.height = size + 'px';
+        image.style.left = x + 'px';
+        image.style.top = y + 'px';
         
-        // Random animation duration
-        dot.style.animationDuration = (Math.random() * 4 + 8) + 's';
+        // Random rotation
+        const rotation = (Math.random() - 0.5) * 6; // ±3 degrees
+        image.style.transform = `rotate(${rotation}deg)`;
         
-        // Random opacity variation
-        const opacity = Math.random() * 0.4 + 0.4; // Between 0.4 and 0.8
-        dot.style.opacity = opacity;
-        
-        container.appendChild(dot);
+        container.appendChild(image);
     }
 }
 
-// Facts slideshow functionality
-function initializeFactsSlideshow() {
-    const factCards = document.querySelectorAll('.fact-card');
-    const prevBtn = document.getElementById('prevFact');
-    const nextBtn = document.getElementById('nextFact');
+// Fact items functionality with scroll animations
+function initializeFactItems() {
+    const factItems = document.querySelectorAll('.fact-item');
     
-    let currentFactIndex = 0;
-    const totalFacts = factCards.length;
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+    };
     
-    // Function to update the display
-    function updateDisplay() {
-        // Remove active class from all cards
-        factCards.forEach(card => {
-            card.classList.remove('active', 'prev', 'next');
+    const factObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add animation classes when fact comes into view
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                
+                // Animate the fact content
+                const factContent = entry.target.querySelector('.fact-content');
+                if (factContent) {
+                    factContent.style.transform = 'translateY(0) scale(1)';
+                    factContent.style.opacity = '1';
+                }
+                
+                // Animate the fact image
+                const factImage = entry.target.querySelector('.fact-image img');
+                if (factImage) {
+                    factImage.style.transform = 'scale(1)';
+                    factImage.style.filter = 'brightness(1)';
+                }
+            } else {
+                // Reset animation when fact goes out of view
+                entry.target.style.opacity = '0.7';
+                entry.target.style.transform = 'translateY(50px)';
+                
+                const factContent = entry.target.querySelector('.fact-content');
+                if (factContent) {
+                    factContent.style.transform = 'translateY(30px) scale(0.95)';
+                    factContent.style.opacity = '0.8';
+                }
+                
+                const factImage = entry.target.querySelector('.fact-image img');
+                if (factImage) {
+                    factImage.style.transform = 'scale(0.95)';
+                    factImage.style.filter = 'brightness(0.8)';
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Initialize fact items with scroll animations
+    factItems.forEach((item, index) => {
+        // Set initial state for animation
+        item.style.opacity = '0.7';
+        item.style.transform = 'translateY(50px)';
+        item.style.transition = `all 0.8s ease ${index * 0.1}s`;
+        
+        const factContent = item.querySelector('.fact-content');
+        if (factContent) {
+            factContent.style.transform = 'translateY(30px) scale(0.95)';
+            factContent.style.opacity = '0.8';
+            factContent.style.transition = 'all 0.6s ease';
+        }
+        
+        const factImage = item.querySelector('.fact-image img');
+        if (factImage) {
+            factImage.style.transition = 'all 0.5s ease';
+        }
+        
+        // Add hover effects
+        item.addEventListener('mouseenter', function() {
+            const content = this.querySelector('.fact-content');
+            if (content) {
+                content.style.transform = 'translateY(-5px) scale(1.02)';
+                content.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.6)';
+            }
+            
+            const image = this.querySelector('.fact-image img');
+            if (image) {
+                image.style.transform = 'scale(1.05)';
+                image.style.filter = 'brightness(1.1)';
+            }
         });
         
-        // Add active class to current card
-        if (factCards[currentFactIndex]) {
-            factCards[currentFactIndex].classList.add('active');
-        }
+        item.addEventListener('mouseleave', function() {
+            const content = this.querySelector('.fact-content');
+            if (content) {
+                content.style.transform = 'translateY(0) scale(1)';
+                content.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+            }
+            
+            const image = this.querySelector('.fact-image img');
+            if (image) {
+                image.style.transform = 'scale(1)';
+                image.style.filter = 'brightness(1)';
+            }
+        });
         
-        // Update button states
-        if (prevBtn) {
-            prevBtn.disabled = currentFactIndex === 0;
-        }
-        if (nextBtn) {
-            nextBtn.disabled = currentFactIndex === totalFacts - 1;
-        }
-    }
-    
-    // Function to go to next fact
-    function nextFact() {
-        if (currentFactIndex < totalFacts - 1) {
-            // Add animation classes for smooth transition
-            const currentCard = factCards[currentFactIndex];
-            if (currentCard) {
-                currentCard.classList.add('prev');
-            }
-            
-            currentFactIndex++;
-            
-            setTimeout(() => {
-                updateDisplay();
-            }, 50);
-        }
-    }
-    
-    // Function to go to previous fact
-    function prevFact() {
-        if (currentFactIndex > 0) {
-            // Add animation classes for smooth transition
-            const currentCard = factCards[currentFactIndex];
-            if (currentCard) {
-                currentCard.classList.add('next');
-            }
-            
-            currentFactIndex--;
-            
-            setTimeout(() => {
-                updateDisplay();
-            }, 50);
-        }
-    }
-    
-    // Add event listeners
-    if (nextBtn) {
-        nextBtn.addEventListener('click', nextFact);
-    }
-    
-    if (prevBtn) {
-        prevBtn.addEventListener('click', prevFact);
-    }
+        // Observe the fact item
+        factObserver.observe(item);
+    });
     
     // Add keyboard navigation
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
             e.preventDefault();
-            nextFact();
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            scrollToNextFact();
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
             e.preventDefault();
-            prevFact();
+            scrollToPreviousFact();
         }
     });
     
     // Add touch/swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     
-    const slideshow = document.querySelector('.facts-slideshow');
-    if (slideshow) {
-        slideshow.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        slideshow.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
+    document.addEventListener('touchstart', function(e) {
+        touchStartY = e.changedTouches[0].screenY;
+    });
+    
+    document.addEventListener('touchend', function(e) {
+        touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         });
-    }
     
     function handleSwipe() {
-        const swipeThreshold = 50; // Minimum distance for a swipe
-        const swipeDistance = touchEndX - touchStartX;
+        const swipeThreshold = 50;
+        const swipeDistance = touchEndY - touchStartY;
         
         if (Math.abs(swipeDistance) > swipeThreshold) {
             if (swipeDistance > 0) {
-                // Swipe right - go to previous fact
-                prevFact();
+                // Swipe down - go to previous fact
+                scrollToPreviousFact();
             } else {
-                // Swipe left - go to next fact
-                nextFact();
+                // Swipe up - go to next fact
+                scrollToNextFact();
             }
         }
     }
     
-    // Initialize display
-    updateDisplay();
+    function scrollToNextFact() {
+        const currentFact = getCurrentVisibleFact();
+        if (currentFact && currentFact.nextElementSibling) {
+            currentFact.nextElementSibling.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    function scrollToPreviousFact() {
+        const currentFact = getCurrentVisibleFact();
+        if (currentFact && currentFact.previousElementSibling) {
+            currentFact.previousElementSibling.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    function getCurrentVisibleFact() {
+        let currentFact = null;
+        factItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                currentFact = item;
+            }
+        });
+        return currentFact;
+    }
 }
 
 // Pricing section functionality
@@ -499,11 +582,17 @@ function initializeTestimonialsSection() {
 
 // Steps section functionality
 function initializeStepsSection() {
+    // Only apply animations if we're NOT on the index page (i.e., on page.html)
+    // Since page.html doesn't have steps section, this effectively disables animations for index.html
+    const isIndexPage = document.getElementById('typingText') !== null;
+    
     // Add hover effects to step items
     const stepItems = document.querySelectorAll('.step-item');
     stepItems.forEach((item, index) => {
-        // Add staggered animation delay for visual appeal
-        item.style.animationDelay = `${index * 0.1}s`;
+        // Only add animation delay if not on index page
+        if (!isIndexPage) {
+            item.style.animationDelay = `${index * 0.1}s`;
+        }
         
         // Add click interaction for mobile
         item.addEventListener('click', function() {
@@ -532,30 +621,33 @@ function initializeStepsSection() {
         });
     });
     
-    // Add intersection observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const stepsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe step items for scroll animations
-    stepItems.forEach((item, index) => {
-        // Set initial state for animation
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(30px)';
-        item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+    // Only add scroll animations if not on index page
+    if (!isIndexPage) {
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        stepsObserver.observe(item);
-    });
+        const stepsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe step items for scroll animations
+        stepItems.forEach((item, index) => {
+            // Set initial state for animation
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            
+            stepsObserver.observe(item);
+        });
+    }
     
     // Add special hover effect for step icons
     const stepIcons = document.querySelectorAll('.step-icon');

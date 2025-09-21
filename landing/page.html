@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="app.css?v=14">
+    <link rel="stylesheet" href="app.css?v=15">
 </head>
 <body class="page-body">
     <!-- Top Navbar -->
@@ -24,10 +24,29 @@
 
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
-        <!-- Floating Dots Background -->
-        <div class="floating-dots" id="floatingDots"></div>
+        <!-- Floating Fact Images Background -->
+        <div class="floating-fact-images" id="floatingFactImages">
+            <!-- Images will be dynamically populated from fact items below -->
+        </div>
+        
+        <!-- Hidden fact images for background wall -->
+        <div class="fact-images-data" style="display: none;">
+            <img data-fact-image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=200&fit=crop" alt="CodeBlock SaaS Platform">
+            <img data-fact-image="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300&h=200&fit=crop" alt="Football">
+            <img data-fact-image="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=300&h=200&fit=crop" alt="Guitar">
+            <img data-fact-image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop" alt="SaaS Development">
+            <img data-fact-image="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop" alt="Create Your Page">
+            <img data-fact-image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop" alt="Technology">
+            <img data-fact-image="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=300&h=200&fit=crop" alt="Innovation">
+            <img data-fact-image="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=300&h=200&fit=crop" alt="Development">
+        </div>
         
         <div class="hero-content">
+            <!-- Avatar -->
+            <div class="avatar-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Hamed Shirbandi" class="avatar-image">
+            </div>
+            
             <h1 class="hero-title">Hey, it's me, Hamed!</h1>
             
             <!-- Social Links -->
@@ -54,16 +73,16 @@
                 </a>
                 <button class="contact-button" id="contactButton">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
                     </svg>
                 </button>
             </div>
         </div>
         
-        <!-- Question Section -->
-        <div class="question-section">
-            <p class="question-text">Wanna know <span>4 facts</span> about me?</p>
-            <div class="arrow-down" id="arrowDown">
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <p class="scroll-text">Scroll to discover <span>4 facts</span> about me</p>
+            <div class="scroll-arrow">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
                 </svg>
@@ -73,78 +92,76 @@
 
     <!-- Facts Section -->
     <section class="facts-section" id="facts">
-        <!-- Floating Dots Background -->
-        <div class="floating-dots" id="factsFloatingDots"></div>
-        
-        <!-- Arrow Up Section -->
-        <div class="arrow-up-section">
-            <div class="arrow-up" id="arrowUp">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"/>
-                </svg>
+        <!-- Fact 1 -->
+        <div class="fact-item" data-fact="1">
+            <div class="fact-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop" alt="Hamed with CodeBlock SaaS Platform">
+            </div>
+            <div class="fact-content">
+                <div class="fact-number">01</div>
+                <div class="fact-text">
+                    <h2>I'm the founder of CodeBlock</h2>
+                    <p>A SaaS development platform that helps developers build applications faster and more efficiently.</p>
+                </div>
             </div>
         </div>
-        
-        <div class="facts-content">
-            <!-- Facts Slideshow Container -->
-            <div class="facts-slideshow">
-                <div class="fact-card active" data-fact="1">
-                    <div class="fact-number">
-                        <span class="fact-label">Fact number</span>
-                        01
-                    </div>
-                    <div class="fact-text">I'm the founder of CodeBlock, a SaaS development platform that helps developers build applications faster and more efficiently.</div>
-                </div>
-                
-                <div class="fact-card" data-fact="2">
-                    <div class="fact-number">
-                        <span class="fact-label">Fact number</span>
-                        02
-                    </div>
-                    <div class="fact-text">Football is my passion! I love playing and watching football, and I believe it teaches valuable lessons about teamwork and perseverance.</div>
-                </div>
-                
-                <div class="fact-card" data-fact="3">
-                    <div class="fact-number">
-                        <span class="fact-label">Fact number</span>
-                        03
-                    </div>
-                    <div class="fact-text">I'm a self-taught guitarist who loves playing acoustic and electric guitar. Music helps me unwind after long coding sessions.</div>
-                </div>
-                
-                <div class="fact-card" data-fact="4">
-                    <div class="fact-number">
-                        <span class="fact-label">Fact number</span>
-                        04
-                    </div>
-                    <div class="fact-text">Building SaaS applications is my calling. I've created multiple successful SaaS products and love the challenge of solving real-world problems.</div>
-                </div>
-                
-                <div class="fact-card cta-card" data-fact="5">
-                    <div class="fact-icon">
-                        <i class="bi bi-heart-fill"></i>
-                    </div>
-                    <div class="fact-text">
-                        <h3>Did you like Hamed's page?</h3>
-                        <p>Create your own personal fact page and share your story with the world!</p>
-                        <a href="index.html#pricing" class="btn btn-primary cta-button">Create Your Page</a>
-                    </div>
+
+        <!-- Fact 2 -->
+        <div class="fact-item" data-fact="2">
+            <div class="fact-image">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=600&fit=crop" alt="Hamed playing football">
+            </div>
+            <div class="fact-content">
+                <div class="fact-number">02</div>
+                <div class="fact-text">
+                    <h2>Football is my passion!</h2>
+                    <p>I love playing and watching football, and I believe it teaches valuable lessons about teamwork and perseverance.</p>
                 </div>
             </div>
-            
-            <!-- Navigation Controls -->
-            <div class="facts-navigation">
-                <button class="nav-btn prev-btn" id="prevFact" disabled>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                
-                <button class="nav-btn next-btn" id="nextFact">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-                    </svg>
-                </button>
+        </div>
+
+        <!-- Fact 3 -->
+        <div class="fact-item" data-fact="3">
+            <div class="fact-image">
+                <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&h=600&fit=crop" alt="Hamed playing guitar">
+            </div>
+            <div class="fact-content">
+                <div class="fact-number">03</div>
+                <div class="fact-text">
+                    <h2>I'm a self-taught guitarist</h2>
+                    <p>I love playing acoustic and electric guitar. Music helps me unwind after long coding sessions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fact 4 -->
+        <div class="fact-item" data-fact="4">
+            <div class="fact-image">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop" alt="Hamed building SaaS applications">
+            </div>
+            <div class="fact-content">
+                <div class="fact-number">04</div>
+                <div class="fact-text">
+                    <h2>Building SaaS applications is my calling</h2>
+                    <p>I've created multiple successful SaaS products and love the challenge of solving real-world problems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Fact -->
+        <div class="fact-item cta-fact" data-fact="5">
+            <div class="fact-image">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop" alt="Create Your Page">
+            </div>
+            <div class="fact-content">
+                <div class="fact-icon">
+                    <i class="bi bi-heart-fill"></i>
+                </div>
+                <div class="fact-text">
+                    <h2>Did you like Hamed's page?</h2>
+                    <p>Create your own personal fact page and share your story with the world!</p>
+                    <a href="index.html#pricing" class="btn btn-primary cta-button">Create Your Page</a>
+                </div>
             </div>
         </div>
     </section>
@@ -154,7 +171,7 @@
         <div class="contact-modal-content">
             <button class="close-modal" id="closeModal">&times;</button>
             <h3 style="color: #4ecdc4; margin-bottom: 1.5rem; font-size: 1.5rem;">Contact Me</h3>
-            <a href="mailto:hamed@example.com" class="contact-modal-item">
+            <a href="mailto:hamed.shirbandi@gmail.com" class="contact-modal-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
@@ -176,6 +193,6 @@
         </div>
     </footer>
 
-    <script src="app.js?v=14"></script>
+    <script src="app.js?v=15"></script>
 </body>
 </html>
