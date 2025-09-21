@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeIndexPage();
     }
     
-    // Check if we're on the page.html (has social links and contact modal)
-    if (document.getElementById('contactButton')) {
+    // Check if we're on the page.html (has circular social items)
+    if (document.querySelector('.circular-social')) {
         initializePagePage();
     }
     
@@ -90,7 +90,7 @@ function initializeIndexPage() {
     typeText();
 }
 
-// Page.html functionality (social links, contact modal, scroll indicator)
+// Page.html functionality (circular social, contact modal, scroll indicator)
 function initializePagePage() {
     // Add click and touch events to scroll arrow
     const scrollArrow = document.querySelector('.scroll-arrow');
@@ -125,17 +125,8 @@ function initializePagePage() {
         });
     }
     
-    // Add hover effects to social links
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.1)';
-        });
-        
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+    // Initialize circular social items
+    initializeCircularSocial();
     
     // Contact modal functionality
     const contactButton = document.getElementById('contactButton');
@@ -168,6 +159,88 @@ function initializePagePage() {
                 document.body.style.overflow = 'auto';
             }
         });
+    }
+}
+
+// Circular social items functionality
+function initializeCircularSocial() {
+    const socialItems = document.querySelectorAll('.social-item');
+    
+    socialItems.forEach(item => {
+        // Add click animation
+        item.addEventListener('click', function(e) {
+            // Add click animation
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1.1)';
+            }, 150);
+            
+            // Add a subtle pulse effect
+            this.style.boxShadow = '0 0 20px rgba(78, 205, 196, 0.5)';
+            setTimeout(() => {
+                this.style.boxShadow = '';
+            }, 300);
+        });
+        
+        // Add touch support for mobile
+        item.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.style.transform = 'scale(0.9)';
+        });
+        
+        item.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            this.style.transform = 'scale(1.1)';
+        });
+        
+        // Add keyboard navigation support
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+    
+    // Add intersection observer for scroll animations
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const socialObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate social items when they come into view
+                const socialItems = entry.target.querySelectorAll('.social-item');
+                socialItems.forEach((item, index) => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1)';
+                    item.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                });
+            } else {
+                // Reset animation when they go out of view
+                const socialItems = entry.target.querySelectorAll('.social-item');
+                socialItems.forEach(item => {
+                    item.style.opacity = '0.7';
+                    item.style.transform = 'scale(0.8)';
+                });
+            }
+        });
+    }, observerOptions);
+    
+    // Observe the avatar container
+    const avatarContainer = document.querySelector('.avatar-container');
+    if (avatarContainer) {
+        // Set initial state for animation
+        const socialItems = avatarContainer.querySelectorAll('.social-item');
+        socialItems.forEach(item => {
+            item.style.opacity = '0.7';
+            item.style.transform = 'scale(0.8)';
+            item.style.transition = 'all 0.5s ease';
+        });
+        
+        socialObserver.observe(avatarContainer);
     }
 }
 
