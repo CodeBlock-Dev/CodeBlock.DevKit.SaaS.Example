@@ -334,10 +334,9 @@ body.page-body {
 /* Hero Container - for index.html */
 .hero-container {
     text-align: center;
-    padding: 2rem;
+    margin-top: -1.3rem;
     position: relative;
     z-index: 100;
-    margin: 0 auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -2168,11 +2167,6 @@ body.page-body {
 /* Adjust body padding for navbar */
 body {
     padding-top: 80px;
-}
-
-/* Adjust hero sections for navbar */
-.hero-container {
-    margin-top: 0;
 }
 
 .hero-section {
