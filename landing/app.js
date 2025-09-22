@@ -165,8 +165,35 @@ function initializePagePage() {
 // Circular social items functionality
 function initializeCircularSocial() {
     const socialItems = document.querySelectorAll('.social-item');
+    const customTooltip = document.getElementById('customTooltip');
     
     socialItems.forEach(item => {
+        // Add hover events for custom tooltip
+        item.addEventListener('mouseenter', function(e) {
+            const tooltipText = this.getAttribute('data-tooltip');
+            if (tooltipText && customTooltip) {
+                customTooltip.textContent = tooltipText;
+                customTooltip.classList.add('show');
+                
+                // Position tooltip relative to the social item
+                const rect = this.getBoundingClientRect();
+                const tooltipRect = customTooltip.getBoundingClientRect();
+                
+                // Position tooltip above the social item
+                const left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+                const top = rect.top - tooltipRect.height - 10;
+                
+                customTooltip.style.left = left + 'px';
+                customTooltip.style.top = top + 'px';
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            if (customTooltip) {
+                customTooltip.classList.remove('show');
+            }
+        });
+        
         // Add click animation
         item.addEventListener('click', function(e) {
             // Add click animation

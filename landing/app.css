@@ -56,7 +56,7 @@ body.page-body {
     margin-top: 3rem;
     margin-bottom: 6rem;
     position: relative;
-    z-index: 10;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,7 +71,7 @@ body.page-body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 .avatar-image:hover {
@@ -93,7 +93,7 @@ body.page-body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 5;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -122,6 +122,7 @@ body.page-body {
     color: white;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
+
 
 /* Position social items in a circle - 8 items with optimized spacing */
 .social-item.twitter {
@@ -260,14 +261,10 @@ body.page-body {
     color: #4ecdc4;
 }
 
-/* Tooltip styles */
-.social-item::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
+/* Custom tooltip styles */
+.custom-tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 0.5rem 0.8rem;
     border-radius: 6px;
@@ -278,28 +275,24 @@ body.page-body {
     visibility: hidden;
     transition: all 0.3s ease;
     pointer-events: none;
-    z-index: 1000;
+    z-index: 10000;
+    pointer-events: none;
 }
 
-.social-item::before {
+.custom-tooltip::before {
     content: '';
     position: absolute;
-    bottom: -25px;
+    top: -5px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none;
+    border-bottom: 5px solid rgba(0, 0, 0, 0.9);
 }
 
-.social-item:hover::after,
-.social-item:hover::before {
+.custom-tooltip.show {
     opacity: 1;
     visibility: visible;
 }
