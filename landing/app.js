@@ -340,6 +340,97 @@ function createFloatingFactImages() {
 function initializeFactItems() {
     const factItems = document.querySelectorAll('.fact-item');
     
+    if (factItems.length === 0) {
+        return;
+    }
+    
+    // Initialize fact items with scroll animations
+    factItems.forEach((item, index) => {
+        // Set initial state - visible but positioned off-screen
+        item.style.opacity = '1';
+        item.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.2}s`;
+        
+        // Determine layout direction based on CSS flex-direction
+        const isEvenItem = index % 2 === 0;
+        const factImage = item.querySelector('.fact-image');
+        const factContent = item.querySelector('.fact-content');
+        
+        if (isEvenItem) {
+            // Even items: image on left, content on right
+            if (factImage) {
+                factImage.style.transform = 'translateX(-80px)';
+                factImage.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                factImage.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                factImage.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+            }
+            if (factContent) {
+                factContent.style.transform = 'translateX(80px)';
+                factContent.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                factContent.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                factContent.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+            }
+        } else {
+            // Odd items: content on left, image on right (due to flex-direction: row-reverse)
+            if (factContent) {
+                factContent.style.transform = 'translateX(-80px)';
+                factContent.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                factContent.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                factContent.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+            }
+            if (factImage) {
+                factImage.style.transform = 'translateX(80px)';
+                factImage.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                factImage.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                factImage.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+            }
+        }
+        
+        const factImageImg = item.querySelector('.fact-image img');
+        if (factImageImg) {
+            factImageImg.style.transition = 'opacity 0.5s ease, filter 0.5s ease, transform 0.3s ease';
+        }
+        
+        // Add hover effects to fact-image only - using previous scroll effects
+        const factImageHover = item.querySelector('.fact-image');
+        if (factImageHover) {
+            factImageHover.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'rgba(78, 205, 196, 0.6)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 35px rgba(78, 205, 196, 0.3)';
+                
+                const image = this.querySelector('img');
+                if (image) {
+                    image.style.transform = 'scale(1.05)';
+                    image.style.filter = 'brightness(1.1) contrast(1.05)';
+                }
+            });
+            
+            factImageHover.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+                
+                const image = this.querySelector('img');
+                if (image) {
+                    image.style.transform = 'scale(1)';
+                    image.style.filter = 'brightness(1) contrast(1)';
+                }
+            });
+        }
+        
+        // Add hover effects to fact-content only - using previous scroll effects
+        const factContentHover = item.querySelector('.fact-content');
+        if (factContentHover) {
+            factContentHover.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'rgba(78, 205, 196, 0.8)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(78, 205, 196, 0.4)';
+            });
+            
+            factContentHover.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
+            });
+        }
+    });
+    
     // Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.3,
@@ -348,95 +439,60 @@ function initializeFactItems() {
     
     const factObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            console.log('Scroll effect triggered:', entry.isIntersecting); // Debug log
+            
+            // Get the index to determine layout
+            const index = Array.from(factItems).indexOf(entry.target);
+            const isEvenItem = index % 2 === 0;
+            
             if (entry.isIntersecting) {
-                // Add animation classes when fact comes into view
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                
-                // Animate the fact content
+                // Slide-in animation when fact comes into view
+                const factImage = entry.target.querySelector('.fact-image');
                 const factContent = entry.target.querySelector('.fact-content');
-                if (factContent) {
-                    factContent.style.transform = 'translateY(0) scale(1)';
-                    factContent.style.opacity = '1';
+                
+                // Both elements slide to center position
+                if (factImage) {
+                    factImage.style.transform = 'translateX(0)';
+                    console.log('Applied slide-in effect to fact-image'); // Debug log
                 }
                 
-                // Animate the fact image
-                const factImage = entry.target.querySelector('.fact-image img');
-                if (factImage) {
-                    factImage.style.transform = 'scale(1)';
-                    factImage.style.filter = 'brightness(1)';
+                if (factContent) {
+                    factContent.style.transform = 'translateX(0)';
+                    console.log('Applied slide-in effect to fact-content'); // Debug log
                 }
             } else {
                 // Reset animation when fact goes out of view
-                entry.target.style.opacity = '0.7';
-                entry.target.style.transform = 'translateY(50px)';
-                
+                const factImage = entry.target.querySelector('.fact-image');
                 const factContent = entry.target.querySelector('.fact-content');
-                if (factContent) {
-                    factContent.style.transform = 'translateY(30px) scale(0.95)';
-                    factContent.style.opacity = '0.8';
-                }
                 
-                const factImage = entry.target.querySelector('.fact-image img');
-                if (factImage) {
-                    factImage.style.transform = 'scale(0.95)';
-                    factImage.style.filter = 'brightness(0.8)';
+                if (isEvenItem) {
+                    // Even items: image slides left, content slides right
+                    if (factImage) {
+                        factImage.style.transform = 'translateX(-80px)';
+                    }
+                    if (factContent) {
+                        factContent.style.transform = 'translateX(80px)';
+                    }
+                } else {
+                    // Odd items: content slides left, image slides right
+                    if (factContent) {
+                        factContent.style.transform = 'translateX(-80px)';
+                    }
+                    if (factImage) {
+                        factImage.style.transform = 'translateX(80px)';
+                    }
                 }
             }
         });
     }, observerOptions);
     
-    // Initialize fact items with scroll animations
+    // Observe each fact item
     factItems.forEach((item, index) => {
-        // Set initial state for animation
-        item.style.opacity = '0.7';
-        item.style.transform = 'translateY(50px)';
-        item.style.transition = `all 0.8s ease ${index * 0.1}s`;
-        
-        const factContent = item.querySelector('.fact-content');
-        if (factContent) {
-            factContent.style.transform = 'translateY(30px) scale(0.95)';
-            factContent.style.opacity = '0.8';
-            factContent.style.transition = 'all 0.6s ease';
-        }
-        
-        const factImage = item.querySelector('.fact-image img');
-        if (factImage) {
-            factImage.style.transition = 'all 0.5s ease';
-        }
-        
-        // Add hover effects
-        item.addEventListener('mouseenter', function() {
-            const content = this.querySelector('.fact-content');
-            if (content) {
-                content.style.transform = 'translateY(-5px) scale(1.02)';
-                content.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.6)';
-            }
-            
-            const image = this.querySelector('.fact-image img');
-            if (image) {
-                image.style.transform = 'scale(1.05)';
-                image.style.filter = 'brightness(1.1)';
-            }
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            const content = this.querySelector('.fact-content');
-            if (content) {
-                content.style.transform = 'translateY(0) scale(1)';
-                content.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.5)';
-            }
-            
-            const image = this.querySelector('.fact-image img');
-            if (image) {
-                image.style.transform = 'scale(1)';
-                image.style.filter = 'brightness(1)';
-            }
-        });
-        
-        // Observe the fact item
+        console.log(`Setting up observer for fact item ${index + 1}`);
         factObserver.observe(item);
     });
+    
+    console.log(`Observer setup complete for ${factItems.length} fact items`);
     
     // Add keyboard navigation
     document.addEventListener('keydown', function(e) {
