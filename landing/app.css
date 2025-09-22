@@ -1948,6 +1948,14 @@ body.page-body {
     align-items: center;
     text-align: center;
     min-height: 280px;
+    /* Fix mobile touch scrolling issues */
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: auto;
 }
 
 .step-item:hover {
@@ -2079,6 +2087,9 @@ body.page-body {
         padding: 2rem 1.5rem;
         margin-bottom: 1rem;
         min-height: 250px;
+        /* Enhanced mobile touch behavior */
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
     }
 
     .step-number {
@@ -2131,6 +2142,9 @@ body.page-body {
     .step-item {
         padding: 1.5rem 1rem;
         min-height: 220px;
+        /* Enhanced mobile touch behavior for small screens */
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
     }
 
     .step-number {

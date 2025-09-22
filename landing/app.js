@@ -765,16 +765,8 @@ function initializeStepsSection() {
             }, 300);
         });
         
-        // Add touch support for mobile
-        item.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            this.style.transform = 'translateY(-5px) scale(0.98)';
-        });
-        
-        item.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            this.style.transform = 'translateY(-10px) scale(1)';
-        });
+        // Remove problematic touch event handlers that prevent scrolling
+        // The CSS touch-action properties will handle touch behavior properly
     });
     
     // Only add scroll animations if not on index page
