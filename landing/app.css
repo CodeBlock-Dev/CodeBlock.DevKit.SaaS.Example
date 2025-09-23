@@ -459,6 +459,85 @@ body.page-body {
     z-index: 1;
 }
 
+/* Floating Scroll Arrow for Facts Section */
+.facts-scroll-arrow {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 1 !important; /* Force visible for debugging */
+    visibility: visible !important; /* Force visible for debugging */
+    pointer-events: all !important; /* Force visible for debugging */
+    transition: all 0.3s ease;
+}
+
+.facts-scroll-arrow.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.scroll-arrow-content {
+    background: rgba(78, 205, 196, 0.7);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(78, 205, 196, 0.8);
+    border-radius: 50px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: pulse-glow 2s ease-in-out infinite;
+    /* Fix mobile touch interactions */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.scroll-arrow-content:hover {
+    background: rgba(78, 205, 196, 0.9);
+    border-color: rgba(78, 205, 196, 1);
+    box-shadow: 0 12px 35px rgba(78, 205, 196, 0.6);
+    transform: translateY(-2px);
+}
+
+.scroll-arrow-content:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.scroll-arrow-text {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+}
+
+.scroll-arrow-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.scroll-arrow-content:hover .scroll-arrow-icon {
+    transform: translateY(2px);
+}
+
+.scroll-arrow-content:active .scroll-arrow-icon {
+    transform: translateY(0);
+}
+
 /* Individual Fact Items */
 .fact-item {
     width: 100vw;
@@ -1318,6 +1397,20 @@ body.page-body {
         height: 45px;
     }
 
+    /* Facts scroll arrow mobile styles */
+    .facts-scroll-arrow {
+        bottom: 1.5rem;
+    }
+
+    .scroll-arrow-content {
+        padding: 0.8rem;
+    }
+
+    .scroll-arrow-icon {
+        width: 20px;
+        height: 20px;
+    }
+
     /* Facts responsive */
     .fact-item {
         padding: 1.5rem;
@@ -1618,6 +1711,20 @@ body.page-body {
     .scroll-arrow {
         width: 40px;
         height: 40px;
+    }
+
+    /* Facts scroll arrow small mobile styles */
+    .facts-scroll-arrow {
+        bottom: 1rem;
+    }
+
+    .scroll-arrow-content {
+        padding: 0.7rem;
+    }
+
+    .scroll-arrow-icon {
+        width: 18px;
+        height: 18px;
     }
 
     /* Facts responsive for small screens */

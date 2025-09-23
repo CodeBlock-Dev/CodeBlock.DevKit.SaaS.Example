@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the page.html (has new fact items)
     if (document.querySelector('.fact-item')) {
         initializeFactItems();
+        initializeFactsScrollArrow();
     }
     
     // Initialize pricing section functionality
@@ -496,7 +497,6 @@ function initializeFactItems() {
     
     const factObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            console.log('Scroll effect triggered:', entry.isIntersecting); // Debug log
             
             // Get the index to determine layout
             const index = Array.from(factItems).indexOf(entry.target);
@@ -510,12 +510,10 @@ function initializeFactItems() {
                 // Both elements slide to center position
                 if (factImage) {
                     factImage.style.transform = 'translateX(0)';
-                    console.log('Applied slide-in effect to fact-image'); // Debug log
                 }
                 
                 if (factContent) {
                     factContent.style.transform = 'translateX(0)';
-                    console.log('Applied slide-in effect to fact-content'); // Debug log
                 }
             } else {
                 // Reset animation when fact goes out of view
@@ -545,11 +543,8 @@ function initializeFactItems() {
     
     // Observe each fact item
     factItems.forEach((item, index) => {
-        console.log(`Setting up observer for fact item ${index + 1}`);
         factObserver.observe(item);
     });
-    
-    console.log(`Observer setup complete for ${factItems.length} fact items`);
     
     // Add keyboard navigation
     document.addEventListener('keydown', function(e) {
@@ -561,6 +556,137 @@ function initializeFactItems() {
             scrollToPreviousFact();
         }
     });
+}
+
+// Facts Scroll Arrow functionality
+function initializeFactsScrollArrow() {
+    const factsScrollArrow = document.getElementById('factsScrollArrow');
+    const factItems = document.querySelectorAll('.fact-item');
+    const ctaSection = document.getElementById('cta');
+    
+    if (!factsScrollArrow || factItems.length === 0) {
+        return;
+    }
+    
+    let currentFactIndex = 0;
+    let isVisible = false;
+    
+    // Initially hide the arrow
+    hideScrollArrow();
+    
+    // Function to get the currently visible fact item
+    function getCurrentVisibleFact() {
+        let currentFact = null;
+        let currentIndex = -1;
+        
+        factItems.forEach((item, index) => {
+            const rect = item.getBoundingClientRect();
+            
+            // Check if the fact item is visible in the viewport
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                // Find the fact item that's most centered in the viewport
+                const centerY = window.innerHeight / 2;
+                const itemCenterY = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(centerY - itemCenterY);
+                
+                // If this is the first item or closer to center than current best
+                if (currentFact === null || distanceFromCenter < Math.abs(centerY - (currentFact.getBoundingClientRect().top + currentFact.getBoundingClientRect().height / 2))) {
+                    currentFact = item;
+                    currentIndex = index;
+                }
+            }
+        });
+        
+        // Always return an object, even if no fact is visible
+        return { fact: currentFact, index: currentIndex };
+    }
+    
+    // Function to show/hide the scroll arrow
+    function updateScrollArrowVisibility() {
+        const result = getCurrentVisibleFact();
+        const fact = result ? result.fact : null;
+        const index = result ? result.index : -1;
+        
+        // Simple logic: show arrow if we have a visible fact item and it's not the last one
+        if (fact && index !== -1 && index < factItems.length - 1) {
+            currentFactIndex = index;
+            showScrollArrow();
+        } else {
+            // Hide arrow if no fact item is visible or if it's the last fact item
+            hideScrollArrow();
+        }
+    }
+    
+    function showScrollArrow() {
+        if (!isVisible) {
+            factsScrollArrow.classList.add('visible');
+            isVisible = true;
+        }
+    }
+    
+    function hideScrollArrow() {
+        if (isVisible) {
+            factsScrollArrow.classList.remove('visible');
+            isVisible = false;
+        }
+    }
+    
+    // Function to scroll to next fact
+    function scrollToNextFact() {
+        const nextIndex = currentFactIndex + 1;
+        if (nextIndex < factItems.length) {
+            factItems[nextIndex].scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    // Add click event to scroll arrow
+    factsScrollArrow.addEventListener('click', function() {
+        // Add click animation
+        const content = this.querySelector('.scroll-arrow-content');
+        content.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            content.style.transform = 'scale(1)';
+        }, 150);
+        
+        scrollToNextFact();
+    });
+    
+    // Add touch support for mobile
+    factsScrollArrow.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        const content = this.querySelector('.scroll-arrow-content');
+        content.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            content.style.transform = 'scale(1)';
+        }, 150);
+        
+        scrollToNextFact();
+    });
+    
+    // Add touch start for visual feedback
+    factsScrollArrow.addEventListener('touchstart', function(e) {
+        const content = this.querySelector('.scroll-arrow-content');
+        content.style.transform = 'scale(0.95)';
+    });
+    
+    // Update arrow visibility on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateScrollArrowVisibility, 100);
+    });
+    
+    // Update arrow visibility on resize
+    window.addEventListener('resize', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateScrollArrowVisibility, 100);
+    });
+    
+    // Initial check
+    updateScrollArrowVisibility();
     
     // Add touch/swipe support for mobile
     let touchStartY = 0;
