@@ -311,7 +311,7 @@ body.page-body {
     color: rgba(232, 244, 253, 0.75);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     line-height: 1.1;
-    margin-bottom: 2rem;
+    margin-bottom: -4rem;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -335,7 +335,7 @@ body.page-body {
 
 @media (max-width: 480px) {
     .scroll-indicator {
-        bottom: 7rem; /* Even more space for smaller screens */
+        bottom: 8rem; /* Even more space for smaller screens */
     }
 }
 
@@ -353,12 +353,12 @@ body.page-body {
 }
 
 .scroll-arrow {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    background: rgba(78, 205, 196, 0.2);
+    background: rgba(78, 205, 196, 0.4);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(78, 205, 196, 0.4);
+    border: 2px solid rgba(78, 205, 196, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1419,8 +1419,8 @@ body.page-body {
     }
 
     .scroll-arrow {
-        width: 45px;
-        height: 45px;
+        width: 70px;
+        height: 70px;
     }
 
     /* Facts scroll arrow mobile styles */
@@ -1449,13 +1449,19 @@ body.page-body {
     }
 
     .fact-image {
-        height: 50%;
+        flex: none;
+        height: 40%;
         width: 100%;
     }
 
     .fact-content {
+        flex: none;
         padding: 2rem;
         width: 100%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .fact-number {
@@ -1694,6 +1700,7 @@ body.page-body {
     .hero-title {
         font-size: 2.8rem;
         line-height: 1.3;
+        margin-bottom: 4rem;
     }
 
     .avatar-image {
@@ -1735,8 +1742,8 @@ body.page-body {
     }
 
     .scroll-arrow {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
     }
 
     /* Facts scroll arrow small mobile styles */
@@ -1749,8 +1756,8 @@ body.page-body {
     }
 
     .scroll-arrow-icon {
-        width: 18px;
-        height: 18px;
+        width: 24px;
+        height: 24px;
     }
 
     /* Facts responsive for small screens */
@@ -1765,13 +1772,19 @@ body.page-body {
     }
 
     .fact-image {
-        height: 40%;
+        flex: none;
+        height: 35%;
         width: 100%;
     }
 
     .fact-content {
+        flex: none;
         padding: 1.5rem;
         width: 100%;
+        height: 65%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .fact-number {
@@ -2877,6 +2890,7 @@ body.page-body {
 .footer {
     position: relative;
     padding: 2rem 0;
+    margin-top: 4rem;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -2981,9 +2995,6 @@ body {
     padding-top: 1rem;
 }
 
-.facts-section {
-    padding-top: 80px;
-}
 
 /* Responsive navbar */
 @media (max-width: 768px) {
