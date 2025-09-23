@@ -353,12 +353,12 @@ body.page-body {
 }
 
 .scroll-arrow {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(78, 205, 196, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(78, 205, 196, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -366,6 +366,7 @@ body.page-body {
     cursor: pointer;
     transition: all 0.3s ease;
     animation: bounce 2s infinite;
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
     /* Fix mobile touch interactions */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
@@ -377,18 +378,22 @@ body.page-body {
 }
 
 .scroll-arrow:hover {
-    background: rgba(78, 205, 196, 0.2);
-    border-color: rgba(78, 205, 196, 0.4);
+    background: rgba(78, 205, 196, 0.3);
+    border-color: rgba(78, 205, 196, 0.6);
     transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(78, 205, 196, 0.4);
 }
 
 .scroll-arrow svg {
-    color: rgba(255, 255, 255, 0.8);
-    transition: color 0.3s ease;
+    color: rgba(78, 205, 196, 0.9);
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
 }
 
 .scroll-arrow:hover svg {
     color: #4ecdc4;
+    transform: translateY(2px);
 }
 
 @keyframes bounce {
@@ -465,11 +470,21 @@ body.page-body {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
-    opacity: 1 !important; /* Force visible for debugging */
-    visibility: visible !important; /* Force visible for debugging */
-    pointer-events: all !important; /* Force visible for debugging */
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: all 0.3s ease;
+    background: rgba(78, 205, 196, 0.7);
+    padding: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.facts-scroll-arrow.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: all !important;
 }
 
 .facts-scroll-arrow.visible {
@@ -479,18 +494,18 @@ body.page-body {
 }
 
 .scroll-arrow-content {
-    background: rgba(78, 205, 196, 0.7);
+    background: rgba(78, 205, 196, 0.4);
     backdrop-filter: blur(20px);
-    border: 2px solid rgba(78, 205, 196, 0.8);
+    border: 2px solid rgba(78, 205, 196, 0.5);
     border-radius: 50px;
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.2);
     cursor: pointer;
-    transition: all 0.3s ease;
-    animation: pulse-glow 2s ease-in-out infinite;
+    transition: all 0.5s ease;
+    animation: subtle-pulse 3s ease-in-out infinite;
     /* Fix mobile touch interactions */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
@@ -502,14 +517,25 @@ body.page-body {
 }
 
 .scroll-arrow-content:hover {
-    background: rgba(78, 205, 196, 0.9);
-    border-color: rgba(78, 205, 196, 1);
-    box-shadow: 0 12px 35px rgba(78, 205, 196, 0.6);
+    background: rgba(78, 205, 196, 0.6);
+    border-color: rgba(78, 205, 196, 0.8);
+    box-shadow: 0 12px 35px rgba(78, 205, 196, 0.3);
     transform: translateY(-2px);
 }
 
 .scroll-arrow-content:active {
-    transform: translateY(0) scale(0.95);
+    transform: translateY(0) scale(0.98);
+}
+
+@keyframes subtle-pulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
 }
 
 .scroll-arrow-text {
@@ -2877,6 +2903,73 @@ body.page-body {
 
 .footer-content a:hover {
     color: #4ecdc4;
+}
+
+/* Scroll to Top Arrow */
+.scroll-to-top {
+    position: fixed;
+    bottom: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 107, 107, 0.7);
+    padding: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.scroll-to-top.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: all !important;
+}
+
+.scroll-to-top .scroll-arrow-content {
+    background: rgba(255, 107, 107, 0.4);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 107, 107, 0.5);
+    border-radius: 50px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    animation: subtle-pulse 3s ease-in-out infinite;
+    /* Fix mobile touch interactions */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.scroll-to-top .scroll-arrow-content:hover {
+    background: rgba(255, 107, 107, 0.9);
+    border-color: rgba(255, 107, 107, 1);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+    transform: translateY(-2px);
+}
+
+.scroll-to-top .scroll-arrow-content:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.scroll-to-top .scroll-arrow-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: transform 0.3s ease;
 }
 
 /* Adjust body padding for navbar */

@@ -565,14 +565,14 @@ function initializeFactsScrollArrow() {
     const ctaSection = document.getElementById('cta');
     
     if (!factsScrollArrow || factItems.length === 0) {
+        console.log('Scroll arrow or fact items not found');
         return;
     }
     
     let currentFactIndex = 0;
     let isVisible = false;
     
-    // Initially hide the arrow
-    hideScrollArrow();
+    console.log('Initializing facts scroll arrow with', factItems.length, 'facts');
     
     // Function to get the currently visible fact item
     function getCurrentVisibleFact() {
@@ -601,24 +601,44 @@ function initializeFactsScrollArrow() {
         return { fact: currentFact, index: currentIndex };
     }
     
-    // Function to show/hide the scroll arrow
+    // Function to show/hide the scroll arrows
     function updateScrollArrowVisibility() {
-        const result = getCurrentVisibleFact();
-        const fact = result ? result.fact : null;
-        const index = result ? result.index : -1;
+        const factsSection = document.getElementById('facts');
+        const ctaSection = document.getElementById('cta');
+        const scrollToTop = document.getElementById('scrollToTop');
         
-        // Simple logic: show arrow if we have a visible fact item and it's not the last one
-        if (fact && index !== -1 && index < factItems.length - 1) {
-            currentFactIndex = index;
+        if (!factsSection || !ctaSection || !scrollToTop) {
+            console.log('Required elements not found');
+            return;
+        }
+
+        const factsSectionRect = factsSection.getBoundingClientRect();
+        const ctaSectionRect = ctaSection.getBoundingClientRect();
+        
+        const isFactsSectionVisible = factsSectionRect.top < window.innerHeight && factsSectionRect.bottom > 0;
+        const isCtaSectionVisible = ctaSectionRect.top < window.innerHeight && ctaSectionRect.bottom > 0;
+
+        // Handle facts scroll arrow
+        if (isFactsSectionVisible && !isCtaSectionVisible) {
             showScrollArrow();
         } else {
-            // Hide arrow if no fact item is visible or if it's the last fact item
             hideScrollArrow();
+        }
+
+        // Handle scroll to top arrow
+        if (isCtaSectionVisible) {
+            scrollToTop.classList.add('visible');
+        } else {
+            scrollToTop.classList.remove('visible');
         }
     }
     
     function showScrollArrow() {
         if (!isVisible) {
+            console.log('Showing scroll arrow');
+            factsScrollArrow.style.opacity = '1';
+            factsScrollArrow.style.visibility = 'visible';
+            factsScrollArrow.style.pointerEvents = 'all';
             factsScrollArrow.classList.add('visible');
             isVisible = true;
         }
@@ -626,6 +646,10 @@ function initializeFactsScrollArrow() {
     
     function hideScrollArrow() {
         if (isVisible) {
+            console.log('Hiding scroll arrow');
+            factsScrollArrow.style.opacity = '0';
+            factsScrollArrow.style.visibility = 'hidden';
+            factsScrollArrow.style.pointerEvents = 'none';
             factsScrollArrow.classList.remove('visible');
             isVisible = false;
         }
@@ -672,21 +696,47 @@ function initializeFactsScrollArrow() {
         content.style.transform = 'scale(0.95)';
     });
     
-    // Update arrow visibility on scroll
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateScrollArrowVisibility, 100);
+    // Update arrow visibility on scroll and resize
+    document.addEventListener('scroll', function() {
+        console.log('Scroll event triggered');
+        updateScrollArrowVisibility();
     });
     
     // Update arrow visibility on resize
     window.addEventListener('resize', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateScrollArrowVisibility, 100);
+        console.log('Resize event triggered');
+        updateScrollArrowVisibility();
     });
     
     // Initial check
+    console.log('Performing initial visibility check');
     updateScrollArrowVisibility();
+    
+    // Force a check after a short delay to ensure DOM is ready
+    setTimeout(function() {
+        console.log('Performing delayed visibility check');
+        updateScrollArrowVisibility();
+    }, 1000);
+
+    // Initialize scroll to top functionality
+    const scrollToTop = document.getElementById('scrollToTop');
+    if (scrollToTop) {
+        scrollToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add touch support
+        scrollToTop.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
     
     // Add touch/swipe support for mobile
     let touchStartY = 0;
