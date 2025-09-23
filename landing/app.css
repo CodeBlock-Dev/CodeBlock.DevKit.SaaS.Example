@@ -114,6 +114,14 @@ body.page-body {
     pointer-events: all;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    /* Fix mobile touch interactions */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .social-item:hover {
@@ -345,6 +353,14 @@ body.page-body {
     cursor: pointer;
     transition: all 0.3s ease;
     animation: bounce 2s infinite;
+    /* Fix mobile touch interactions */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .scroll-arrow:hover {

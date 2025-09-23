@@ -119,9 +119,10 @@ function initializePagePage() {
             handleScrollClick();
         });
         
-        // Prevent default touch behavior to avoid conflicts
+        // Add touch start for visual feedback
         scrollArrow.addEventListener('touchstart', function(e) {
-            e.preventDefault();
+            // Don't prevent default - let the touchend handle the action
+            this.style.transform = 'scale(0.95)';
         });
     }
     
@@ -139,14 +140,37 @@ function initializePagePage() {
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
         
+        // Add touch support for mobile
+        contactButton.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
         closeModal.addEventListener('click', function() {
             contactModal.classList.remove('active');
             document.body.style.overflow = 'auto'; // Restore scrolling
         });
         
+        // Add touch support for close button
+        closeModal.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            contactModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
         // Close modal when clicking outside
         contactModal.addEventListener('click', function(e) {
             if (e.target === contactModal) {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal when touching outside (mobile)
+        contactModal.addEventListener('touchend', function(e) {
+            if (e.target === contactModal) {
+                e.preventDefault();
                 contactModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
@@ -211,12 +235,18 @@ function initializeCircularSocial() {
         
         // Add touch support for mobile
         item.addEventListener('touchstart', function(e) {
-            e.preventDefault();
+            // Don't prevent default for links - let them work normally
+            if (!this.href) {
+                e.preventDefault();
+            }
             this.style.transform = 'scale(0.9)';
         });
         
         item.addEventListener('touchend', function(e) {
-            e.preventDefault();
+            // Don't prevent default for links - let them work normally
+            if (!this.href) {
+                e.preventDefault();
+            }
             this.style.transform = 'scale(1.1)';
         });
         
