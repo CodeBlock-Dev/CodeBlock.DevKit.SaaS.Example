@@ -326,6 +326,19 @@ body.page-body {
     z-index: 10;
 }
 
+/* Mobile-specific adjustments for iPhone browser navigation bar */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        bottom: 6rem; /* Increased from 3rem to 6rem to account for iPhone browser nav bar */
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-indicator {
+        bottom: 7rem; /* Even more space for smaller screens */
+    }
+}
+
 .scroll-text {
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.8);
