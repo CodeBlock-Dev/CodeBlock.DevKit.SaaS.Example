@@ -97,6 +97,45 @@ body.page-body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Golden variant for premium users */
+.circular-social.golden {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.25) 0%, 
+        rgba(255, 193, 7, 0.2) 25%, 
+        rgba(255, 165, 0, 0.3) 50%, 
+        rgba(255, 140, 0, 0.25) 75%, 
+        rgba(255, 215, 0, 0.2) 100%);
+    backdrop-filter: blur(25px) saturate(150%);
+    border: 3px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 215, 0, 0.2);
+    animation: luxury-golden-glow 4s ease-in-out infinite;
+}
+
+
+@keyframes luxury-golden-glow {
+    0%, 100% {
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(255, 215, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            inset 0 -1px 0 rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.6);
+    }
+    50% {
+        box-shadow: 
+            0 20px 50px rgba(0, 0, 0, 0.4),
+            0 0 60px rgba(255, 215, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4),
+            inset 0 -1px 0 rgba(255, 215, 0, 0.3);
+        border-color: rgba(255, 215, 0, 0.8);
+    }
+}
+
+
 .social-item {
     position: absolute;
     width: 50px;
@@ -396,6 +435,51 @@ body.page-body {
     transform: translateY(2px);
 }
 
+/* Golden variant for scroll arrow */
+.scroll-indicator.golden .scroll-arrow {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.25) 0%, 
+        rgba(255, 193, 7, 0.2) 25%, 
+        rgba(255, 165, 0, 0.3) 50%, 
+        rgba(255, 140, 0, 0.25) 75%, 
+        rgba(255, 215, 0, 0.2) 100%);
+    backdrop-filter: blur(25px) saturate(150%);
+    border: 3px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.4),
+        0 0 50px rgba(255, 215, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 215, 0, 0.2);
+    animation: bounce 2s infinite, luxury-golden-glow 4s ease-in-out infinite;
+}
+
+.scroll-indicator.golden .scroll-arrow:hover {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.35) 0%, 
+        rgba(255, 193, 7, 0.3) 25%, 
+        rgba(255, 165, 0, 0.4) 50%, 
+        rgba(255, 140, 0, 0.35) 75%, 
+        rgba(255, 215, 0, 0.3) 100%);
+    border-color: rgba(255, 215, 0, 0.8);
+    transform: scale(1.1);
+    box-shadow: 
+        0 0 40px rgba(255, 215, 0, 0.6),
+        0 0 60px rgba(255, 215, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(255, 215, 0, 0.3);
+}
+
+.scroll-indicator.golden .scroll-arrow svg {
+    color: rgba(255, 215, 0, 0.9);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+.scroll-indicator.golden .scroll-arrow:hover svg {
+    color: rgba(255, 215, 0, 1);
+    transform: translateY(2px);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.7));
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -491,6 +575,68 @@ body.page-body {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
+}
+
+/* Golden variant for facts scroll arrow */
+.facts-scroll-arrow.golden {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.25) 0%, 
+        rgba(255, 193, 7, 0.2) 25%, 
+        rgba(255, 165, 0, 0.3) 50%, 
+        rgba(255, 140, 0, 0.25) 75%, 
+        rgba(255, 215, 0, 0.2) 100%);
+    backdrop-filter: blur(25px) saturate(150%);
+    border: 3px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 
+        0 8px 25px rgba(255, 215, 0, 0.2),
+        0 0 30px rgba(255, 215, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 215, 0, 0.2);
+    animation: luxury-golden-glow 4s ease-in-out infinite;
+}
+
+.facts-scroll-arrow.golden .scroll-arrow-content {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.25) 0%, 
+        rgba(255, 193, 7, 0.2) 25%, 
+        rgba(255, 165, 0, 0.3) 50%, 
+        rgba(255, 140, 0, 0.25) 75%, 
+        rgba(255, 215, 0, 0.2) 100%);
+    backdrop-filter: blur(25px) saturate(150%);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 
+        0 8px 25px rgba(255, 215, 0, 0.2),
+        0 0 20px rgba(255, 215, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 215, 0, 0.2);
+    animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+.facts-scroll-arrow.golden .scroll-arrow-content:hover {
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.35) 0%, 
+        rgba(255, 193, 7, 0.3) 25%, 
+        rgba(255, 165, 0, 0.4) 50%, 
+        rgba(255, 140, 0, 0.35) 75%, 
+        rgba(255, 215, 0, 0.3) 100%);
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 
+        0 12px 35px rgba(255, 215, 0, 0.3),
+        0 0 30px rgba(255, 215, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.facts-scroll-arrow.golden .scroll-arrow-icon {
+    color: rgba(255, 215, 0, 0.9);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+.facts-scroll-arrow.golden .scroll-arrow-content:hover .scroll-arrow-icon {
+    color: rgba(255, 215, 0, 1);
+    transform: translateY(2px);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.7));
 }
 
 .scroll-arrow-content {
@@ -2540,6 +2686,9 @@ body.page-body {
     position: relative;
     transition: all 0.3s ease;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .pricing-card:hover {
@@ -2548,12 +2697,12 @@ body.page-body {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-.pro-plan {
+.premium-plan {
     border: 2px solid rgba(78, 205, 196, 0.3);
     background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
-.pro-plan:hover {
+.premium-plan:hover {
     border-color: rgba(78, 205, 196, 0.5);
     box-shadow: 0 30px 60px rgba(78, 205, 196, 0.2);
 }
@@ -2625,7 +2774,10 @@ body.page-body {
 }
 
 .plan-features {
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .feature-item {
@@ -2638,6 +2790,22 @@ body.page-body {
 
 .feature-item:last-child {
     border-bottom: none;
+}
+
+.feature-hint {
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 0;
+    text-align: center;
+    background: rgba(78, 205, 196, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(78, 205, 196, 0.2);
+}
+
+.feature-hint small {
+    color: rgba(78, 205, 196, 0.8);
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 .feature-label {
@@ -2675,27 +2843,27 @@ body.page-body {
     font-family: 'Poppins', sans-serif;
 }
 
-.free-plan .plan-btn {
+.basic-plan .plan-btn {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
 }
 
-.free-plan .plan-btn:hover {
+.basic-plan .plan-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-.pro-plan .plan-btn {
+.premium-plan .plan-btn {
     background: linear-gradient(45deg, #ff6b6b, #ee5a24);
     color: white;
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
 }
 
-.pro-plan .plan-btn:hover {
+.premium-plan .plan-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
     background: linear-gradient(45deg, #ff5252, #ff9800);
