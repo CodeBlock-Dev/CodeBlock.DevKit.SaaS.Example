@@ -2495,6 +2495,221 @@ body.page-body {
     }
 }
 
+/* Why Section */
+.why-section {
+    width: 100vw;
+    min-height: 80vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.why-container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+.why-header {
+    margin-bottom: 4rem;
+}
+
+.why-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.why-description {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Poppins', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.why-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.reason-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 280px;
+}
+
+.reason-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(78, 205, 196, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+.reason-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+}
+
+.reason-icon i {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.reason-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reason-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.3;
+}
+
+.reason-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Why Section Responsive */
+@media (max-width: 768px) {
+    .why-section {
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+
+    .why-title {
+        font-size: 2.5rem;
+        line-height: 1.1;
+    }
+
+    .why-description {
+        font-size: 1.1rem;
+    }
+
+    .why-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 400px;
+    }
+
+    .reason-item {
+        padding: 1.5rem 1rem;
+        min-height: 250px;
+    }
+
+    .reason-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+    }
+
+    .reason-icon i {
+        font-size: 1.2rem;
+    }
+
+    .reason-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .reason-description {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .why-title {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        line-height: 1.1 !important;
+    }
+
+    .why-description {
+        font-size: 1rem;
+    }
+
+    .why-content {
+        gap: 1.5rem;
+        max-width: 350px;
+    }
+
+    .reason-item {
+        padding: 1.5rem 1rem;
+        min-height: 220px;
+    }
+
+    .reason-icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 0.8rem;
+    }
+
+    .reason-icon i {
+        font-size: 1.1rem;
+    }
+
+    .reason-title {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .reason-description {
+        font-size: 0.9rem;
+    }
+}
+
 /* Recent Pages Section */
 .recent-pages-section {
     width: 100vw;
