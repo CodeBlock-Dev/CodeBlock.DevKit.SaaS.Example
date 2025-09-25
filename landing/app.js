@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize steps section functionality
     initializeStepsSection();
     
+    // Initialize AI process section functionality
+    initializeAIProcessSection();
+    
     // Create floating fact images for both page.html and index.html
     createFloatingFactImages();
     
@@ -603,30 +606,35 @@ function initializeFactsScrollArrow() {
     
     // Function to show/hide the scroll arrows
     function updateScrollArrowVisibility() {
+        const heroSection = document.getElementById('hero');
         const factsSection = document.getElementById('facts');
-        const ctaSection = document.getElementById('cta');
+        const ctaContent = document.querySelector('.cta-content');
         const scrollToTop = document.getElementById('scrollToTop');
         
-        if (!factsSection || !ctaSection || !scrollToTop) {
+        if (!heroSection || !factsSection || !ctaContent || !scrollToTop) {
             console.log('Required elements not found');
             return;
         }
 
+        const heroSectionRect = heroSection.getBoundingClientRect();
         const factsSectionRect = factsSection.getBoundingClientRect();
-        const ctaSectionRect = ctaSection.getBoundingClientRect();
+        const ctaContentRect = ctaContent.getBoundingClientRect();
         
+        const isHeroSectionVisible = heroSectionRect.top < window.innerHeight && heroSectionRect.bottom > 0;
         const isFactsSectionVisible = factsSectionRect.top < window.innerHeight && factsSectionRect.bottom > 0;
-        const isCtaSectionVisible = ctaSectionRect.top < window.innerHeight && ctaSectionRect.bottom > 0;
+        const isCtaContentVisible = ctaContentRect.top < window.innerHeight && ctaContentRect.bottom > 0;
 
         // Handle facts scroll arrow
-        if (isFactsSectionVisible && !isCtaSectionVisible) {
+        // Show only when facts section is visible AND hero section is NOT visible AND CTA content is NOT visible
+        if (isFactsSectionVisible && !isHeroSectionVisible && !isCtaContentVisible) {
             showScrollArrow();
         } else {
             hideScrollArrow();
         }
 
         // Handle scroll to top arrow
-        if (isCtaSectionVisible) {
+        // Show only when CTA content is visible
+        if (isCtaContentVisible) {
             scrollToTop.classList.add('visible');
         } else {
             scrollToTop.classList.remove('visible');
@@ -1050,5 +1058,59 @@ function initializeStepsSection() {
         item.addEventListener('click', function() {
             this.style.outline = 'none';
         });
+    });
+}
+
+// AI Process section functionality
+function initializeAIProcessSection() {
+    // Get process steps and connections
+    const processSteps = document.querySelectorAll('.process-step');
+    const processConnections = document.querySelectorAll('.process-connection');
+
+    // Initialize step elements without scroll animations - keep them visible
+    processSteps.forEach((step, index) => {
+        // Set elements to be visible by default (no scroll animation)
+        step.style.opacity = '1';
+        step.style.transform = 'translateY(0) scale(1)';
+        step.style.transition = 'all 0.3s ease'; // Keep transition for hover effects
+    });
+
+    // Initialize connection elements without scroll animations
+    processConnections.forEach(connection => {
+        connection.style.opacity = '1';
+        connection.style.transform = 'scale(1)';
+        connection.style.transition = 'all 0.3s ease'; // Keep transition for hover effects
+    });
+
+    // Initialize chat messages without scroll animations
+    const chatMessages = document.querySelectorAll('.chat-message');
+    chatMessages.forEach((message, index) => {
+        message.style.opacity = '1';
+        message.style.transform = 'translateY(0)';
+        message.style.transition = 'all 0.3s ease'; // Keep transition for hover effects
+    });
+
+    // Add hover effects for process steps (keeping these as requested)
+    processSteps.forEach(step => {
+        step.addEventListener('mouseenter', () => {
+            step.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+        
+        step.addEventListener('mouseleave', () => {
+            step.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Add click animation for connection icons
+    processConnections.forEach(connection => {
+        const icon = connection.querySelector('.connection-icon');
+        if (icon) {
+            icon.addEventListener('click', () => {
+                icon.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    icon.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }
     });
 }
