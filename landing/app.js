@@ -568,14 +568,11 @@ function initializeFactsScrollArrow() {
     const ctaSection = document.getElementById('cta');
     
     if (!factsScrollArrow || factItems.length === 0) {
-        console.log('Scroll arrow or fact items not found');
         return;
     }
     
     let currentFactIndex = 0;
     let isVisible = false;
-    
-    console.log('Initializing facts scroll arrow with', factItems.length, 'facts');
     
     // Function to get the currently visible fact item
     function getCurrentVisibleFact() {
@@ -612,7 +609,6 @@ function initializeFactsScrollArrow() {
         const scrollToTop = document.getElementById('scrollToTop');
         
         if (!heroSection || !factsSection || !ctaContent || !scrollToTop) {
-            console.log('Required elements not found');
             return;
         }
 
@@ -643,7 +639,6 @@ function initializeFactsScrollArrow() {
     
     function showScrollArrow() {
         if (!isVisible) {
-            console.log('Showing scroll arrow');
             factsScrollArrow.style.opacity = '1';
             factsScrollArrow.style.visibility = 'visible';
             factsScrollArrow.style.pointerEvents = 'all';
@@ -654,7 +649,6 @@ function initializeFactsScrollArrow() {
     
     function hideScrollArrow() {
         if (isVisible) {
-            console.log('Hiding scroll arrow');
             factsScrollArrow.style.opacity = '0';
             factsScrollArrow.style.visibility = 'hidden';
             factsScrollArrow.style.pointerEvents = 'none';
@@ -706,23 +700,19 @@ function initializeFactsScrollArrow() {
     
     // Update arrow visibility on scroll and resize
     document.addEventListener('scroll', function() {
-        console.log('Scroll event triggered');
         updateScrollArrowVisibility();
     });
     
     // Update arrow visibility on resize
     window.addEventListener('resize', function() {
-        console.log('Resize event triggered');
         updateScrollArrowVisibility();
     });
     
     // Initial check
-    console.log('Performing initial visibility check');
     updateScrollArrowVisibility();
     
     // Force a check after a short delay to ensure DOM is ready
     setTimeout(function() {
-        console.log('Performing delayed visibility check');
         updateScrollArrowVisibility();
     }, 1000);
 
