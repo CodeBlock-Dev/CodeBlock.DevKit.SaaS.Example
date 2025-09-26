@@ -1604,7 +1604,6 @@ body.page-body {
         flex: none;
         padding: 2rem;
         width: 100%;
-        height: 60%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -1927,7 +1926,6 @@ body.page-body {
         flex: none;
         padding: 1.5rem;
         width: 100%;
-        height: 65%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -2873,8 +2871,7 @@ body.page-body {
 
 .step-image {
     width: 100%;
-    height: 200px;
-    margin-bottom: 1rem;
+    max-height: 100%;
     border-radius: 15px;
     overflow: hidden;
     position: relative;
@@ -2939,18 +2936,17 @@ body.page-body {
 /* Chat Container Styles */
 .chat-container {
     width: 100%;
-    height: 350px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
-    padding: 1rem;
     overflow-y: auto;
-    margin-top: 1rem;
+    padding: 1rem;
+    padding-top: 2rem;
 }
 
 .chat-message {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
     animation: fadeInUp 0.5s ease-out;
 }
 
@@ -2992,6 +2988,7 @@ body.page-body {
     max-width: 80%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 0.5rem;
+    margin-bottom: 0.6rem;
 }
 
 .ai-message .message-content {
@@ -3178,16 +3175,12 @@ body.page-body {
     }
 
     .process-step {
-        max-width: 100%;
+        max-width: 90%;
         height: auto;
-        min-height: 450px;
-        width: 100%;
+        min-height: 30rem;
+        width: 90%;
         padding: 1.5rem 1rem;
-    }
-
-    .step-image {
-        height: 150px;
-        margin-bottom: 0.8rem;
+        margin: 0 auto;
     }
 
     .step-number {
@@ -3202,7 +3195,7 @@ body.page-body {
 
     .process-step .fact-content {
         padding: 0.8rem;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 
     .process-step .fact-number {
@@ -3238,8 +3231,9 @@ body.page-body {
     }
 
     .chat-container {
-        padding: 0.8rem;
-        height: 300px;
+        padding: 1rem;
+        padding-top: 2rem;
+        height: 24rem;
     }
 
     .message-content p {
@@ -3269,14 +3263,10 @@ body.page-body {
 
     .process-step {
         height: auto;
-        min-height: 400px;
-        width: 100%;
+        min-height: 30rem;
+        width: 90%;
         padding: 1.2rem 0.8rem;
-    }
-
-    .step-image {
-        height: 140px;
-        margin-bottom: 0.6rem;
+        margin: 0 auto;
     }
 
     .step-number {
@@ -3289,10 +3279,6 @@ body.page-body {
         font-size: 1.2rem;
     }
 
-    .process-step .fact-content {
-        padding: 0.6rem;
-        margin-top: 0.4rem;
-    }
 
     .process-step .fact-number {
         font-size: 1.5rem;
@@ -3324,8 +3310,8 @@ body.page-body {
     }
 
     .chat-container {
-        padding: 0.6rem;
-        height: 280px;
+        padding: 2rem;
+        padding-top: 2rem;
     }
 
     .message-content {
