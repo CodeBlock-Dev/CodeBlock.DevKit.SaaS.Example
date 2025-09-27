@@ -765,6 +765,8 @@ body.page-body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
     transition: all 0.3s ease, border-color 0.3s ease;
+    height: 60%;
+    width: 100%;
 }
 
 .fact-content:hover {
@@ -824,10 +826,12 @@ body.page-body {
     background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(69, 183, 209, 0.1) 100%);
 }
 
+
 .cta-fact .fact-content {
     background: rgba(78, 205, 196, 0.1);
     border: 2px solid rgba(78, 205, 196, 0.3);
 }
+
 
 .cta-fact .fact-icon {
     font-size: 4rem;
@@ -1600,14 +1604,15 @@ body.page-body {
         width: 100%;
     }
 
+
     .fact-content {
         flex: none;
         padding: 2rem;
-        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
     }
+
 
     .fact-number {
         font-size: 4rem;
@@ -1930,7 +1935,6 @@ body.page-body {
         flex-direction: column;
         justify-content: flex-start;
     }
-
     .fact-number {
         font-size: 3rem;
         margin-bottom: 1rem;
@@ -3059,6 +3063,27 @@ body.page-body {
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* AI Fact Content Styles for index.html */
+.ai-fact-content {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    padding: 1rem;
+    height: 28%;
+    width: 100%;
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.ai-fact-content h2 {
+    color: rgba(78, 205, 196, 0.8) !important;
+}
+
 .process-step .fact-number {
     font-size: 1.5rem;
     font-weight: 800;
@@ -3192,6 +3217,7 @@ body.page-body {
     .step-title {
         font-size: 1.3rem;
     }
+
 
     .process-step .fact-content {
         padding: 0.8rem;
