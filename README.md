@@ -19,20 +19,6 @@ Hey It's Me! is an AI-powered personal page builder that transforms simple conve
 - **Analytics & Insights**: Track who's interested in your story
 - **Multiple Plans**: From Essential (20 facts) to Premium (100 facts) with unlimited contacts
 
-## 🎯 Why Create Your Fact Page?
-
-### Build Deeper Connections
-Share intimate facts and stories that create authentic relationships based on genuine understanding.
-
-### Share Without Judgment
-Express your failures, achievements, and secrets without fear of judgment. Create a safe space to be authentically yourself.
-
-### Find Your Perfect Match
-Help others discover shared interests, values, and personality traits. Your page becomes a magnet for like-minded people.
-
-### Boost Your Online Presence
-Get discovered by search engines and AI models. Track analytics to see who's interested in your story.
-
 ## 🏗️ Built With CodeBlock DevKit
 
 This project is built using the [CodeBlock DevKit SaaS Template](https://github.com/CodeBlock-Dev/CodeBlock.DevKit.SaaS.Template) and serves as both:
