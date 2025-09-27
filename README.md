@@ -4,7 +4,7 @@ Create your personal fact page with AI and share it on social media. Build deepe
 
 **Live Demo:** [hey-it-is.me](https://hey-it-is.me/)
 
-![Hey It's Me Landing Page](landing-shot-1.png)
+![Hey It's Me Landing Page](docs/landing-shot-1.png)
 
 ## 🚀 What is Hey It's Me?
 
