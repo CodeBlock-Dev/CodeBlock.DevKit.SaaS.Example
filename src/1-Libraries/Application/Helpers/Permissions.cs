@@ -11,22 +11,9 @@ namespace HeyItIsMe.Application.Helpers;
 /// They will be automatically registered in the database.
 /// This class demonstrates how to implement a permission system with reflection-based
 /// permission discovery and automatic database registration.
-/// The DemoThing functionality shown here is just an example to help you learn how to implement
-/// your own unique features into the current codebase.
 /// </summary>
 public static class Permissions
 {
-    /// <summary>
-    /// This class name is used as a group name for permissions related to demo things.
-    /// </summary>
-    public static class Demo
-    {
-        /// <summary>
-        /// This property represents the permission to manage demo things.
-        /// </summary>
-        public const string DEMO_THINGS = "DemoThings";
-    }
-
     /// <summary>
     /// This class name is used as a group name for permissions related to pages.
     /// </summary>
@@ -55,12 +42,6 @@ public static class Permissions
     /// from nested static classes, making the permission system maintainable and extensible.
     /// </summary>
     /// <returns>A collection of permission settings that can be registered in the database</returns>
-    /// <example>
-    /// <code>
-    /// var permissions = Permissions.GetPermissions();
-    /// // This will return permissions for Demo.DEMO_THINGS automatically
-    /// </code>
-    /// </example>
     public static IEnumerable<PermissionsSettings> GetPermissions()
     {
         var permissionsList = new List<PermissionsSettings>();

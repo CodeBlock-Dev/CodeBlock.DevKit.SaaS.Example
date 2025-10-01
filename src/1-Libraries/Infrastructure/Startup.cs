@@ -2,7 +2,6 @@ using CodeBlock.DevKit.Application.Extensions;
 using CodeBlock.DevKit.Infrastructure.Mapping;
 using FluentValidation;
 using HeyItIsMe.Application;
-using HeyItIsMe.Core.Domain.DemoThings;
 using HeyItIsMe.Core.Domain.Pages;
 using HeyItIsMe.Infrastructure.DbContext;
 using HeyItIsMe.Infrastructure.Mapping;
@@ -15,9 +14,6 @@ namespace HeyItIsMe.Infrastructure;
 /// Infrastructure module startup class that demonstrates how to configure and register all infrastructure services.
 /// This class serves as a learning example showing how to set up dependency injection, database context,
 /// repositories, mapping profiles, and other infrastructure components.
-///
-/// IMPORTANT: This is an example implementation for learning purposes. Replace the DemoThing-related services
-/// with your actual business domain services and repositories.
 /// </summary>
 public static class Startup
 {
@@ -83,12 +79,9 @@ public static class Startup
     /// <summary>
     /// Registers domain-specific services and repositories.
     /// This method shows how to register your business domain repositories and services.
-    /// Replace DemoThingRepository with your actual repository implementations.
     /// </summary>
-    /// <param name="services">The service collection to register services with</param>
     public static void AddDomainServices(this IServiceCollection services)
     {
-        services.AddScoped<IDemoThingRepository, DemoThingRepository>();
         services.AddScoped<IPageRepository, PageRepository>();
     }
 }

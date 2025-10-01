@@ -13,9 +13,6 @@ namespace HeyItIsMe.Core.Domain.Pages;
 /// child entities (Contact, Fact). This class demonstrates how to implement domain exception factories
 /// that provide localized error messages with proper resource management.
 ///
-/// This implementation follows the same patterns as DemoThingDomainExceptions, demonstrating domain
-/// exception handling patterns for a complete domain model with aggregate root and child entities.
-///
 /// Key features demonstrated:
 /// - Centralized exception creation with consistent error messages
 /// - Localized error messages using resource files

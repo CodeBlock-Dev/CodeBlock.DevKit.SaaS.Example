@@ -1,5 +1,4 @@
 using CodeBlock.DevKit.Infrastructure.Database;
-using HeyItIsMe.Core.Domain.DemoThings;
 using HeyItIsMe.Core.Domain.Pages;
 using MongoDB.Driver;
 
@@ -9,9 +8,6 @@ namespace HeyItIsMe.Infrastructure.DbContext;
 /// Main database context for the application that extends MongoDbContext to provide
 /// MongoDB-specific functionality. This class demonstrates how to set up a database context
 /// with collections, indexes, and custom database operations.
-///
-/// IMPORTANT: This is an example implementation for learning purposes. Replace DemoThing
-/// with your actual domain entities and collections.
 ///
 /// Key features demonstrated:
 /// - MongoDB collection management
@@ -29,10 +25,9 @@ internal class MainDbContext : MongoDbContext
         : base(mongoDbSettings) { }
 
     /// <summary>
-    /// MongoDB collection for DemoThing entities.
-    /// This property provides access to the DemoThings collection for CRUD operations.
+    /// MongoDB collection for Page entities.
+    /// This property provides access to the Pages collection for CRUD operations.
     /// </summary>
-    public IMongoCollection<DemoThing> DemoThings { get; private set; }
     public IMongoCollection<Page> Pages { get; private set; }
 
     /// <summary>
@@ -43,13 +38,6 @@ internal class MainDbContext : MongoDbContext
     /// </summary>
     protected override void CreateIndexes()
     {
-        DemoThings.Indexes.CreateOne(
-            new CreateIndexModel<DemoThing>(
-                Builders<DemoThing>.IndexKeys.Ascending(x => x.Name),
-                new CreateIndexOptions() { Name = nameof(DemoThing.Name), Unique = false }
-            )
-        );
-
         Pages.Indexes.CreateOne(
             new CreateIndexModel<Page>(
                 Builders<Page>.IndexKeys.Ascending(x => x.Route),

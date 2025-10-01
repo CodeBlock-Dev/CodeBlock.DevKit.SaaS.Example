@@ -3,26 +3,6 @@ using CodeBlock.DevKit.Domain.Events;
 namespace HeyItIsMe.Core.Domain.Pages;
 
 /// <summary>
-/// Domain events for Page entities and their related entities (Contact, Fact). These events are published
-/// when significant changes occur to Page entities, allowing other parts of the system to react to these changes.
-///
-/// This implementation follows the same patterns as DemoThingDomainEvents, demonstrating domain event patterns
-/// for a complete domain model with aggregate root and child entities.
-///
-/// Key features demonstrated:
-/// - Domain event records for immutable event data
-/// - Event publishing when entities are created, updated, or deleted
-/// - Integration with the domain event system for decoupled communication
-/// - Events for both aggregate root (Page) and child entities (Contact, Fact)
-///
-/// Usage examples:
-/// - Audit logging when entities are modified
-/// - Notification systems for entity changes
-/// - Integration with external systems
-/// - CQRS read model updates
-/// </summary>
-
-/// <summary>
 /// Event raised when a new Page entity is created. This event contains the essential
 /// information about the newly created page that other parts of the system might need.
 /// </summary>
