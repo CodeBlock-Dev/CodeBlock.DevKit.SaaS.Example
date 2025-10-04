@@ -13,4 +13,6 @@ public interface IQuestionService
     Task<Result<CommandResult>> UpdateQuestion(string id, UpdateQuestionDto input);
 
     Task<Result<SearchOutputDto<GetQuestionDto>>> SearchQuestions(SearchQuestionsInputDto input);
+
+    Task<Result<IEnumerable<GetQuestionDto>>> GetOrderedQuestions();
 }
