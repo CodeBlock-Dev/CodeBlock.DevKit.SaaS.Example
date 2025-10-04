@@ -195,4 +195,10 @@
   <data name="Page_Information" xml:space="preserve">
     <value>Seiteninformationen</value>
   </data>
+  <data name="Question_Content" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Question_Description" xml:space="preserve">
+    <value />
+  </data>
 </root>

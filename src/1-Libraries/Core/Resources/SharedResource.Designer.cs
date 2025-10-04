@@ -293,5 +293,23 @@ namespace HeyItIsMe.Core.Resources {
                 return ResourceManager.GetString("Page_UserId", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        public static string Question_Content {
+            get {
+                return ResourceManager.GetString("Question_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Question_Description {
+            get {
+                return ResourceManager.GetString("Question_Description", resourceCulture);
+            }
+        }
     }
 }
