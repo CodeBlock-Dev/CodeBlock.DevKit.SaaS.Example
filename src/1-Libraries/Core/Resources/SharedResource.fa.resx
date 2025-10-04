@@ -195,10 +195,16 @@
   <data name="Page_Information" xml:space="preserve">
     <value>اطلاعات</value>
   </data>
+  <data name="Question" xml:space="preserve">
+    <value>سوال</value>
+  </data>
   <data name="Question_Content" xml:space="preserve">
-    <value />
+    <value>محتوا</value>
   </data>
   <data name="Question_Description" xml:space="preserve">
-    <value />
+    <value>توضیحات</value>
+  </data>
+  <data name="Question_Order" xml:space="preserve">
+    <value>ترتیب</value>
   </data>
 </root>

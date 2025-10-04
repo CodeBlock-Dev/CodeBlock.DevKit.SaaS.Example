@@ -14,7 +14,7 @@ internal class FactService : ApplicationService, IFactService
 
     public async Task<Result<CommandResult>> AddFact(AddFactDto input)
     {
-        return await _requestDispatcher.SendCommand(new AddFactRequest(input.PageId, input.Content));
+        return await _requestDispatcher.SendCommand(new AddFactRequest(input.PageId, input.Content, input.Title));
     }
 
     public async Task<Result<CommandResult>> UpdateFact(string factId, UpdateFactDto input)

@@ -195,10 +195,16 @@
   <data name="Page_Information" xml:space="preserve">
     <value>Informations de la Page</value>
   </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
   <data name="Question_Content" xml:space="preserve">
-    <value />
+    <value>Contenu</value>
   </data>
   <data name="Question_Description" xml:space="preserve">
-    <value />
+    <value>Description</value>
+  </data>
+  <data name="Question_Order" xml:space="preserve">
+    <value>Ordre</value>
   </data>
 </root>

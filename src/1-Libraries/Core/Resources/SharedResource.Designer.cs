@@ -295,6 +295,15 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Question.
+        /// </summary>
+        public static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Content.
         /// </summary>
         public static string Question_Content {
@@ -309,6 +318,15 @@ namespace HeyItIsMe.Core.Resources {
         public static string Question_Description {
             get {
                 return ResourceManager.GetString("Question_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        public static string Question_Order {
+            get {
+                return ResourceManager.GetString("Question_Order", resourceCulture);
             }
         }
     }

@@ -26,6 +26,17 @@ public static class Permissions
     }
 
     /// <summary>
+    /// This class name is used as a group name for permissions related to questions.
+    /// </summary>
+    public static class Question
+    {
+        /// <summary>
+        /// This property represents the permission to manage questions.
+        /// </summary>
+        public const string QUESTIONS = "Questions";
+    }
+
+    /// <summary>
     /// This class name is used as a group name for permissions related to tracking.
     /// </summary>
     public static class Tracking
