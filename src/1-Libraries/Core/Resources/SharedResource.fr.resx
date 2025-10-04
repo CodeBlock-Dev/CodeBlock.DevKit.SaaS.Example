@@ -117,33 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DemoThing" xml:space="preserve">
-    <value>Chose Démo</value>
-  </data>
-  <data name="DemoThingType_DemoType1" xml:space="preserve">
-    <value>Type Démo 1</value>
-  </data>
-  <data name="DemoThingType_DemoType2" xml:space="preserve">
-    <value>Type Démo 2</value>
-  </data>
-  <data name="DemoThingType_DemoType3" xml:space="preserve">
-    <value>Type Démo 3</value>
-  </data>
-  <data name="DemoThing_Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="DemoThing_Name" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="DemoThing_Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="DemoThing_UserId" xml:space="preserve">
-    <value>ID Utilisateur</value>
-  </data>
-  <data name="DemoThingType_All" xml:space="preserve">
-    <value>Tous les Types Démo</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail Utilisateur</value>
   </data>
