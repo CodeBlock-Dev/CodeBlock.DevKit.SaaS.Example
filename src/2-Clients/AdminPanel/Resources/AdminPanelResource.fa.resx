@@ -153,10 +153,25 @@
   <data name="ViewAvailablePlans" xml:space="preserve">
     <value>مشاهده طرح‌های موجود</value>
   </data>
+  <data name="Pages" xml:space="preserve">
+    <value>صفحات</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>ایجاد صفحه</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>بروزرسانی صفحه</value>
+  </data>
+  <data name="PageImplementationInfo" xml:space="preserve">
+    <value>این نسخه نمایشی نحوه پیاده‌سازی ایجاد، به‌روزرسانی، جستجو و صفحه‌بندی برای صفحات در سطوح رابط کاربری، برنامه و دامنه را نشان می‌دهد.</value>
+  </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>جزئیات صفحه</value>
+  </data>
   <data name="Questions" xml:space="preserve">
-    <value />
+    <value>سوالات</value>
   </data>
   <data name="UpdateQuestion" xml:space="preserve">
-    <value />
+    <value>بروزرسانی سوال</value>
   </data>
 </root>

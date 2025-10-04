@@ -153,10 +153,25 @@
   <data name="ViewAvailablePlans" xml:space="preserve">
     <value>عرض الخطط المتاحة</value>
   </data>
+  <data name="Pages" xml:space="preserve">
+    <value>الصفحات</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>إنشاء صفحة</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>تحديث صفحة</value>
+  </data>
+  <data name="PageImplementationInfo" xml:space="preserve">
+    <value>يوضح هذا العرض التجريبي كيفية تنفيذ عمليات الإنشاء والتحديث والبحث والتصفح للصفحات عبر مستويات واجهة المستخدم والتطبيق والنطاق.</value>
+  </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>تفاصيل الصفحة</value>
+  </data>
   <data name="Questions" xml:space="preserve">
-    <value />
+    <value>الأسئلة</value>
   </data>
   <data name="UpdateQuestion" xml:space="preserve">
-    <value />
+    <value>تحديث سؤال</value>
   </data>
 </root>

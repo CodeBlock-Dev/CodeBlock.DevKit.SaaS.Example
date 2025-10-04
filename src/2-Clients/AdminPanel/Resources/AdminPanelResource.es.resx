@@ -153,10 +153,25 @@
   <data name="ViewAvailablePlans" xml:space="preserve">
     <value>Ver Planes Disponibles</value>
   </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Páginas</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Crear Página</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>Actualizar Página</value>
+  </data>
+  <data name="PageImplementationInfo" xml:space="preserve">
+    <value>Esta demostración muestra cómo implementar la creación, actualización, búsqueda y paginación para páginas a través de los niveles de UI, aplicación y dominio.</value>
+  </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>Detalles de la Página</value>
+  </data>
   <data name="Questions" xml:space="preserve">
-    <value />
+    <value>Preguntas</value>
   </data>
   <data name="UpdateQuestion" xml:space="preserve">
-    <value />
+    <value>Actualizar Pregunta</value>
   </data>
 </root>
