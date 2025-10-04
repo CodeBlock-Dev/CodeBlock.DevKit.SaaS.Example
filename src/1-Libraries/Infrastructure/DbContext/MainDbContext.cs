@@ -1,5 +1,6 @@
 using CodeBlock.DevKit.Infrastructure.Database;
 using HeyItIsMe.Core.Domain.Pages;
+using HeyItIsMe.Core.Domain.Questions;
 using MongoDB.Driver;
 
 namespace HeyItIsMe.Infrastructure.DbContext;
@@ -17,25 +18,12 @@ namespace HeyItIsMe.Infrastructure.DbContext;
 /// </summary>
 internal class MainDbContext : MongoDbContext
 {
-    /// <summary>
-    /// Initializes a new instance of MainDbContext with MongoDB settings.
-    /// </summary>
-    /// <param name="mongoDbSettings">MongoDB connection and configuration settings</param>
     public MainDbContext(MongoDbSettings mongoDbSettings)
         : base(mongoDbSettings) { }
 
-    /// <summary>
-    /// MongoDB collection for Page entities.
-    /// This property provides access to the Pages collection for CRUD operations.
-    /// </summary>
     public IMongoCollection<Page> Pages { get; private set; }
+    public IMongoCollection<Question> Questions { get; private set; }
 
-    /// <summary>
-    /// Creates database indexes for optimal query performance.
-    /// This method demonstrates how to set up indexes on commonly queried fields.
-    ///
-    /// Example: Creates a non-unique index on the Name field for faster text searches.
-    /// </summary>
     protected override void CreateIndexes()
     {
         Pages.Indexes.CreateOne(
@@ -53,14 +41,6 @@ internal class MainDbContext : MongoDbContext
         );
     }
 
-    /// <summary>
-    /// Safely drops test databases for testing purposes.
-    /// Only drops databases that start with "Test_" prefix to prevent accidental
-    /// deletion of production databases.
-    ///
-    /// Example usage in test cleanup:
-    /// dbContext.DropTestDatabase();
-    /// </summary>
     public void DropTestDatabase()
     {
         // Only drop the database if it starts with "Test_" to avoid dropping production databases.
