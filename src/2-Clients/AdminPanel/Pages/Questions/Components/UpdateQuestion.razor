@@ -1,0 +1,84 @@
+
+@using CodeBlock.DevKit.Contracts.Helpers
+@using HeyItIsMe.Application.Dtos.Questions
+@using HeyItIsMe.AdminPanel.Helpers
+
+<EditForm Model="Input" OnValidSubmit="HandleUpdateQuestion">
+    <DataAnnotationsValidator />
+
+    <div class="form-group p-2">
+        <label class="f-sm text-secondary">
+            @SharedLocalizer[SharedResource.Question_Order]:
+            </label>
+        <InputNumber @bind-Value="Input.Order" class="form-control f-sm" />
+        <ValidationMessage For="() => Input.Order" class="text-danger f-sm" />
+    </div>
+
+    <div class="form-group p-2">
+        <label class="f-sm text-secondary">
+            @SharedLocalizer[SharedResource.Question_Content]:
+        </label>
+        <InputTextArea @bind-Value="Input.Content" class="form-control f-sm" rows="3"></InputTextArea>
+        <ValidationMessage For="() => Input.Content" class="text-danger f-sm"></ValidationMessage>
+    </div>
+
+
+    <div class="form-group p-2">
+        <label class="f-sm text-secondary">
+            @SharedLocalizer[SharedResource.Question_Description]:
+        </label>
+        <InputTextArea @bind-Value="Input.Description" class="form-control f-sm" rows="3"></InputTextArea>
+        <ValidationMessage For="()=>Input.Description" class="text-danger f-sm"></ValidationMessage>
+    </div>
+
+    <div class="form-group p-2">
+        <button type="submit" class="btn f-sm btn-success me-2">
+            @CoreLocalizer[CoreResource.Update]
+        </button>
+        @if (CurrentUser.HasPermission(Permissions.Tracking.CHANGES))
+        {
+            <a href="/tracking/changes/@QuestionId" class="btn btn-outline-primary">
+                <i class="bi bi-clock-history me-2"></i>@CoreLocalizer[CoreResource.Changes_History]
+            </a>
+        }
+
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string QuestionId { get; set; }
+
+    private UpdateQuestionDto Input = new();
+
+    [CascadingParameter]
+    protected BlazoredModalInstance ModalInstance { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetQuestion();
+    }
+
+    protected virtual async Task GetQuestion()
+    {
+        var result = await QuestionService.GetQuestion(QuestionId);
+        if (!result.IsSuccess)
+        {
+            result.ShowErrorToast(ToastService);
+            return;
+        }
+
+        Input = new UpdateQuestionDto
+        {
+            Content = result.Value.Content,
+            Order = result.Value.Order,
+            Description = result.Value.Description,
+        };
+    }
+
+    protected virtual async Task HandleUpdateQuestion()
+    {
+        var result = await QuestionService.UpdateQuestion(QuestionId, Input);
+        result.ShowToast(ToastService).PublishMessage(MessageService, Constants.QUESTION_UPDATED).CloseModal(ModalInstance);
+    }
+} 

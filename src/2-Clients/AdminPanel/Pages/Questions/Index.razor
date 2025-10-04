@@ -1,0 +1,85 @@
+﻿@page "/questions"
+@using HeyItIsMe.AdminPanel.Helpers
+@using HeyItIsMe.AdminPanel.Pages.Questions.Components
+@using HeyItIsMe.Application.Dtos.Questions
+@using HeyItIsMe.Application.Helpers
+@implements IDisposable
+@attribute [Authorize(Permissions.Question.QUESTIONS)]
+
+<PageTitle>@AdminPanelLocalizer[AdminPanelResource.Questions]</PageTitle>
+
+<h1 class="page-title">
+    @AdminPanelLocalizer[AdminPanelResource.Questions]
+</h1>
+
+@if (IsLoading)
+{
+    <ComponentLoading />
+}
+else
+{
+    <div class="fade-in-animation">
+        <Questions Model="@SearchQuestionsOutputDto.Items" />
+        <Pagination RecordsPerPage="@SearchQuestionsInputDto.RecordsPerPage" TotalRecords="@SearchQuestionsOutputDto.TotalRecords" CurrentPage="@SearchQuestionsInputDto.PageNumber" PageChangedCallback="OnPageChanged" />
+    </div>
+}
+
+@code {
+    protected SearchQuestionsInputDto SearchQuestionsInputDto = new();
+    protected SearchOutputDto<GetQuestionDto> SearchQuestionsOutputDto = new();
+    protected bool IsLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        MessageService.OnMessage += HandleReceivedMessage;
+        await GetQuestions();
+    }
+
+    protected virtual async Task GetQuestions()
+    {
+        var result = await QuestionService.SearchQuestions(SearchQuestionsInputDto);
+
+        if (result.IsSuccess)
+        {
+            SearchQuestionsOutputDto = result.Value;
+        }
+        else
+        {
+            result.ShowErrorToast(ToastService);
+        }
+
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    protected virtual async Task OnPageChanged(int pageNumber)
+    {
+        IsLoading = true;
+        StateHasChanged();
+        SearchQuestionsInputDto.PageNumber = pageNumber;
+        await GetQuestions();
+    }
+
+    protected virtual async Task OnSearchChanged(SearchQuestionsInputDto searchQuestionsInputDto)
+    {
+        IsLoading = true;
+        StateHasChanged();
+        SearchQuestionsInputDto = searchQuestionsInputDto;
+        await GetQuestions();
+    }
+
+    protected virtual async void HandleReceivedMessage(string messageKey)
+    {
+        if (messageKey==Constants.QUESTION_UPDATED || messageKey==Constants.QUESTION_CREATED)
+        {
+            IsLoading = true;
+            StateHasChanged();
+            await GetQuestions();
+        }
+    }
+
+    public void Dispose()
+    {
+        MessageService.OnMessage -= HandleReceivedMessage;
+    }
+} 

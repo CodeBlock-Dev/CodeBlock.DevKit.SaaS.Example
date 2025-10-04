@@ -1,4 +1,5 @@
 @using CodeBlock.DevKit.Web.Blazor.Server.Attributes
+@using HeyItIsMe.Application.Helpers
 @inherits CustomNavMenu
 @attribute [ReplaceBaseComponent]
 
@@ -13,11 +14,20 @@
 
     <div class="collapse" id="demo-menu-group">
 
-        @if (CurrentUser.HasPermission("Pages"))
+        @if (CurrentUser.HasPermission(Permissions.Page.PAGES))
         {
             <div class="nav-item">
-                <NavLink @onclick="base.HandleNavItemClicked" class="nav-link ms-2" href="/demo-things">
+                <NavLink @onclick="base.HandleNavItemClicked" class="nav-link ms-2" href="/pages">
                     <span class="bi bi-pip p-1" aria-hidden="true"></span> @AdminPanelLocalizer[AdminPanelResource.Pages]
+                </NavLink>
+            </div>
+        }
+
+        @if (CurrentUser.HasPermission(Permissions.Question.QUESTIONS))
+        {
+            <div class="nav-item">
+                <NavLink @onclick="base.HandleNavItemClicked" class="nav-link ms-2" href="/questions">
+                    <span class="bi bi-pip p-1" aria-hidden="true"></span> @AdminPanelLocalizer[AdminPanelResource.Questions]
                 </NavLink>
             </div>
         }

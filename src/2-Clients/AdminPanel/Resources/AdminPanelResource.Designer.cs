@@ -151,6 +151,15 @@ namespace HeyItIsMe.AdminPanel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Questions.
+        /// </summary>
+        public static string Questions {
+            get {
+                return ResourceManager.GetString("Questions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See the docs.
         /// </summary>
         public static string SeeDocs {
@@ -201,6 +210,15 @@ namespace HeyItIsMe.AdminPanel.Resources {
         public static string UpdatePage {
             get {
                 return ResourceManager.GetString("UpdatePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Question.
+        /// </summary>
+        public static string UpdateQuestion {
+            get {
+                return ResourceManager.GetString("UpdateQuestion", resourceCulture);
             }
         }
         

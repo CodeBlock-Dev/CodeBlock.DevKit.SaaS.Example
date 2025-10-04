@@ -168,4 +168,10 @@
   <data name="PageDetails" xml:space="preserve">
     <value>Page Details</value>
   </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="UpdateQuestion" xml:space="preserve">
+    <value>Update Question</value>
+  </data>
 </root>
