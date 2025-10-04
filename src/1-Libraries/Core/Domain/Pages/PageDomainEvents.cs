@@ -42,18 +42,13 @@ public record ContactUpdated(string PageId, string ContactId, string Content) : 
 /// Event raised when a Contact is removed from a Page. This event contains the essential
 /// information about the removed contact that other parts of the system might need.
 /// </summary>
-/// <param name="PageId">Unique identifier of the Page that the contact was removed from</param>
-/// <param name="ContactId">Unique identifier of the removed Contact</param>
 public record ContactRemoved(string PageId, string ContactId) : IDomainEvent;
 
 /// <summary>
 /// Event raised when a Fact is added to a Page. This event contains the essential
 /// information about the newly added fact that other parts of the system might need.
 /// </summary>
-/// <param name="PageId">Unique identifier of the Page that the fact was added to</param>
-/// <param name="FactId">Unique identifier of the added Fact</param>
-/// <param name="Content">Content of the added Fact</param>
-public record FactAdded(string PageId, string FactId, string Content) : IDomainEvent;
+public record FactAdded(string PageId, string FactId, string Title, string Content) : IDomainEvent;
 
 /// <summary>
 /// Event raised when a Fact is updated. This event contains the essential
@@ -61,15 +56,10 @@ public record FactAdded(string PageId, string FactId, string Content) : IDomainE
 ///
 /// Example usage in event handlers:
 /// </summary>
-/// <param name="PageId">Unique identifier of the Page that contains the updated fact</param>
-/// <param name="FactId">Unique identifier of the updated Fact</param>
-/// <param name="Content">Updated content of the Fact</param>
-public record FactUpdated(string PageId, string FactId, string Content) : IDomainEvent;
+public record FactUpdated(string PageId, string FactId, string Title, string Content) : IDomainEvent;
 
 /// <summary>
 /// Event raised when a Fact is removed from a Page. This event contains the essential
 /// information about the removed fact that other parts of the system might need.
 /// </summary>
-/// <param name="PageId">Unique identifier of the Page that the fact was removed from</param>
-/// <param name="FactId">Unique identifier of the removed Fact</param>
 public record FactRemoved(string PageId, string FactId) : IDomainEvent;

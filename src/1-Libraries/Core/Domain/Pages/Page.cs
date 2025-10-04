@@ -103,31 +103,27 @@ public sealed class Page : AggregateRoot
         TrackChange(nameof(ContactRemoved));
     }
 
-    public Fact AddFact(string content)
+    public Fact AddFact(string title, string content)
     {
-        var fact = Fact.Create(content);
-
-        // Check if fact with same content already exists
-        if (Facts.Any(f => f.Content == content))
-            throw PageDomainExceptions.FactAlreadyExists();
+        var fact = Fact.Create(title, content);
 
         Facts.Add(fact);
 
-        AddDomainEvent(new FactAdded(Id, fact.Id, content));
+        AddDomainEvent(new FactAdded(Id, fact.Id, title, content));
         TrackChange(nameof(FactAdded));
 
         return fact;
     }
 
-    public void UpdateFact(string factId, string content)
+    public void UpdateFact(string factId, string title, string content)
     {
         var fact = Facts.FirstOrDefault(f => f.Id == factId);
         if (fact == null)
             throw PageDomainExceptions.FactNotFound();
 
-        fact.Update(content);
+        fact.Update(title, content);
 
-        AddDomainEvent(new FactUpdated(Id, factId, content));
+        AddDomainEvent(new FactUpdated(Id, factId, title, content));
         TrackChange(nameof(FactUpdated));
     }
 

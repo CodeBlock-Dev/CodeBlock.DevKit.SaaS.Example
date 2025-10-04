@@ -20,13 +20,13 @@ internal class UpdateFactUseCase : BaseCommandHandler, IRequestHandler<UpdateFac
 
     public async Task<CommandResult> Handle(UpdateFactRequest request, CancellationToken cancellationToken)
     {
-        var page = await _pageRepository.GetByIdAsync(request.PageId);
+        var page = await _pageRepository.GetByFactIdAsync(request.FactId);
         if (page == null)
-            throw PageApplicationExceptions.PageNotFound(request.PageId);
+            throw PageApplicationExceptions.PageNotFound("FactId: " + request.FactId);
 
         var loadedVersion = page.Version;
 
-        page.UpdateFact(request.FactId, request.Content);
+        page.UpdateFact(request.FactId, request.Title, request.Content);
 
         await _pageRepository.ConcurrencySafeUpdateAsync(page, loadedVersion);
 

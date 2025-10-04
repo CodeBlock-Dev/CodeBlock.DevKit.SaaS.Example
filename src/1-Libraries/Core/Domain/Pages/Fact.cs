@@ -5,26 +5,29 @@ namespace HeyItIsMe.Core.Domain.Pages;
 
 public sealed class Fact : Entity
 {
-    private Fact(string content)
+    private Fact(string title, string content)
     {
         Content = content;
+        Title = title;
 
         CheckPolicies();
     }
 
+    public string Title { get; private set; }
     public string Content { get; private set; }
 
-    public static Fact Create(string content)
+    public static Fact Create(string title, string content)
     {
-        return new Fact(content);
+        return new Fact(title, content);
     }
 
-    public void Update(string content)
+    public void Update(string title, string content)
     {
-        if (Content == content)
+        if (Content == content && Title == title)
             return;
 
         Content = content;
+        Title = title;
 
         CheckPolicies();
     }
@@ -33,5 +36,8 @@ public sealed class Fact : Entity
     {
         if (Content.IsNullOrEmptyOrWhiteSpace())
             throw PageDomainExceptions.FactContentIsRequired();
+
+        if (Title.IsNullOrEmptyOrWhiteSpace())
+            throw PageDomainExceptions.FactTitleIsRequired();
     }
 }

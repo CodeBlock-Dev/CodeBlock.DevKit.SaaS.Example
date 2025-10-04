@@ -18,4 +18,11 @@ public class AddFactDto
     [Display(Name = nameof(SharedResource.Fact_Content), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Fact_Content))]
     public string Content { get; set; }
+
+    /// <summary>
+    /// The title of the fact to add. Required field that cannot be empty.
+    /// </summary>
+    [Display(Name = nameof(SharedResource.Fact_Title), ResourceType = typeof(SharedResource))]
+    [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Fact_Content))]
+    public string Title { get; set; }
 }

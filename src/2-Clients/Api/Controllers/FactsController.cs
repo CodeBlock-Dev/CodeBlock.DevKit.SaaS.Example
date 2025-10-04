@@ -25,15 +25,17 @@ public class FactsController : BaseApiController
         return await _factService.AddFact(input);
     }
 
+    [Route("{id}")]
     [HttpPut]
-    public async Task<Result<CommandResult>> Put([FromBody] UpdateFactDto input)
+    public async Task<Result<CommandResult>> Put(string id, [FromBody] UpdateFactDto input)
     {
-        return await _factService.UpdateFact(input);
+        return await _factService.UpdateFact(id, input);
     }
 
+    [Route("{id}")]
     [HttpDelete]
-    public async Task<Result<CommandResult>> Delete([FromQuery] string pageId, [FromQuery] string factId)
+    public async Task<Result<CommandResult>> Delete(string id)
     {
-        return await _factService.RemoveFact(pageId, factId);
+        return await _factService.RemoveFact(id);
     }
 }

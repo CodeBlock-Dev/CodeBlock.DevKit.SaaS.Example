@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using CodeBlock.DevKit.Core.Resources;
 using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.Dtos.Facts;
@@ -7,16 +6,11 @@ namespace HeyItIsMe.Application.Dtos.Facts;
 public class UpdateFactDto
 {
     /// <summary>
-    /// The unique identifier of the page containing the fact.
+    /// The new title for the fact. Required field that cannot be empty.
     /// </summary>
-    [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
-    public string PageId { get; set; }
-
-    /// <summary>
-    /// The unique identifier of the fact to update.
-    /// </summary>
-    [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
-    public string FactId { get; set; }
+    [Display(Name = nameof(SharedResource.Fact_Title), ResourceType = typeof(SharedResource))]
+    [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Fact_Content))]
+    public string Title { get; set; }
 
     /// <summary>
     /// The new content for the fact. Required field that cannot be empty.

@@ -20,9 +20,9 @@ internal class RemoveFactUseCase : BaseCommandHandler, IRequestHandler<RemoveFac
 
     public async Task<CommandResult> Handle(RemoveFactRequest request, CancellationToken cancellationToken)
     {
-        var page = await _pageRepository.GetByIdAsync(request.PageId);
+        var page = await _pageRepository.GetByFactIdAsync(request.FactId);
         if (page == null)
-            throw PageApplicationExceptions.PageNotFound(request.PageId);
+            throw PageApplicationExceptions.PageNotFound("FactId: " + request.FactId);
 
         var loadedVersion = page.Version;
 

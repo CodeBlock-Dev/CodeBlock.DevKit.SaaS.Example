@@ -26,6 +26,11 @@ internal class PageRepository : MongoDbBaseAggregateRepository<Page>, IPageRepos
         return await _pages.CountDocumentsAsync(filter);
     }
 
+    public async Task<Page> GetByFactIdAsync(string factId)
+    {
+        return await _pages.Find(p => p.Facts.Any(f => f.Id == factId)).FirstOrDefaultAsync();
+    }
+
     public async Task<IEnumerable<Page>> SearchAsync(
         string term,
         int pageNumber,

@@ -93,6 +93,20 @@ internal static class PageDomainExceptions
     }
 
     /// <summary>
+    /// Creates a domain exception when the Fact title is missing or invalid.
+    /// This exception is thrown when business rules require valid fact title but none is provided.
+    /// </summary>
+    /// <returns>A domain exception with localized error message for missing fact title</returns>
+    public static DomainException FactTitleIsRequired()
+    {
+        return new DomainException(
+            nameof(CoreResource.Required),
+            typeof(CoreResource),
+            new List<MessagePlaceholder> { MessagePlaceholder.CreateResource(SharedResource.Fact_Title, typeof(SharedResource)) }
+        );
+    }
+
+    /// <summary>
     /// Creates a domain exception when attempting to add a contact that already exists.
     /// This exception is thrown when business rules prevent duplicate contacts.
     /// </summary>

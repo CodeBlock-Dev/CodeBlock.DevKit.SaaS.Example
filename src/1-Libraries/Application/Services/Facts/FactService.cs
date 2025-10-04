@@ -17,13 +17,13 @@ internal class FactService : ApplicationService, IFactService
         return await _requestDispatcher.SendCommand(new AddFactRequest(input.PageId, input.Content));
     }
 
-    public async Task<Result<CommandResult>> UpdateFact(UpdateFactDto input)
+    public async Task<Result<CommandResult>> UpdateFact(string factId, UpdateFactDto input)
     {
-        return await _requestDispatcher.SendCommand(new UpdateFactRequest(input.PageId, input.FactId, input.Content));
+        return await _requestDispatcher.SendCommand(new UpdateFactRequest(factId, input.Title, input.Content));
     }
 
-    public async Task<Result<CommandResult>> RemoveFact(string pageId, string factId)
+    public async Task<Result<CommandResult>> RemoveFact(string factId)
     {
-        return await _requestDispatcher.SendCommand(new RemoveFactRequest(pageId, factId));
+        return await _requestDispatcher.SendCommand(new RemoveFactRequest(factId));
     }
 }

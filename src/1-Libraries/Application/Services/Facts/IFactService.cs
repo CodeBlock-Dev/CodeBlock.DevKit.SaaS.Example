@@ -13,10 +13,10 @@ public interface IFactService
     /// <summary>
     /// Updates an existing fact with new data.
     /// </summary>
-    Task<Result<CommandResult>> UpdateFact(UpdateFactDto input);
+    Task<Result<CommandResult>> UpdateFact(string factId, UpdateFactDto input);
 
     /// <summary>
     /// Removes a fact from a page.
     /// </summary>
-    Task<Result<CommandResult>> RemoveFact(string pageId, string factId);
+    Task<Result<CommandResult>> RemoveFact(string factId);
 }
