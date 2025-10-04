@@ -174,4 +174,7 @@
   <data name="UpdateQuestion" xml:space="preserve">
     <value>بروزرسانی سوال</value>
   </data>
+  <data name="CreateQuestion" xml:space="preserve">
+    <value>ایجاد سوال</value>
+  </data>
 </root>

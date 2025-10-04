@@ -1,23 +1,21 @@
-@using CanBeYours.Application.Dtos.DemoThings
-@using CanBeYours.Core.Domain.DemoThings
+@using HeyItIsMe.Application.Dtos.Questions
 
-<EditForm Model="SearchDemoThingsInputDto" OnSubmit="HandleSearchDemoThings" class="row gy-2 gx-3 align-items-center">
+<EditForm Model="SearchQuestionsInputDto" OnSubmit="HandleSearchQuestions" class="row gy-2 gx-3 align-items-center">
 
     <div class="col-6 col-sm-3">
-        <a class="btn d-block f-sm btn-success" @onclick="@(() => ModalService.Show<CreateDemoThing>(AdminPanelLocalizer[AdminPanelResource.CreateDemoThing], new ModalOptions { Class="blazored-modal width-xs-90 width-md-50"}))">
-            @AdminPanelLocalizer[AdminPanelResource.CreateDemoThing]
+        <a class="btn d-block f-sm btn-success" @onclick="@(() => ModalService.Show<CreateQuestion>(AdminPanelLocalizer[AdminPanelResource.CreateQuestion], new ModalOptions { Class="blazored-modal width-xs-90 width-md-50"}))">
+            @AdminPanelLocalizer[AdminPanelResource.CreateQuestion]
         </a>
     </div>
 
     <div class="col-6 col-sm-3">
-        <InputText @bind-Value="SearchDemoThingsInputDto.Term" placeholder="..." class="form-control f-sm"></InputText>
+        <InputText @bind-Value="SearchQuestionsInputDto.Term" placeholder="..." class="form-control f-sm"></InputText>
     </div>
 
 
     <div class="col-6 col-sm-3">
-        <InputSelect @bind-Value="SearchDemoThingsInputDto.Type" class="form-control f-sm form-select">
-            <option value="" selected> @SharedLocalizer[SharedResource.DemoThingType_All]</option>
-            @foreach (Enum item in Enum.GetValues(typeof(DemoThingType)))
+        <InputSelect @bind-Value="SearchQuestionsInputDto.SortOrder" class="form-control f-sm form-select">
+            @foreach (Enum item in Enum.GetValues(typeof(SortOrder)))
             {
                 <option value="@item">@item.GetEnumDisplayName()</option>
             }
@@ -32,51 +30,17 @@
         </a>
     </div>
 
-    <div class="collapse container mb-1 mt-2" id="more-filters">
-        <div class="row">
-
-            <div class="col-6 col-sm-3">
-                <label class="f-sm text-secondary">
-                    @CoreLocalizer[CoreResource.From_Date]:
-                </label>
-                <InputDate @bind-Value="SearchDemoThingsInputDto.FromDateTime" class="form-control f-sm"></InputDate>
-            </div>
-
-            <div class="col-6 col-sm-3">
-                <label class="f-sm text-secondary">
-                    @CoreLocalizer[CoreResource.To_Date]:
-                </label>
-                <InputDate @bind-Value="SearchDemoThingsInputDto.ToDateTime" class="form-control f-sm"> </InputDate>
-
-            </div>
-
-            <div class="col-6 col-sm-3">
-                <label class="f-sm text-secondary">
-                    @CoreLocalizer[CoreResource.SortOrder]:
-                </label>
-                <InputSelect @bind-Value="SearchDemoThingsInputDto.SortOrder" class="form-control f-sm form-select">
-                    @foreach (Enum item in Enum.GetValues(typeof(SortOrder)))
-                    {
-                        <option value="@item">@item.GetEnumDisplayName()</option>
-                    }
-                </InputSelect>
-            </div>
-
-        </div>
-    </div>
-
-
 </EditForm>
 
 @code {
-    protected SearchDemoThingsInputDto SearchDemoThingsInputDto = new();
+    protected SearchQuestionsInputDto SearchQuestionsInputDto = new();
 
     [Parameter]
-    public EventCallback<SearchDemoThingsInputDto> SearchChangedCallback { get; set; }
+    public EventCallback<SearchQuestionsInputDto> SearchChangedCallback { get; set; }
 
-    protected virtual async Task HandleSearchDemoThings()
+    protected virtual async Task HandleSearchQuestions()
     {
-        SearchDemoThingsInputDto.PageNumber = 1;
-        await SearchChangedCallback.InvokeAsync(SearchDemoThingsInputDto);
+        SearchQuestionsInputDto.PageNumber = 1;
+        await SearchChangedCallback.InvokeAsync(SearchQuestionsInputDto);
     }
 } 

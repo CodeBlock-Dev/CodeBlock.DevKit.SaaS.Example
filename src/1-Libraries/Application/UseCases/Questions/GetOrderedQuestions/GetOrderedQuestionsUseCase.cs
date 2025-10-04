@@ -19,7 +19,7 @@ internal class GetOrderedQuestionsUseCase : BaseQueryHandler, IRequestHandler<Ge
 
     public async Task<IEnumerable<GetQuestionDto>> Handle(GetOrderedQuestionsRequest request, CancellationToken cancellationToken)
     {
-        var questions = await _questionRepository.GetAllAsync();
+        var questions = await _questionRepository.GetListAsync();
 
         var orderedQuestions = questions.OrderBy(q => q.Order);
 

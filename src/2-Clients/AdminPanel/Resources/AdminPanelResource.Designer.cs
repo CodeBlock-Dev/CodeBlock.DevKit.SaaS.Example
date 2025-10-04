@@ -88,6 +88,15 @@ namespace HeyItIsMe.AdminPanel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Question.
+        /// </summary>
+        public static string CreateQuestion {
+            get {
+                return ResourceManager.GetString("CreateQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Demo.
         /// </summary>
         public static string Demo {
