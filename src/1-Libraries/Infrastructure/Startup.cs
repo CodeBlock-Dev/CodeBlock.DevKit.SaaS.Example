@@ -2,11 +2,13 @@ using CodeBlock.DevKit.Application.Extensions;
 using CodeBlock.DevKit.Infrastructure.Mapping;
 using FluentValidation;
 using HeyItIsMe.Application;
+using HeyItIsMe.Application.Contracts;
 using HeyItIsMe.Core.Domain.Pages;
 using HeyItIsMe.Core.Domain.Questions;
 using HeyItIsMe.Infrastructure.DbContext;
 using HeyItIsMe.Infrastructure.Mapping;
 using HeyItIsMe.Infrastructure.Repositories;
+using HeyItIsMe.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HeyItIsMe.Infrastructure;
@@ -18,7 +20,7 @@ public static class Startup
         services.AddApplicationModule();
         services.RegisterHandlers(typeof(Startup));
         services.AddMongoDbContext();
-        services.AddDomainServices();
+        services.AddServices();
         services.AddMappingProfileFromAssemblyContaining<MappingProfile>();
         services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
     }
@@ -41,9 +43,11 @@ public static class Startup
         services.AddScoped<MainDbContext>();
     }
 
-    public static void AddDomainServices(this IServiceCollection services)
+    public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped<IPageRepository, PageRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
+        services.AddScoped<IAIImageService, GeminiImageService>();
+        services.AddScoped<IAITextService, GeminiTextService>();
     }
 }

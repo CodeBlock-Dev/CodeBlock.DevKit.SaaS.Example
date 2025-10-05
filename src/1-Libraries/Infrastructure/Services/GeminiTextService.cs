@@ -3,12 +3,13 @@ using System.Text.Json;
 using CodeBlock.DevKit.AIChatBot.Domain.Bots;
 using CodeBlock.DevKit.Application.Srvices;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Contracts;
 using HeyItIsMe.Infrastructure.Models;
 using Microsoft.Extensions.Logging;
 
 namespace HeyItIsMe.Infrastructure.Services;
 
-public class GeminiTextService
+public class GeminiTextService : IAITextService
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<GeminiTextService> _logger;
