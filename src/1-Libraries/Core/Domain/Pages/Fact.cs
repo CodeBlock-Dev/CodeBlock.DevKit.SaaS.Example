@@ -9,12 +9,14 @@ public sealed class Fact : Entity
     {
         Content = content;
         Title = title;
+        ImageUrl = string.Empty;
 
         CheckPolicies();
     }
 
     public string Title { get; private set; }
     public string Content { get; private set; }
+    public string ImageUrl { get; private set; }
 
     public static Fact Create(string title, string content)
     {
@@ -30,6 +32,14 @@ public sealed class Fact : Entity
         Title = title;
 
         CheckPolicies();
+    }
+
+    public void UpdateImageUrl(string imageUrl)
+    {
+        if (ImageUrl == imageUrl)
+            return;
+
+        ImageUrl = imageUrl;
     }
 
     private void CheckPolicies()

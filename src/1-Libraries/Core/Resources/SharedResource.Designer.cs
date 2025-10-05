@@ -151,6 +151,15 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fact Image.
+        /// </summary>
+        public static string Fact_ImageUrl {
+            get {
+                return ResourceManager.GetString("Fact_ImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Facts.
         /// </summary>
         public static string Facts {

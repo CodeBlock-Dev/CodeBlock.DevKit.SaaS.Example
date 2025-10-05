@@ -26,4 +26,6 @@ public record FactAdded(string PageId, string FactId, string Title, string Conte
 
 public record FactUpdated(string PageId, string FactId, string Title, string Content) : IDomainEvent;
 
+public record FactImageUrlUpdated(string PageId, string FactId, string ImageUrl) : IDomainEvent;
+
 public record FactRemoved(string PageId, string FactId) : IDomainEvent;

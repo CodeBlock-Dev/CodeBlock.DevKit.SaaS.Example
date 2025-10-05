@@ -15,7 +15,7 @@ public sealed class Page : AggregateRoot
         Contacts = new List<Contact>();
         Facts = new List<Fact>();
 
-        CheckPolicies(pageRepository);
+        CheckPageCreationPolicies(pageRepository);
 
         AddDomainEvent(new PageCreated(Id, Route));
         TrackChange(nameof(PageCreated));
@@ -57,9 +57,6 @@ public sealed class Page : AggregateRoot
 
     public void UpdateRoute(string route, IPageRepository pageRepository)
     {
-        if (Route == route)
-            return;
-
         Route = route;
 
         CheckRoutePolicy(pageRepository);
@@ -70,9 +67,6 @@ public sealed class Page : AggregateRoot
 
     public void UpdateDisplayName(string displayName)
     {
-        if (DisplayName == displayName)
-            return;
-
         DisplayName = displayName;
 
         CheckDisplayNamePolicy();
@@ -179,9 +173,21 @@ public sealed class Page : AggregateRoot
         TrackChange(nameof(FactRemoved));
     }
 
+    public void UpdateFactImageUrl(string factId, string imageUrl)
+    {
+        var fact = Facts.FirstOrDefault(f => f.Id == factId);
+        if (fact == null)
+            throw PageDomainExceptions.FactNotFound();
+
+        fact.UpdateImageUrl(imageUrl);
+
+        AddDomainEvent(new FactImageUrlUpdated(Id, factId, imageUrl));
+        TrackChange(nameof(FactImageUrlUpdated));
+    }
+
     protected override void CheckInvariants() { }
 
-    private void CheckPolicies(IPageRepository pageRepository)
+    private void CheckPageCreationPolicies(IPageRepository pageRepository)
     {
         CheckRoutePolicy(pageRepository);
         CheckUserIdPolicy();

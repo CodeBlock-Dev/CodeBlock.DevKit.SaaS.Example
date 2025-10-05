@@ -162,6 +162,9 @@
   <data name="Fact_Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
+  <data name="Fact_ImageUrl" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
   <data name="Fact_Description" xml:space="preserve">
     <value>توضیحات</value>
   </data>

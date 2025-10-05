@@ -4,6 +4,7 @@ using HeyItIsMe.Application.Dtos.Facts;
 using HeyItIsMe.Application.UseCases.Facts.AddFact;
 using HeyItIsMe.Application.UseCases.Facts.RemoveFact;
 using HeyItIsMe.Application.UseCases.Facts.UpdateFact;
+using HeyItIsMe.Application.UseCases.Facts.UpdateFactImageUrl;
 
 namespace HeyItIsMe.Application.Services.Facts;
 
@@ -25,5 +26,10 @@ internal class FactService : ApplicationService, IFactService
     public async Task<Result<CommandResult>> RemoveFact(string factId)
     {
         return await _requestDispatcher.SendCommand(new RemoveFactRequest(factId));
+    }
+
+    public async Task<Result<CommandResult>> UpdateFactImageUrl(string factId, UpdateFactImageUrlDto input)
+    {
+        return await _requestDispatcher.SendCommand(new UpdateFactImageUrlRequest(factId, input.Base64Image, input.WebRootPath));
     }
 }

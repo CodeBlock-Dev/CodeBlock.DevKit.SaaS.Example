@@ -162,6 +162,9 @@
   <data name="Fact_Title" xml:space="preserve">
     <value>Titre du Fait</value>
   </data>
+  <data name="Fact_ImageUrl" xml:space="preserve">
+    <value>Image du Fait</value>
+  </data>
   <data name="Fact_Description" xml:space="preserve">
     <value>Description du Fait</value>
   </data>

@@ -19,4 +19,9 @@ public interface IFactService
     /// Removes a fact from a page.
     /// </summary>
     Task<Result<CommandResult>> RemoveFact(string factId);
+
+    /// <summary>
+    /// Updates the image URL for a fact.
+    /// </summary>
+    Task<Result<CommandResult>> UpdateFactImageUrl(string factId, UpdateFactImageUrlDto input);
 }
