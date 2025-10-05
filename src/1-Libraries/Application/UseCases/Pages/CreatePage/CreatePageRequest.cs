@@ -7,10 +7,9 @@ namespace HeyItIsMe.Application.UseCases.Pages.CreatePage;
 
 internal class CreatePageRequest : BaseCommand
 {
-    public CreatePageRequest(string route, string displayName, string userId)
+    public CreatePageRequest(string route, string userId)
     {
         Route = route;
-        DisplayName = displayName;
         UserId = userId;
     }
 
@@ -20,13 +19,6 @@ internal class CreatePageRequest : BaseCommand
     [Display(Name = nameof(SharedResource.Page_Route), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
     public string Route { get; }
-
-    /// <summary>
-    /// The display name shown to users. Required field that cannot be empty.
-    /// </summary>
-    [Display(Name = nameof(SharedResource.Page_DisplayName), ResourceType = typeof(SharedResource))]
-    [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
-    public string DisplayName { get; }
 
     /// <summary>
     /// Identifier of the user who owns this page. Required field for ownership tracking.

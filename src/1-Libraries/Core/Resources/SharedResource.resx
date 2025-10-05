@@ -132,6 +132,12 @@
   <data name="Page_UserId" xml:space="preserve">
     <value>User Id</value>
   </data>
+  <data name="Page_AvatarImage" xml:space="preserve">
+    <value>Avatar Image</value>
+  </data>
+  <data name="Page_ReferenceImage" xml:space="preserve">
+    <value>Reference Image</value>
+  </data>
   <data name="Page_SubscriptionId" xml:space="preserve">
     <value>Subscription Id</value>
   </data>

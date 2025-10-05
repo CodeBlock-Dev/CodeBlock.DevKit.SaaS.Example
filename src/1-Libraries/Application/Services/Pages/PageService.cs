@@ -5,7 +5,10 @@ using HeyItIsMe.Application.Dtos.Pages;
 using HeyItIsMe.Application.UseCases.Pages.CreatePage;
 using HeyItIsMe.Application.UseCases.Pages.GetPage;
 using HeyItIsMe.Application.UseCases.Pages.SearchPages;
-using HeyItIsMe.Application.UseCases.Pages.UpdatePage;
+using HeyItIsMe.Application.UseCases.Pages.UpdatePageRoute;
+using HeyItIsMe.Application.UseCases.Pages.UpdatePageDisplayName;
+using HeyItIsMe.Application.UseCases.Pages.UpdatePageAvatarImage;
+using HeyItIsMe.Application.UseCases.Pages.UpdatePageReferenceImage;
 
 namespace HeyItIsMe.Application.Services.Pages;
 
@@ -21,12 +24,27 @@ internal class PageService : ApplicationService, IPageService
 
     public async Task<Result<CommandResult>> CreatePage(CreatePageDto input)
     {
-        return await _requestDispatcher.SendCommand(new CreatePageRequest(input.Route, input.DisplayName, input.UserId));
+        return await _requestDispatcher.SendCommand(new CreatePageRequest(input.Route, input.UserId));
     }
 
-    public async Task<Result<CommandResult>> UpdatePage(string id, UpdatePageDto input)
+    public async Task<Result<CommandResult>> UpdatePageRoute(string id, UpdatePageRouteDto input)
     {
-        return await _requestDispatcher.SendCommand(new UpdatePageRequest(id, input.Route, input.DisplayName));
+        return await _requestDispatcher.SendCommand(new UpdatePageRouteRequest(id, input.Route));
+    }
+
+    public async Task<Result<CommandResult>> UpdatePageDisplayName(string id, UpdatePageDisplayNameDto input)
+    {
+        return await _requestDispatcher.SendCommand(new UpdatePageDisplayNameRequest(id, input.DisplayName));
+    }
+
+    public async Task<Result<CommandResult>> UpdatePageAvatarImage(string id, string base64Image, string webRootPath)
+    {
+        return await _requestDispatcher.SendCommand(new UpdatePageAvatarImageRequest(id, base64Image, webRootPath));
+    }
+
+    public async Task<Result<CommandResult>> UpdatePageReferenceImage(string id, string base64Image, string webRootPath)
+    {
+        return await _requestDispatcher.SendCommand(new UpdatePageReferenceImageRequest(id, base64Image, webRootPath));
     }
 
     public async Task<Result<SearchOutputDto<GetPageDto>>> SearchPages(SearchPagesInputDto input)

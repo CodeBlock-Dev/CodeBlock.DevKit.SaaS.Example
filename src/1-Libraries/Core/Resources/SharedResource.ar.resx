@@ -132,6 +132,12 @@
   <data name="Page_UserId" xml:space="preserve">
     <value>معرف المستخدم</value>
   </data>
+  <data name="Page_AvatarImage" xml:space="preserve">
+    <value>صورة الصفحة الشخصية</value>
+  </data>
+  <data name="Page_ReferenceImage" xml:space="preserve">
+    <value>صورة مرجعية</value>
+  </data>
   <data name="Page_SubscriptionId" xml:space="preserve">
     <value>معرف الاشتراك</value>
   </data>

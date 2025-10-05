@@ -7,17 +7,17 @@ using HeyItIsMe.Core.Domain.Pages;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace HeyItIsMe.Application.UseCases.Pages.UpdatePage;
+namespace HeyItIsMe.Application.UseCases.Pages.UpdatePageDisplayName;
 
-internal class UpdatePageUseCase : BaseCommandHandler, IRequestHandler<UpdatePageRequest, CommandResult>
+internal class UpdatePageDisplayNameUseCase : BaseCommandHandler, IRequestHandler<UpdatePageDisplayNameRequest, CommandResult>
 {
     private readonly IPageRepository _pageRepository;
     private readonly ICurrentUser _currentUser;
 
-    public UpdatePageUseCase(
+    public UpdatePageDisplayNameUseCase(
         IPageRepository pageRepository,
         IRequestDispatcher requestDispatcher,
-        ILogger<UpdatePageUseCase> logger,
+        ILogger<UpdatePageDisplayNameUseCase> logger,
         ICurrentUser currentUser
     )
         : base(requestDispatcher, logger)
@@ -26,17 +26,17 @@ internal class UpdatePageUseCase : BaseCommandHandler, IRequestHandler<UpdatePag
         _currentUser = currentUser;
     }
 
-    public async Task<CommandResult> Handle(UpdatePageRequest request, CancellationToken cancellationToken)
+    public async Task<CommandResult> Handle(UpdatePageDisplayNameRequest request, CancellationToken cancellationToken)
     {
         var page = await _pageRepository.GetByIdAsync(request.Id);
         if (page == null)
             throw PageApplicationExceptions.PageNotFound(request.Id);
 
-        EnsureUserHasAccess(page.UserId, _currentUser, Permissions.Question.QUESTIONS);
+        EnsureUserHasAccess(page.UserId, _currentUser, Permissions.Page.PAGES);
 
         var loadedVersion = page.Version;
 
-        page.Update(request.Route, request.DisplayName, _pageRepository);
+        page.UpdateDisplayName(request.DisplayName);
 
         await _pageRepository.ConcurrencySafeUpdateAsync(page, loadedVersion);
 

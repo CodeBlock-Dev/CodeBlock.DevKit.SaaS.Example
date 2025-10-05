@@ -17,9 +17,24 @@ public interface IPageService
     Task<Result<CommandResult>> CreatePage(CreatePageDto input);
 
     /// <summary>
-    /// Updates an existing page with new data.
+    /// Updates the route of an existing page.
     /// </summary>
-    Task<Result<CommandResult>> UpdatePage(string id, UpdatePageDto input);
+    Task<Result<CommandResult>> UpdatePageRoute(string id, UpdatePageRouteDto input);
+
+    /// <summary>
+    /// Updates the display name of an existing page.
+    /// </summary>
+    Task<Result<CommandResult>> UpdatePageDisplayName(string id, UpdatePageDisplayNameDto input);
+
+    /// <summary>
+    /// Updates the avatar image of an existing page.
+    /// </summary>
+    Task<Result<CommandResult>> UpdatePageAvatarImage(string id, string base64Image, string webRootPath);
+
+    /// <summary>
+    /// Updates the reference image of an existing page.
+    /// </summary>
+    Task<Result<CommandResult>> UpdatePageReferenceImage(string id, string base64Image, string webRootPath);
 
     /// <summary>
     /// Searches for pages based on specified criteria.

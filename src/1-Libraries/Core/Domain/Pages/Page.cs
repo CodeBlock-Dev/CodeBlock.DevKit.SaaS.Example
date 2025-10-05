@@ -5,17 +5,19 @@ namespace HeyItIsMe.Core.Domain.Pages;
 
 public sealed class Page : AggregateRoot
 {
-    private Page(string route, string displayName, string userId, IPageRepository pageRepository)
+    private Page(string route, string userId, IPageRepository pageRepository)
     {
         Route = route;
-        DisplayName = displayName;
+        DisplayName = string.Empty;
         UserId = userId;
+        AvatarImageUrl = string.Empty;
+        ReferenceImageUrl = string.Empty;
         Contacts = new List<Contact>();
         Facts = new List<Fact>();
 
         CheckPolicies(pageRepository);
 
-        AddDomainEvent(new PageCreated(Id, Route, DisplayName));
+        AddDomainEvent(new PageCreated(Id, Route));
         TrackChange(nameof(PageCreated));
     }
 
@@ -44,23 +46,61 @@ public sealed class Page : AggregateRoot
     /// </summary>
     public ICollection<Fact> Facts { get; private set; }
 
-    public static Page Create(string route, string displayName, string userId, IPageRepository pageRepository)
+    public string AvatarImageUrl { get; private set; }
+
+    public string ReferenceImageUrl { get; private set; }
+
+    public static Page Create(string route, string userId, IPageRepository pageRepository)
     {
-        return new Page(route, displayName, userId, pageRepository);
+        return new Page(route, userId, pageRepository);
     }
 
-    public void Update(string route, string displayName, IPageRepository pageRepository)
+    public void UpdateRoute(string route, IPageRepository pageRepository)
     {
-        if (Route == route && DisplayName == displayName)
+        if (Route == route)
             return;
 
         Route = route;
+
+        CheckRoutePolicy(pageRepository);
+
+        AddDomainEvent(new PageRouteUpdated(Id, Route));
+        TrackChange(nameof(PageRouteUpdated));
+    }
+
+    public void UpdateDisplayName(string displayName)
+    {
+        if (DisplayName == displayName)
+            return;
+
         DisplayName = displayName;
 
-        CheckPolicies(pageRepository);
+        CheckDisplayNamePolicy();
 
-        AddDomainEvent(new PageUpdated(Id, Route, DisplayName));
-        TrackChange(nameof(PageUpdated));
+        AddDomainEvent(new PageDisplayNameUpdated(Id, DisplayName));
+        TrackChange(nameof(PageDisplayNameUpdated));
+    }
+
+    public void UpdateAvatarImageUrl(string avatarImageUrl)
+    {
+        if (AvatarImageUrl == avatarImageUrl)
+            return;
+
+        AvatarImageUrl = avatarImageUrl;
+
+        AddDomainEvent(new PageAvatarImageUpdated(Id, AvatarImageUrl));
+        TrackChange(nameof(PageAvatarImageUpdated));
+    }
+
+    public void UpdateReferenceImageUrl(string referenceImageUrl)
+    {
+        if (ReferenceImageUrl == referenceImageUrl)
+            return;
+
+        ReferenceImageUrl = referenceImageUrl;
+
+        AddDomainEvent(new PageReferenceImageUpdated(Id, ReferenceImageUrl));
+        TrackChange(nameof(PageReferenceImageUpdated));
     }
 
     public Contact AddContact(string content)
@@ -143,17 +183,29 @@ public sealed class Page : AggregateRoot
 
     private void CheckPolicies(IPageRepository pageRepository)
     {
+        CheckRoutePolicy(pageRepository);
+        CheckUserIdPolicy();
+    }
+
+    private void CheckRoutePolicy(IPageRepository pageRepository)
+    {
         if (Route.IsNullOrEmptyOrWhiteSpace())
             throw PageDomainExceptions.RouteIsRequired();
-
-        if (DisplayName.IsNullOrEmptyOrWhiteSpace())
-            throw PageDomainExceptions.DisplayNameIsRequired();
-
-        if (UserId.IsNullOrEmptyOrWhiteSpace())
-            throw PageDomainExceptions.UserIdIsRequired();
 
         var isRouteInUse = pageRepository.IsRouteInUse(Route, Id);
         if (isRouteInUse)
             throw PageDomainExceptions.RouteAlreadyExists();
+    }
+
+    private void CheckDisplayNamePolicy()
+    {
+        if (DisplayName.IsNullOrEmptyOrWhiteSpace())
+            throw PageDomainExceptions.DisplayNameIsRequired();
+    }
+
+    private void CheckUserIdPolicy()
+    {
+        if (UserId.IsNullOrEmptyOrWhiteSpace())
+            throw PageDomainExceptions.UserIdIsRequired();
     }
 }

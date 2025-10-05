@@ -132,6 +132,12 @@
   <data name="Page_UserId" xml:space="preserve">
     <value>شناسه ی کاربر</value>
   </data>
+  <data name="Page_AvatarImage" xml:space="preserve">
+    <value>تصویر آواتار</value>
+  </data>
+  <data name="Page_ReferenceImage" xml:space="preserve">
+    <value>تصویر مرجع</value>
+  </data>
   <data name="Page_SubscriptionId" xml:space="preserve">
     <value>شناسه ی اشتراک</value>
   </data>

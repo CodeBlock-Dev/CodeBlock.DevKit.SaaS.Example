@@ -36,4 +36,14 @@ public class GetPageDto : GetEntityDto
     /// Collection of facts associated with this page.
     /// </summary>
     public ICollection<GetFactDto> Facts { get; set; }
+
+    /// <summary>
+    /// URL of the avatar image for this page. Can be empty if no avatar is set.
+    /// </summary>
+    public string AvatarImageUrl { get; set; }
+
+    /// <summary>
+    /// URL of the reference image used for AI image generation. Can be empty if no reference image is set.
+    /// </summary>
+    public string ReferenceImageUrl { get; set; }
 }

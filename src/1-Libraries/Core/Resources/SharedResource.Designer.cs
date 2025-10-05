@@ -214,6 +214,24 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avatar Image.
+        /// </summary>
+        public static string Page_AvatarImage {
+            get {
+                return ResourceManager.GetString("Page_AvatarImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Image.
+        /// </summary>
+        public static string Page_ReferenceImage {
+            get {
+                return ResourceManager.GetString("Page_ReferenceImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         public static string Question {
