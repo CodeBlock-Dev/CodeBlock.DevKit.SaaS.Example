@@ -61,6 +61,15 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Answer.
+        /// </summary>
+        public static string Answer {
+            get {
+                return ResourceManager.GetString("Answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string Contact {
@@ -142,20 +151,20 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fact Title.
-        /// </summary>
-        public static string Fact_Title {
-            get {
-                return ResourceManager.GetString("Fact_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Fact Image.
         /// </summary>
         public static string Fact_ImageUrl {
             get {
                 return ResourceManager.GetString("Fact_ImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fact Title.
+        /// </summary>
+        public static string Fact_Title {
+            get {
+                return ResourceManager.GetString("Fact_Title", resourceCulture);
             }
         }
         
@@ -178,6 +187,15 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avatar Image.
+        /// </summary>
+        public static string Page_AvatarImage {
+            get {
+                return ResourceManager.GetString("Page_AvatarImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Name.
         /// </summary>
         public static string Page_DisplayName {
@@ -192,6 +210,15 @@ namespace HeyItIsMe.Core.Resources {
         public static string Page_Information {
             get {
                 return ResourceManager.GetString("Page_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Image.
+        /// </summary>
+        public static string Page_ReferenceImage {
+            get {
+                return ResourceManager.GetString("Page_ReferenceImage", resourceCulture);
             }
         }
         
@@ -219,24 +246,6 @@ namespace HeyItIsMe.Core.Resources {
         public static string Page_UserId {
             get {
                 return ResourceManager.GetString("Page_UserId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Avatar Image.
-        /// </summary>
-        public static string Page_AvatarImage {
-            get {
-                return ResourceManager.GetString("Page_AvatarImage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reference Image.
-        /// </summary>
-        public static string Page_ReferenceImage {
-            get {
-                return ResourceManager.GetString("Page_ReferenceImage", resourceCulture);
             }
         }
         

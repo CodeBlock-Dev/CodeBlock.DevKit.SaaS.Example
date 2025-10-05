@@ -189,4 +189,7 @@
   <data name="Question_Order" xml:space="preserve">
     <value>Reihenfolge</value>
   </data>
+  <data name="Answer" xml:space="preserve">
+    <value />
+  </data>
 </root>
