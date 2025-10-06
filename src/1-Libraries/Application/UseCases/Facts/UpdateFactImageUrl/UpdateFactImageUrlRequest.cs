@@ -24,3 +24,4 @@ internal class UpdateFactImageUrlRequest : BaseCommand
 
     public string WebRootPath { get; }
 }
+

@@ -62,3 +62,4 @@ internal class UpdateFactImageUrlUseCase : BaseCommandHandler, IRequestHandler<U
         return $"/pages/{pageId}/facts/{fileName}";
     }
 }
+

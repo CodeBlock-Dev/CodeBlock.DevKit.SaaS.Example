@@ -17,3 +17,4 @@ public class UpdateFactImageUrlDto
     /// </summary>
     public string WebRootPath { get; set; }
 }
+
