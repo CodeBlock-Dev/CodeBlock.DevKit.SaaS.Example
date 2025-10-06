@@ -38,4 +38,18 @@ public class FactsController : BaseApiController
     {
         return await _factService.RemoveFact(id);
     }
+
+    [Route("{id}/image-url")]
+    [HttpPut]
+    public async Task<Result<CommandResult>> UpdateImageUrl(string id, [FromBody] UpdateFactImageUrlDto input)
+    {
+        return await _factService.UpdateFactImageUrl(id, input);
+    }
+
+    [Route("generate")]
+    [HttpPost]
+    public async Task<Result<CommandResult>> GenerateFact([FromBody] GenerateFactDto input)
+    {
+        return await _factService.GenerateFact(input.PageId, input.Question, input.Answer);
+    }
 }

@@ -2,8 +2,8 @@ using System.Text;
 using System.Text.Json;
 using CodeBlock.DevKit.AIChatBot.Domain.Bots;
 using CodeBlock.DevKit.Application.Srvices;
-using CodeBlock.DevKit.Core.Helpers;
 using HeyItIsMe.Application.Contracts;
+using HeyItIsMe.Application.Exceptions;
 using HeyItIsMe.Infrastructure.Models;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,7 @@ public class GeminiTextService : IAITextService
         _encryptionService = encryptionService;
     }
 
-    public async Task<Result<string>> GenerateTextAsync(LLMParameters parameters, IEnumerable<Prompt> prompts)
+    public async Task<string> GenerateTextAsync(LLMParameters parameters, IEnumerable<Prompt> prompts)
     {
         var contents = new List<object>();
 
@@ -54,7 +54,7 @@ public class GeminiTextService : IAITextService
         };
     }
 
-    private async Task<Result<string>> GenerateTextInternalAsync(
+    private async Task<string> GenerateTextInternalAsync(
         string apiKey,
         string model,
         object[] contents,
@@ -104,7 +104,7 @@ public class GeminiTextService : IAITextService
                             if (!string.IsNullOrEmpty(part.Text))
                             {
                                 var generatedText = part.Text;
-                                return Result.Success<string>(generatedText);
+                                return generatedText;
                             }
                         }
                     }
@@ -121,6 +121,6 @@ public class GeminiTextService : IAITextService
             _logger.LogError(ex, "Error calling Gemini Text API");
         }
 
-        return Result.Failure<string>();
+        throw ApplicationExceptions.AIResponseFailed();
     }
 }

@@ -1,6 +1,8 @@
 using CodeBlock.DevKit.Application.Commands;
 using CodeBlock.DevKit.Application.Srvices;
+using CodeBlock.DevKit.Core.Extensions;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Contracts;
 using HeyItIsMe.Application.Exceptions;
 using HeyItIsMe.Application.Helpers;
 using HeyItIsMe.Core.Domain.Pages;
@@ -13,17 +15,20 @@ internal class UpdatePageReferenceImageUseCase : BaseCommandHandler, IRequestHan
 {
     private readonly IPageRepository _pageRepository;
     private readonly ICurrentUser _currentUser;
+    private readonly IImageService _imageService;
 
     public UpdatePageReferenceImageUseCase(
         IPageRepository pageRepository,
         IRequestDispatcher requestDispatcher,
         ILogger<UpdatePageReferenceImageUseCase> logger,
-        ICurrentUser currentUser
+        ICurrentUser currentUser,
+        IImageService imageService
     )
         : base(requestDispatcher, logger)
     {
         _pageRepository = pageRepository;
         _currentUser = currentUser;
+        _imageService = imageService;
     }
 
     public async Task<CommandResult> Handle(UpdatePageReferenceImageRequest request, CancellationToken cancellationToken)
@@ -36,7 +41,8 @@ internal class UpdatePageReferenceImageUseCase : BaseCommandHandler, IRequestHan
 
         var loadedVersion = page.Version;
 
-        var imageUrl = await SaveImageFileAsync(request.Id, request.Base64Image, request.WebRootPath, "reference");
+        var fileName = $"reference.jpg?v={RandomDataGenerator.GetRandomNumber(5)}";
+        var imageUrl = await _imageService.SaveImageFileAsync(fileName, request.Base64Image, "pages", request.Id);
 
         page.UpdateReferenceImageUrl(imageUrl);
 
@@ -45,20 +51,5 @@ internal class UpdatePageReferenceImageUseCase : BaseCommandHandler, IRequestHan
         await PublishDomainEventsAsync(page.GetDomainEvents());
 
         return CommandResult.Create(entityId: page.Id);
-    }
-
-    private async Task<string> SaveImageFileAsync(string pageId, string base64Image, string webRootPath, string imageType)
-    {
-        var uploadsFolder = Path.Combine(webRootPath, "pages", pageId);
-        
-        Directory.CreateDirectory(uploadsFolder);
-
-        var imageData = Convert.FromBase64String(base64Image);
-        var fileName = $"{imageType}_{Guid.NewGuid()}.jpg";
-        var filePath = Path.Combine(uploadsFolder, fileName);
-
-        await File.WriteAllBytesAsync(filePath, imageData);
-
-        return $"/pages/{pageId}/{fileName}";
     }
 }

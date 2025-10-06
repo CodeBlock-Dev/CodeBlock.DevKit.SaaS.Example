@@ -2,8 +2,8 @@ using System.Text;
 using System.Text.Json;
 using CodeBlock.DevKit.AIChatBot.Domain.Bots;
 using CodeBlock.DevKit.Application.Srvices;
-using CodeBlock.DevKit.Core.Helpers;
 using HeyItIsMe.Application.Contracts;
+using HeyItIsMe.Application.Exceptions;
 using HeyItIsMe.Infrastructure.Models;
 using Microsoft.Extensions.Logging;
 
@@ -22,7 +22,7 @@ public class GeminiImageService : IAIImageService
         _encryptionService = encryptionService;
     }
 
-    public async Task<Result<string>> GenerateImageAsync(LLMParameters parameters, IEnumerable<Prompt> prompts, int topK = 40)
+    public async Task<string> GenerateImageAsync(LLMParameters parameters, IEnumerable<Prompt> prompts, int topK = 40)
     {
         var parts = new List<object>();
 
@@ -40,12 +40,7 @@ public class GeminiImageService : IAIImageService
         );
     }
 
-    public async Task<Result<string>> GenerateImageAsync(
-        LLMParameters parameters,
-        IEnumerable<Prompt> prompts,
-        string referenceImageBase64,
-        int topK = 40
-    )
+    public async Task<string> GenerateImageAsync(LLMParameters parameters, IEnumerable<Prompt> prompts, string referenceImageBase64, int topK = 40)
     {
         var parts = new List<object>();
 
@@ -65,7 +60,7 @@ public class GeminiImageService : IAIImageService
         );
     }
 
-    public async Task<Result<string>> GenerateImageAsync(
+    public async Task<string> GenerateImageAsync(
         LLMParameters parameters,
         IEnumerable<Prompt> prompts,
         IEnumerable<string> referenceImagesBase64,
@@ -91,7 +86,7 @@ public class GeminiImageService : IAIImageService
         );
     }
 
-    private async Task<Result<string>> GenerateImageInternalAsync(
+    private async Task<string> GenerateImageInternalAsync(
         string apiKey,
         string model,
         object[] parts,
@@ -143,7 +138,7 @@ public class GeminiImageService : IAIImageService
                             if (!string.IsNullOrEmpty(part.InlineData?.Data))
                             {
                                 var base64Image = part.InlineData.Data;
-                                return Result.Success<string>(base64Image);
+                                return base64Image;
                             }
                         }
                     }
@@ -160,6 +155,6 @@ public class GeminiImageService : IAIImageService
             _logger.LogError(ex, "Error calling Gemini 2.5 Flash Image API");
         }
 
-        return Result.Failure<string>();
+        throw ApplicationExceptions.AIResponseFailed();
     }
 }

@@ -6,11 +6,10 @@ namespace HeyItIsMe.Application.UseCases.Facts.UpdateFactImageUrl;
 
 internal class UpdateFactImageUrlRequest : BaseCommand
 {
-    public UpdateFactImageUrlRequest(string factId, string base64Image, string webRootPath)
+    public UpdateFactImageUrlRequest(string factId, string base64Image)
     {
         FactId = factId;
         Base64Image = base64Image;
-        WebRootPath = webRootPath;
     }
 
     /// <summary>
@@ -21,7 +20,5 @@ internal class UpdateFactImageUrlRequest : BaseCommand
     [Display(Name = nameof(SharedResource.Fact_ImageUrl), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceName = nameof(SharedResource.Fact_ImageUrl), ErrorMessageResourceType = typeof(SharedResource))]
     public string Base64Image { get; }
-
-    public string WebRootPath { get; }
 }
 

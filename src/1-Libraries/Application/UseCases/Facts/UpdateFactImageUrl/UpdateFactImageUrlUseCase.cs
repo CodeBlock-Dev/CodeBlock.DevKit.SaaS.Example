@@ -1,6 +1,8 @@
 using CodeBlock.DevKit.Application.Commands;
 using CodeBlock.DevKit.Application.Srvices;
+using CodeBlock.DevKit.Core.Extensions;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Contracts;
 using HeyItIsMe.Application.Exceptions;
 using HeyItIsMe.Application.Helpers;
 using HeyItIsMe.Core.Domain.Pages;
@@ -13,17 +15,20 @@ internal class UpdateFactImageUrlUseCase : BaseCommandHandler, IRequestHandler<U
 {
     private readonly IPageRepository _pageRepository;
     private readonly ICurrentUser _currentUser;
+    private readonly IImageService _imageService;
 
     public UpdateFactImageUrlUseCase(
         IPageRepository pageRepository,
         IRequestDispatcher requestDispatcher,
         ILogger<UpdateFactImageUrlUseCase> logger,
-        ICurrentUser currentUser
+        ICurrentUser currentUser,
+        IImageService imageService
     )
         : base(requestDispatcher, logger)
     {
         _pageRepository = pageRepository;
         _currentUser = currentUser;
+        _imageService = imageService;
     }
 
     public async Task<CommandResult> Handle(UpdateFactImageUrlRequest request, CancellationToken cancellationToken)
@@ -36,7 +41,8 @@ internal class UpdateFactImageUrlUseCase : BaseCommandHandler, IRequestHandler<U
 
         var loadedVersion = page.Version;
 
-        var imageUrl = await SaveImageFileAsync(page.Id, request.FactId, request.Base64Image, request.WebRootPath);
+        var fileName = $"{request.FactId}.jpg?v={RandomDataGenerator.GetRandomNumber(5)}";
+        var imageUrl = await _imageService.SaveImageFileAsync(fileName, request.Base64Image, "pages", page.Id, "facts");
 
         page.UpdateFactImageUrl(request.FactId, imageUrl);
 
@@ -46,20 +52,4 @@ internal class UpdateFactImageUrlUseCase : BaseCommandHandler, IRequestHandler<U
 
         return CommandResult.Create(entityId: request.FactId);
     }
-
-    private async Task<string> SaveImageFileAsync(string pageId, string factId, string base64Image, string webRootPath)
-    {
-        var uploadsFolder = Path.Combine(webRootPath, "pages", pageId, "facts");
-
-        Directory.CreateDirectory(uploadsFolder);
-
-        var imageData = Convert.FromBase64String(base64Image);
-        var fileName = $"{factId}.jpg";
-        var filePath = Path.Combine(uploadsFolder, fileName);
-
-        await File.WriteAllBytesAsync(filePath, imageData);
-
-        return $"/pages/{pageId}/facts/{fileName}";
-    }
 }
-

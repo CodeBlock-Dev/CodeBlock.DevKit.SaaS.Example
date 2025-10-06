@@ -24,4 +24,9 @@ public interface IFactService
     /// Updates the image URL for a fact.
     /// </summary>
     Task<Result<CommandResult>> UpdateFactImageUrl(string factId, UpdateFactImageUrlDto input);
+
+    /// <summary>
+    /// Generates a new fact based on question and answer.
+    /// </summary>
+    Task<Result<CommandResult>> GenerateFact(string pageId, string question, string answer);
 }

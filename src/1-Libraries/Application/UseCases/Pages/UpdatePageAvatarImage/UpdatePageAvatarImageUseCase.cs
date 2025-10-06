@@ -1,6 +1,8 @@
 using CodeBlock.DevKit.Application.Commands;
 using CodeBlock.DevKit.Application.Srvices;
+using CodeBlock.DevKit.Core.Extensions;
 using CodeBlock.DevKit.Core.Helpers;
+using HeyItIsMe.Application.Contracts;
 using HeyItIsMe.Application.Exceptions;
 using HeyItIsMe.Application.Helpers;
 using HeyItIsMe.Core.Domain.Pages;
@@ -13,17 +15,20 @@ internal class UpdatePageAvatarImageUseCase : BaseCommandHandler, IRequestHandle
 {
     private readonly IPageRepository _pageRepository;
     private readonly ICurrentUser _currentUser;
+    private readonly IImageService _imageService;
 
     public UpdatePageAvatarImageUseCase(
         IPageRepository pageRepository,
         IRequestDispatcher requestDispatcher,
         ILogger<UpdatePageAvatarImageUseCase> logger,
-        ICurrentUser currentUser
+        ICurrentUser currentUser,
+        IImageService imageService
     )
         : base(requestDispatcher, logger)
     {
         _pageRepository = pageRepository;
         _currentUser = currentUser;
+        _imageService = imageService;
     }
 
     public async Task<CommandResult> Handle(UpdatePageAvatarImageRequest request, CancellationToken cancellationToken)
@@ -36,7 +41,8 @@ internal class UpdatePageAvatarImageUseCase : BaseCommandHandler, IRequestHandle
 
         var loadedVersion = page.Version;
 
-        var imageUrl = await SaveImageFileAsync(request.Id, request.Base64Image, request.WebRootPath, "avatar");
+        var fileName = $"avatar.jpg?v={RandomDataGenerator.GetRandomNumber(5)}";
+        var imageUrl = await _imageService.SaveImageFileAsync(fileName, request.Base64Image, "pages", request.Id);
 
         page.UpdateAvatarImageUrl(imageUrl);
 
@@ -45,20 +51,5 @@ internal class UpdatePageAvatarImageUseCase : BaseCommandHandler, IRequestHandle
         await PublishDomainEventsAsync(page.GetDomainEvents());
 
         return CommandResult.Create(entityId: page.Id);
-    }
-
-    private async Task<string> SaveImageFileAsync(string pageId, string base64Image, string webRootPath, string imageType)
-    {
-        var uploadsFolder = Path.Combine(webRootPath, "pages", pageId);
-        
-        Directory.CreateDirectory(uploadsFolder);
-
-        var imageData = Convert.FromBase64String(base64Image);
-        var fileName = $"{imageType}_{Guid.NewGuid()}.jpg";
-        var filePath = Path.Combine(uploadsFolder, fileName);
-
-        await File.WriteAllBytesAsync(filePath, imageData);
-
-        return $"/pages/{pageId}/{fileName}";
     }
 }

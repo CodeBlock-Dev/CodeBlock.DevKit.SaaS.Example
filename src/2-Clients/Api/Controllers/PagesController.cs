@@ -34,12 +34,36 @@ public class PagesController : BaseApiController
         return await _pageService.CreatePage(input);
     }
 
-    [Route("{id}")]
+    [Route("{id}/route")]
     [HttpPut]
     [Authorize]
-    public async Task<Result<CommandResult>> Put(string id, [FromBody] UpdatePageDto input)
+    public async Task<Result<CommandResult>> UpdateRoute(string id, [FromBody] UpdatePageRouteDto input)
     {
-        return await _pageService.UpdatePage(id, input);
+        return await _pageService.UpdatePageRoute(id, input);
+    }
+
+    [Route("{id}/display-name")]
+    [HttpPut]
+    [Authorize]
+    public async Task<Result<CommandResult>> UpdateDisplayName(string id, [FromBody] UpdatePageDisplayNameDto input)
+    {
+        return await _pageService.UpdatePageDisplayName(id, input);
+    }
+
+    [Route("{id}/avatar-image")]
+    [HttpPut]
+    [Authorize]
+    public async Task<Result<CommandResult>> UpdateAvatarImage(string id, [FromBody] string base64Image)
+    {
+        return await _pageService.UpdatePageAvatarImage(id, base64Image);
+    }
+
+    [Route("{id}/reference-image")]
+    [HttpPut]
+    [Authorize]
+    public async Task<Result<CommandResult>> UpdateReferenceImage(string id, [FromBody] string base64Image)
+    {
+        return await _pageService.UpdatePageReferenceImage(id, base64Image);
     }
 
     [HttpGet]

@@ -6,6 +6,9 @@
     <RootNamespace>HeyItIsMe.Infrastructure</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="CodeBlock.DevKit.Infrastructure" Version="1.5.0" />
   </ItemGroup>
   <ItemGroup>

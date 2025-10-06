@@ -2,6 +2,7 @@ using CodeBlock.DevKit.Application.Srvices;
 using CodeBlock.DevKit.Core.Helpers;
 using HeyItIsMe.Application.Dtos.Facts;
 using HeyItIsMe.Application.UseCases.Facts.AddFact;
+using HeyItIsMe.Application.UseCases.Facts.GenerateFact;
 using HeyItIsMe.Application.UseCases.Facts.RemoveFact;
 using HeyItIsMe.Application.UseCases.Facts.UpdateFact;
 using HeyItIsMe.Application.UseCases.Facts.UpdateFactImageUrl;
@@ -30,6 +31,11 @@ internal class FactService : ApplicationService, IFactService
 
     public async Task<Result<CommandResult>> UpdateFactImageUrl(string factId, UpdateFactImageUrlDto input)
     {
-        return await _requestDispatcher.SendCommand(new UpdateFactImageUrlRequest(factId, input.Base64Image, input.WebRootPath));
+        return await _requestDispatcher.SendCommand(new UpdateFactImageUrlRequest(factId, input.Base64Image));
+    }
+
+    public async Task<Result<CommandResult>> GenerateFact(string pageId, string question, string answer)
+    {
+        return await _requestDispatcher.SendCommand(new GenerateFactRequest(pageId, question, answer));
     }
 }

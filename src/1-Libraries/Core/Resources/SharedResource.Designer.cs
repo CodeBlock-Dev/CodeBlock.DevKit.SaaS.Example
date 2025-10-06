@@ -61,6 +61,15 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AI_Response_Failed {
+            get {
+                return ResourceManager.GetString("AI_Response_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Answer.
         /// </summary>
         public static string Answer {
@@ -282,6 +291,15 @@ namespace HeyItIsMe.Core.Resources {
         public static string Question_Order {
             get {
                 return ResourceManager.GetString("Question_Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Required_Prompt_Is_Missing {
+            get {
+                return ResourceManager.GetString("Required_Prompt_Is_Missing", resourceCulture);
             }
         }
     }

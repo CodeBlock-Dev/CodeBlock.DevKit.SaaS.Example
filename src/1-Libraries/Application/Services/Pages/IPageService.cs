@@ -29,12 +29,12 @@ public interface IPageService
     /// <summary>
     /// Updates the avatar image of an existing page.
     /// </summary>
-    Task<Result<CommandResult>> UpdatePageAvatarImage(string id, string base64Image, string webRootPath);
+    Task<Result<CommandResult>> UpdatePageAvatarImage(string id, string base64Image);
 
     /// <summary>
     /// Updates the reference image of an existing page.
     /// </summary>
-    Task<Result<CommandResult>> UpdatePageReferenceImage(string id, string base64Image, string webRootPath);
+    Task<Result<CommandResult>> UpdatePageReferenceImage(string id, string base64Image);
 
     /// <summary>
     /// Searches for pages based on specified criteria.

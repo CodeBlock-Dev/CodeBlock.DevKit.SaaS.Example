@@ -37,14 +37,14 @@ internal class PageService : ApplicationService, IPageService
         return await _requestDispatcher.SendCommand(new UpdatePageDisplayNameRequest(id, input.DisplayName));
     }
 
-    public async Task<Result<CommandResult>> UpdatePageAvatarImage(string id, string base64Image, string webRootPath)
+    public async Task<Result<CommandResult>> UpdatePageAvatarImage(string id, string base64Image)
     {
-        return await _requestDispatcher.SendCommand(new UpdatePageAvatarImageRequest(id, base64Image, webRootPath));
+        return await _requestDispatcher.SendCommand(new UpdatePageAvatarImageRequest(id, base64Image));
     }
 
-    public async Task<Result<CommandResult>> UpdatePageReferenceImage(string id, string base64Image, string webRootPath)
+    public async Task<Result<CommandResult>> UpdatePageReferenceImage(string id, string base64Image)
     {
-        return await _requestDispatcher.SendCommand(new UpdatePageReferenceImageRequest(id, base64Image, webRootPath));
+        return await _requestDispatcher.SendCommand(new UpdatePageReferenceImageRequest(id, base64Image));
     }
 
     public async Task<Result<SearchOutputDto<GetPageDto>>> SearchPages(SearchPagesInputDto input)

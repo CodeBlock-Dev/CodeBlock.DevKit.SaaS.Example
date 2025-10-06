@@ -11,10 +11,5 @@ public class UpdateFactImageUrlDto
     [Display(Name = nameof(SharedResource.Fact_ImageUrl), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Fact_ImageUrl))]
     public string Base64Image { get; set; }
-
-    /// <summary>
-    /// The web root path for saving the image file.
-    /// </summary>
-    public string WebRootPath { get; set; }
 }
 

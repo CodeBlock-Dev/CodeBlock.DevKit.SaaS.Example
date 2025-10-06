@@ -49,5 +49,6 @@ public static class Startup
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<IAIImageService, GeminiImageService>();
         services.AddScoped<IAITextService, GeminiTextService>();
+        services.AddScoped<IImageService, ImageService>();
     }
 }
