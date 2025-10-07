@@ -1,1 +1,4 @@
-﻿
+﻿.main-content {
+    margin-left: unset !important;
+    padding: 0 15rem !important;
+}
