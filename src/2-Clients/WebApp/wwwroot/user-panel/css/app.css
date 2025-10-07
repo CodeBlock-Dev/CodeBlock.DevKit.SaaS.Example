@@ -2,3 +2,8 @@
     margin-left: unset !important;
     padding: 0 15rem !important;
 }
+@media (max-width: 768px) {
+    .main-content {
+        padding: 0 2rem !important;
+    }
+}
