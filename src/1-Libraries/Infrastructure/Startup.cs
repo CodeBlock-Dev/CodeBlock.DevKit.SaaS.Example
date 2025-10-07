@@ -5,6 +5,7 @@ using HeyItIsMe.Application;
 using HeyItIsMe.Application.Contracts;
 using HeyItIsMe.Core.Domain.Pages;
 using HeyItIsMe.Core.Domain.Questions;
+using HeyItIsMe.Core.Domain.Reports;
 using HeyItIsMe.Infrastructure.DbContext;
 using HeyItIsMe.Infrastructure.Mapping;
 using HeyItIsMe.Infrastructure.Repositories;
@@ -46,6 +47,7 @@ public static class Startup
     public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped<IPageRepository, PageRepository>();
+        services.AddScoped<IPageVisitRepository, PageVisitRepository>();
         services.AddScoped<IQuestionRepository, QuestionRepository>();
         services.AddScoped<IAIImageService, GeminiImageService>();
         services.AddScoped<IAITextService, GeminiTextService>();

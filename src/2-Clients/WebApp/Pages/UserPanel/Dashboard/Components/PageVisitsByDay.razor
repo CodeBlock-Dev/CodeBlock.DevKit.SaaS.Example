@@ -1,0 +1,112 @@
+﻿@using ApexCharts
+@using CodeBlock.DevKit.AIChatBot.Dtos.Chats
+
+@if (IsLoading)
+{
+    <ComponentLoading />
+}
+else
+{
+    <ApexChart @ref="ChatChart"
+               Height="300"
+               TItem="GetChatInsightByDayDataPointsDto"
+               Options="chartOptions">
+        @foreach (var series in ChatInsights)
+        {
+            <ApexPointSeries TItem="GetChatInsightByDayDataPointsDto"
+                             Name="@series.Type.GetEnumDisplayName()"
+                             SeriesType="SeriesType.Area"
+                             XValue="e => e.Date"
+                             YValue="e => e.Value"
+                             Items="series.Data" />
+        }
+    </ApexChart>
+}
+
+@code {
+    protected ApexChart<GetChatInsightByDayDataPointsDto> ChatChart;
+    protected IEnumerable<GetChatInsightByDayDto> ChatInsights;
+    protected bool IsLoading = true;
+
+    [Parameter]
+    public SearchChatInsightInputDto SearchInputDto { get; set; } = new();
+
+    protected ApexChartOptions<GetChatInsightByDayDataPointsDto> chartOptions = new()
+        {
+            Theme = new Theme
+            {
+                Mode = Mode.Dark,
+                Palette = PaletteType.Palette1
+            },
+            Chart = new Chart
+            {
+                Background = "transparent",
+                ForeColor = "#ffffff"
+            },
+            Grid = new Grid
+            {
+                BorderColor = "#2a2a2a"
+            },
+            Xaxis = new XAxis
+            {
+                Labels = new XAxisLabels
+                {
+                    Style = new AxisLabelStyle
+                    {
+                        Colors = new List<string> { "#d1d5db" }
+                    }
+                }
+            },
+            Yaxis = new List<YAxis>
+        {
+            new YAxis
+            {
+                Labels = new YAxisLabels
+                {
+                    Style = new AxisLabelStyle
+                    {
+                        Colors = new List<string> { "#d1d5db" }
+                    }
+                }
+            }
+        },
+            Legend = new Legend
+            {
+                Labels = new LegendLabels
+                {
+                    Colors = new List<string> { "#d1d5db" }
+                }
+            }
+        };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshCharts();
+        IsLoading = false;
+    }
+
+    public virtual async Task OnSearchChanged(SearchChatInsightInputDto searchChatInsightInputDto)
+    {
+        SearchInputDto = searchChatInsightInputDto;
+        await RefreshCharts();
+    }
+
+    protected virtual async Task RefreshCharts()
+    {
+        await GetChatInsights();
+        StateHasChanged();
+
+        if (ChatChart != null)
+            await ChatChart.UpdateSeriesAsync();
+    }
+
+    protected virtual async Task GetChatInsights()
+    {
+        var result = await ChatService.GetChatInsightByDay(SearchInputDto);
+
+        if (result.IsSuccess)
+            ChatInsights = result.Value.ToList();
+        else
+            result.ShowErrorToast(ToastService);
+    }
+}

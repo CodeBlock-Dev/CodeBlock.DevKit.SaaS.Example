@@ -1,0 +1,54 @@
+@using CodeBlock.DevKit.AIChatBot.Dtos.Bots
+@using CodeBlock.DevKit.AIChatBot.Services.Bots
+@inject IStringLocalizer<AIChatBotResource> AIChatBotLocalizer
+@inject IBotService BotService
+
+<div class="date-range-form d-flex align-items-center gap-3">
+    <div class="date-input-group">
+        <label for="chatbotSelect" class="date-label">@WebAppClientLocalizer[WebAppClientResource.Chatbot]:</label>
+        <InputSelect @bind-Value="SearchChatInsightInputDto.BotId" class="form-control form-select" id="chatbotSelect">
+            <option value="">@AIChatBotLocalizer[AIChatBotResource.All_Bots]</option>
+            @foreach (var item in Bots)
+            {
+                <option value="@item.Id">@item.DisplayName</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="date-input-group">
+        <label for="fromDate" class="date-label">@CoreLocalizer[CoreResource.From_Date]:</label>
+        <InputDate @bind-Value="SearchChatInsightInputDto.FromDateTime" class="form-control date-input" id="fromDate" />
+    </div>
+    <div class="date-input-group">
+        <label for="toDate" class="date-label">@CoreLocalizer[CoreResource.To_Date]:</label>
+        <InputDate @bind-Value="SearchChatInsightInputDto.ToDateTime" class="form-control date-input" id="toDate" />
+    </div>
+    <button type="button" class="btn btn-search" @onclick="HandleSearchInsights">@CoreLocalizer[CoreResource.Search]</button>
+</div>
+
+@code {
+    protected SearchChatInsightInputDto SearchChatInsightInputDto = new();
+    protected IEnumerable<GetBotDto> Bots = new List<GetBotDto>();
+
+    [Parameter]
+    public EventCallback<SearchChatInsightInputDto> SearchChangedCallback { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetBots();
+    }
+
+    protected virtual async Task HandleSearchInsights()
+    {
+        await SearchChangedCallback.InvokeAsync(SearchChatInsightInputDto);
+    }
+
+    protected virtual async Task GetBots()
+    {
+        var result = await BotService.GetBots();
+
+        if (result.IsSuccess)
+            Bots = result.Value;
+        else
+            result.ShowErrorToast(ToastService);
+    }
+} 

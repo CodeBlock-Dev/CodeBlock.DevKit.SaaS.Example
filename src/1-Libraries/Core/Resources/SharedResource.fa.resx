@@ -198,4 +198,16 @@
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
     <value />
   </data>
+  <data name="PageVisitType_Authorized" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageVisitType_Unauthorized" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageVisitType_Total" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageVisitType_UniqueVisitors" xml:space="preserve">
+    <value />
+  </data>
 </root>

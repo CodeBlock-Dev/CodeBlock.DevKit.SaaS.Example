@@ -1,21 +1,11 @@
 using CodeBlock.DevKit.Infrastructure.Database;
 using HeyItIsMe.Core.Domain.Pages;
 using HeyItIsMe.Core.Domain.Questions;
+using HeyItIsMe.Core.Domain.Reports;
 using MongoDB.Driver;
 
 namespace HeyItIsMe.Infrastructure.DbContext;
 
-/// <summary>
-/// Main database context for the application that extends MongoDbContext to provide
-/// MongoDB-specific functionality. This class demonstrates how to set up a database context
-/// with collections, indexes, and custom database operations.
-///
-/// Key features demonstrated:
-/// - MongoDB collection management
-/// - Database index creation
-/// - Safe test database operations
-/// - Collection access through properties
-/// </summary>
 internal class MainDbContext : MongoDbContext
 {
     public MainDbContext(MongoDbSettings mongoDbSettings)
@@ -23,6 +13,7 @@ internal class MainDbContext : MongoDbContext
 
     public IMongoCollection<Page> Pages { get; private set; }
     public IMongoCollection<Question> Questions { get; private set; }
+    public IMongoCollection<PageVisit> PageVisits { get; private set; }
 
     protected override void CreateIndexes()
     {
@@ -37,6 +28,13 @@ internal class MainDbContext : MongoDbContext
             new CreateIndexModel<Page>(
                 Builders<Page>.IndexKeys.Ascending(x => x.UserId),
                 new CreateIndexOptions() { Name = nameof(Page.UserId), Unique = false }
+            )
+        );
+
+        PageVisits.Indexes.CreateOne(
+            new CreateIndexModel<PageVisit>(
+                Builders<PageVisit>.IndexKeys.Ascending(x => x.PageId),
+                new CreateIndexOptions() { Name = nameof(PageVisit.PageId), Unique = false }
             )
         );
     }

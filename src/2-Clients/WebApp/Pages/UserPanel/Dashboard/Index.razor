@@ -1,0 +1,50 @@
+﻿@page "/dashboard"
+@using CodeBlock.DevKit.Clients.WebApp.Pages.UserPanel.Dashboard.Components
+@using CodeBlock.DevKit.Clients.WebApp.Pages.UserPanel.Shared
+@using HeyItIsMe.WebApp.Pages.UserPanel.Dashboard.Components
+@layout UserPanelLayout
+@inherits CodeBlock.DevKit.Clients.WebApp.Pages.UserPanel.Dashboard.Index
+@attribute [ReplaceBaseComponent]
+
+<PageTitle>@WebAppClientLocalizer[WebAppClientResource.Nav_Menu_Dashboard]</PageTitle>
+
+<div class="page-title-section">
+    <h1 class="page-title">@WebAppClientLocalizer[WebAppClientResource.Overview]</h1>
+</div>
+
+<div class="subscriptions-section">
+    <UserSubscription />
+</div>
+
+<div class="analytics-section">
+    <div class="analytics-header">
+        <h4 class="analytics-title" data-bs-toggle="collapse" data-bs-target="#filterForm" aria-expanded="false" aria-controls="filterForm">
+            @WebAppClientLocalizer[WebAppClientResource.Chatbot_Interactions]
+            <i class="bi bi-chevron-down ms-2"></i>
+        </h4>
+    </div>
+    
+    <div class="collapse mt-3" id="filterForm">
+        <div class="time-controls">
+            <SearchPageVisitsByDay SearchChangedCallback="OnSearchChanged" />
+        </div>
+    </div>
+
+    <div class="chart-container mt-2">
+        <PageVisitsByDay @ref="ChatInsightComponent" SearchInputDto="SearchChatInsightInputDto" />
+    </div>
+</div>
+
+@code{
+    protected ChatInsight ChatInsightComponent;
+    protected SearchPageInsightInputDto SearchChatInsightInputDto = new();
+
+    protected virtual async Task OnSearchChanged(SearchChatInsightInputDto searchInputDto)
+    {
+        SearchChatInsightInputDto = searchInputDto;
+        if (ChatInsightComponent != null)
+        {
+            await ChatInsightComponent.OnSearchChanged(searchInputDto);
+        }
+    }
+}

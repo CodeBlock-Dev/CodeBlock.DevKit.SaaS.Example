@@ -259,6 +259,42 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PageVisitType_Authorized {
+            get {
+                return ResourceManager.GetString("PageVisitType_Authorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PageVisitType_Total {
+            get {
+                return ResourceManager.GetString("PageVisitType_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PageVisitType_Unauthorized {
+            get {
+                return ResourceManager.GetString("PageVisitType_Unauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PageVisitType_UniqueVisitors {
+            get {
+                return ResourceManager.GetString("PageVisitType_UniqueVisitors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         public static string Question {
