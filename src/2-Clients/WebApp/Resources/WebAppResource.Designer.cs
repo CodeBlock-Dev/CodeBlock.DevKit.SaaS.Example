@@ -1161,5 +1161,50 @@ namespace HeyItIsMe.WebApp.Resources {
                 return ResourceManager.GetString("Video_Section_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Visits.
+        /// </summary>
+        public static string Total_Visits {
+            get {
+                return ResourceManager.GetString("Total_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorized Visits.
+        /// </summary>
+        public static string Authorized_Visits {
+            get {
+                return ResourceManager.GetString("Authorized_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unauthorized Visits.
+        /// </summary>
+        public static string Unauthorized_Visits {
+            get {
+                return ResourceManager.GetString("Unauthorized_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Visitors.
+        /// </summary>
+        public static string Unique_Visitors {
+            get {
+                return ResourceManager.GetString("Unique_Visitors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No statistics available.
+        /// </summary>
+        public static string No_Statistics_Available {
+            get {
+                return ResourceManager.GetString("No_Statistics_Available", resourceCulture);
+            }
+        }
     }
 }

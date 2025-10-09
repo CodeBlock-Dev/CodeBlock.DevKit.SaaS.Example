@@ -499,4 +499,19 @@
   <data name="Page_Analytics" xml:space="preserve">
     <value>Page Analytics</value>
   </data>
+  <data name="Total_Visits" xml:space="preserve">
+    <value>Total Visits</value>
+  </data>
+  <data name="Authorized_Visits" xml:space="preserve">
+    <value>Authorized Visits</value>
+  </data>
+  <data name="Unauthorized_Visits" xml:space="preserve">
+    <value>Unauthorized Visits</value>
+  </data>
+  <data name="Unique_Visitors" xml:space="preserve">
+    <value>Unique Visitors</value>
+  </data>
+  <data name="No_Statistics_Available" xml:space="preserve">
+    <value>No statistics available</value>
+  </data>
 </root>

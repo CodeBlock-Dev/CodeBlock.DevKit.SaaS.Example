@@ -17,13 +17,16 @@
 
 <div class="analytics-section">
     <div class="analytics-header">
-        <h4 class="analytics-title" data-bs-toggle="collapse" data-bs-target="#filterForm" aria-expanded="false" aria-controls="filterForm">
+        <h2 class="analytics-title">
             @WebAppLocalizer[WebAppResource.Page_Analytics]
-            <i class="bi bi-chevron-down ms-2"></i>
-        </h4>
+        </h2>
     </div>
     
-    <div class="collapse mt-3" id="filterForm">
+    <div class="statistics-overview">
+        <PageVisitStatistics @ref="PageVisitStatisticsComponent" Page="SubscriptionOverviewComponent?.Page" />
+    </div>
+    
+    <div class="mt-3" id="filterForm">
         <div class="time-controls">
             <SearchPageVisitsByDay SearchChangedCallback="OnSearchChanged" />
         </div>
@@ -37,6 +40,7 @@
 @code{
     protected PageVisitsByDay PageVisitsByDayComponent;
     protected SubscriptionOverview SubscriptionOverviewComponent;
+    protected PageVisitStatistics PageVisitStatisticsComponent;
     protected SearchPageVisitsByDayInputDto SearchPageVisitsByDayInputDto = new();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -46,6 +50,7 @@
             // Wait a bit for SubscriptionOverview to load, then update PageId
             await Task.Delay(100);
             await UpdatePageIdFromSubscription();
+            await RefreshStatistics();
         }
     }
 
@@ -67,6 +72,14 @@
         if (PageVisitsByDayComponent != null)
         {
             await PageVisitsByDayComponent.OnSearchChanged(searchInputDto);
+        }
+    }
+
+    protected virtual async Task RefreshStatistics()
+    {
+        if (PageVisitStatisticsComponent != null)
+        {
+            await PageVisitStatisticsComponent.RefreshStatistics();
         }
     }
 }

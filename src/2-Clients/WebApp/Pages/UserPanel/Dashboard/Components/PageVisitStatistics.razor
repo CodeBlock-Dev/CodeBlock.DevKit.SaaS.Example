@@ -1,0 +1,109 @@
+@using Microsoft.AspNetCore.Components
+@using HeyItIsMe.Application.Dtos.PageVisits
+@using HeyItIsMe.Application.Dtos.Pages
+@using HeyItIsMe.Application.Services.PageVisits
+@inject IPageVisitService PageVisitService
+
+@if (IsLoading)
+{
+    <div class="statistics-loading">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else if (Statistics != null)
+{
+    <div class="statistics-cards">
+        <div class="row g-3">
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card statistics-card-primary">
+                    <div class="statistics-card-body">
+                        <div class="statistics-card-icon">
+                            <i class="bi bi-eye"></i>
+                        </div>
+                        <div class="statistics-card-content">
+                            <h3 class="statistics-card-value">@Statistics.TotalVisits.ToThousandSeparated()</h3>
+                            <p class="statistics-card-title">@WebAppLocalizer[WebAppResource.Total_Visits]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card statistics-card-success">
+                    <div class="statistics-card-body">
+                        <div class="statistics-card-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <div class="statistics-card-content">
+                            <h3 class="statistics-card-value">@Statistics.AuthorizedVisits.ToThousandSeparated()</h3>
+                            <p class="statistics-card-title">@WebAppLocalizer[WebAppResource.Authorized_Visits]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card statistics-card-warning">
+                    <div class="statistics-card-body">
+                        <div class="statistics-card-icon">
+                            <i class="bi bi-person-x"></i>
+                        </div>
+                        <div class="statistics-card-content">
+                            <h3 class="statistics-card-value">@Statistics.UnauthorizedVisits.ToThousandSeparated()</h3>
+                            <p class="statistics-card-title">@WebAppLocalizer[WebAppResource.Unauthorized_Visits]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="statistics-card statistics-card-info">
+                    <div class="statistics-card-body">
+                        <div class="statistics-card-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="statistics-card-content">
+                            <h3 class="statistics-card-value">@Statistics.UniqueVisitors.ToThousandSeparated()</h3>
+                            <p class="statistics-card-title">@WebAppLocalizer[WebAppResource.Unique_Visitors]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public GetPageDto Page { get; set; }
+    protected GetPageVisitStatisticsDto Statistics;
+    protected bool IsLoading = true;
+
+    protected async override Task OnInitializedAsync()
+    {
+        await LoadStatistics();
+    }
+
+    protected virtual async Task LoadStatistics()
+    {
+        if (Page?.Id != null)
+        {
+            var result = await PageVisitService.GetPageVisitStatistics(Page.Id);
+            
+            if (result.IsSuccess)
+            {
+                Statistics = result.Value;
+            }
+            else
+            {
+                result.ShowErrorToast(ToastService);
+            }
+        }
+        
+        IsLoading = false;
+        StateHasChanged();
+    }
+
+    public async Task RefreshStatistics()
+    {
+        await LoadStatistics();
+    }
+}
