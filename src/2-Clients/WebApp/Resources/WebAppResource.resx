@@ -481,4 +481,19 @@
   <data name="Nav_Blog" xml:space="preserve">
     <value>Blog</value>
   </data>
+  <data name="No_Page_Alert" xml:space="preserve">
+    <value>You have no page!</value>
+  </data>
+  <data name="Create_Page" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
+  <data name="Page_Overview" xml:space="preserve">
+    <value>Page Overview</value>
+  </data>
+  <data name="See_Page" xml:space="preserve">
+    <value>See Page</value>
+  </data>
+  <data name="Edit_Page" xml:space="preserve">
+    <value>Edit Page</value>
+  </data>
 </root>

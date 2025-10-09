@@ -1,6 +1,6 @@
 ﻿@page "/dashboard"
-@using CodeBlock.DevKit.Clients.WebApp.Pages.UserPanel.Dashboard.Components
 @using CodeBlock.DevKit.Clients.WebApp.Pages.UserPanel.Shared
+@using HeyItIsMe.Application.Dtos.PageVisits
 @using HeyItIsMe.WebApp.Pages.UserPanel.Dashboard.Components
 @layout UserPanelLayout
 @inherits CodeBlock.DevKit.Clients.WebApp.Pages.UserPanel.Dashboard.Index
@@ -13,7 +13,7 @@
 </div>
 
 <div class="subscriptions-section">
-    <UserSubscription />
+    <SubscriptionOverview />
 </div>
 
 <div class="analytics-section">
@@ -31,20 +31,20 @@
     </div>
 
     <div class="chart-container mt-2">
-        <PageVisitsByDay @ref="ChatInsightComponent" SearchInputDto="SearchChatInsightInputDto" />
+        <PageVisitsByDay @ref="PageVisitsByDayComponent" SearchInputDto="SearchPageVisitsByDayInputDto" />
     </div>
 </div>
 
 @code{
-    protected ChatInsight ChatInsightComponent;
-    protected SearchPageInsightInputDto SearchChatInsightInputDto = new();
+    protected PageVisitsByDay PageVisitsByDayComponent;
+    protected SearchPageVisitsByDayInputDto SearchPageVisitsByDayInputDto = new();
 
-    protected virtual async Task OnSearchChanged(SearchChatInsightInputDto searchInputDto)
+    protected virtual async Task OnSearchChanged(SearchPageVisitsByDayInputDto searchInputDto)
     {
-        SearchChatInsightInputDto = searchInputDto;
-        if (ChatInsightComponent != null)
+        SearchPageVisitsByDayInputDto = searchInputDto;
+        if (PageVisitsByDayComponent != null)
         {
-            await ChatInsightComponent.OnSearchChanged(searchInputDto);
+            await PageVisitsByDayComponent.OnSearchChanged(searchInputDto);
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace HeyItIsMe.Application.Dtos.PageVisits;
 
-public class PageVisitStatisticsDto
+public class GetPageVisitStatisticsDto
 {
     public long TotalVisits { get; set; }
     public long AuthorizedVisits { get; set; }

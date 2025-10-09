@@ -481,4 +481,19 @@
   <data name="Nav_Blog" xml:space="preserve">
     <value>المدونة</value>
   </data>
+  <data name="No_Page_Alert" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Create_Page" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Page_Overview" xml:space="preserve">
+    <value />
+  </data>
+  <data name="See_Page" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Edit_Page" xml:space="preserve">
+    <value />
+  </data>
 </root>

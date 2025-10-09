@@ -1,5 +1,5 @@
 ﻿@using ApexCharts
-@using CodeBlock.DevKit.AIChatBot.Dtos.Chats
+@using HeyItIsMe.Application.Dtos.PageVisits
 
 @if (IsLoading)
 {
@@ -7,13 +7,13 @@
 }
 else
 {
-    <ApexChart @ref="ChatChart"
+    <ApexChart @ref="PageChart"
                Height="300"
-               TItem="GetChatInsightByDayDataPointsDto"
+               TItem="GetPageVisitstByDayDataPointsDto"
                Options="chartOptions">
-        @foreach (var series in ChatInsights)
+        @foreach (var series in PageInsights)
         {
-            <ApexPointSeries TItem="GetChatInsightByDayDataPointsDto"
+            <ApexPointSeries TItem="GetPageVisitstByDayDataPointsDto"
                              Name="@series.Type.GetEnumDisplayName()"
                              SeriesType="SeriesType.Area"
                              XValue="e => e.Date"
@@ -24,14 +24,14 @@ else
 }
 
 @code {
-    protected ApexChart<GetChatInsightByDayDataPointsDto> ChatChart;
-    protected IEnumerable<GetChatInsightByDayDto> ChatInsights;
+    protected ApexChart<GetPageVisitstByDayDataPointsDto> PageChart;
+    protected IEnumerable<GetPageVisitstByDayDto> PageInsights;
     protected bool IsLoading = true;
 
     [Parameter]
-    public SearchChatInsightInputDto SearchInputDto { get; set; } = new();
+    public SearchPageVisitsByDayInputDto SearchInputDto { get; set; } = new();
 
-    protected ApexChartOptions<GetChatInsightByDayDataPointsDto> chartOptions = new()
+    protected ApexChartOptions<GetPageVisitstByDayDataPointsDto> chartOptions = new()
         {
             Theme = new Theme
             {
@@ -85,27 +85,27 @@ else
         IsLoading = false;
     }
 
-    public virtual async Task OnSearchChanged(SearchChatInsightInputDto searchChatInsightInputDto)
+    public virtual async Task OnSearchChanged(SearchPageVisitsByDayInputDto searchPageVisitsByDayInputDto)
     {
-        SearchInputDto = searchChatInsightInputDto;
+        SearchInputDto = searchPageVisitsByDayInputDto;
         await RefreshCharts();
     }
 
     protected virtual async Task RefreshCharts()
     {
-        await GetChatInsights();
+        await GetPageInsights();
         StateHasChanged();
 
-        if (ChatChart != null)
-            await ChatChart.UpdateSeriesAsync();
+        if (PageChart != null)
+            await PageChart.UpdateSeriesAsync();
     }
 
-    protected virtual async Task GetChatInsights()
+    protected virtual async Task GetPageInsights()
     {
-        var result = await ChatService.GetChatInsightByDay(SearchInputDto);
+        var result = await PageVisitService.GetPageVisitsByDay(SearchInputDto);
 
         if (result.IsSuccess)
-            ChatInsights = result.Value.ToList();
+            PageInsights = result.Value.ToList();
         else
             result.ShowErrorToast(ToastService);
     }

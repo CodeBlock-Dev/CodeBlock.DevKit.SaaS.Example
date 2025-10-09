@@ -187,6 +187,15 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Page.
+        /// </summary>
+        public static string Create_Page {
+            get {
+                return ResourceManager.GetString("Create_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;strong&gt;What is CodeBlock.DevKit?&lt;/strong&gt; A comprehensive SaaS development framework that helps entrepreneurs launch their startups faster. documentation, and everything you need to build your own &quot;It Can Be Yours&quot; success story..
         /// </summary>
         public static string CTA_DevKit_Info {
@@ -255,6 +264,15 @@ namespace HeyItIsMe.WebApp.Resources {
         public static string CTA_TryAI {
             get {
                 return ResourceManager.GetString("CTA_TryAI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Page.
+        /// </summary>
+        public static string Edit_Page {
+            get {
+                return ResourceManager.GetString("Edit_Page", resourceCulture);
             }
         }
         
@@ -457,6 +475,24 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have no page!.
+        /// </summary>
+        public static string No_Page_Alert {
+            get {
+                return ResourceManager.GetString("No_Page_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Overview.
+        /// </summary>
+        public static string Page_Overview {
+            get {
+                return ResourceManager.GetString("Page_Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;strong&gt;Pricing Demo:&lt;/strong&gt; These are sample pricing plans for this demo startup. With CodeBlock.DevKit, you can create any pricing structure, features, and business model that fits your startup idea..
         /// </summary>
         public static string Pricing_Demo_Alert {
@@ -640,6 +676,15 @@ namespace HeyItIsMe.WebApp.Resources {
         public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See Page.
+        /// </summary>
+        public static string See_Page {
+            get {
+                return ResourceManager.GetString("See_Page", resourceCulture);
             }
         }
         

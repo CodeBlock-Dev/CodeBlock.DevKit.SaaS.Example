@@ -4,7 +4,7 @@ using HeyItIsMe.Application.Dtos.PageVisits;
 
 namespace HeyItIsMe.Application.UseCases.PageVisits.GetPageVisitStatistics;
 
-internal class GetPageVisitStatisticsRequest : BaseQuery<PageVisitStatisticsDto>
+internal class GetPageVisitStatisticsRequest : BaseQuery<GetPageVisitStatisticsDto>
 {
     public GetPageVisitStatisticsRequest(string pageId, QueryOptions options = null)
         : base(options)

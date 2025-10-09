@@ -7,6 +7,11 @@ namespace HeyItIsMe.Application.Services.Pages;
 public interface IPageService
 {
     /// <summary>
+    /// Retrieves a page by its user Id.
+    /// </summary>
+    Task<Result<GetPageDto>> GetPageByUserId(string userId);
+
+    /// <summary>
     /// Retrieves a page by its unique identifier.
     /// </summary>
     Task<Result<GetPageDto>> GetPage(string id);

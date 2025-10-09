@@ -1,3 +1,7 @@
+@using HeyItIsMe.Application.Services.Contacts
+@using HeyItIsMe.Application.Services.Facts
+@using HeyItIsMe.Application.Services.PageVisits
+@using HeyItIsMe.Application.Services.Pages
 @using HeyItIsMe.Core.Resources
 @using CodeBlock.DevKit.Clients.WebApp.Resources
 @using CodeBlock.DevKit.Web.Blazor.Server.Services
@@ -39,3 +43,7 @@
 @inject IToastService ToastService
 @inject IModalService ModalService
 @inject ICurrentUser CurrentUser
+@inject IPageService PageService
+@inject IFactService FactService
+@inject IContactService ContactService
+@inject IPageVisitService PageVisitService

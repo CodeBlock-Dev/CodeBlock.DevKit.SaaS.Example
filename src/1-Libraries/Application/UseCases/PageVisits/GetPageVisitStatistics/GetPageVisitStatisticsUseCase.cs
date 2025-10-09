@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace HeyItIsMe.Application.UseCases.PageVisits.GetPageVisitStatistics;
 
-internal class GetPageVisitStatisticsUseCase : BaseQueryHandler, IRequestHandler<GetPageVisitStatisticsRequest, PageVisitStatisticsDto>
+internal class GetPageVisitStatisticsUseCase : BaseQueryHandler, IRequestHandler<GetPageVisitStatisticsRequest, GetPageVisitStatisticsDto>
 {
     private readonly IPageRepository _pageRepository;
     private readonly IPageVisitRepository _pageVisitRepository;
@@ -31,7 +31,7 @@ internal class GetPageVisitStatisticsUseCase : BaseQueryHandler, IRequestHandler
         _currentUser = currentUser;
     }
 
-    public async Task<PageVisitStatisticsDto> Handle(GetPageVisitStatisticsRequest request, CancellationToken cancellationToken)
+    public async Task<GetPageVisitStatisticsDto> Handle(GetPageVisitStatisticsRequest request, CancellationToken cancellationToken)
     {
         var page = await _pageRepository.GetByIdAsync(request.PageId);
         if (page == null)
@@ -44,7 +44,7 @@ internal class GetPageVisitStatisticsUseCase : BaseQueryHandler, IRequestHandler
         var unauthorizedVisits = await _pageVisitRepository.CountUnauthorizedVisits(request.PageId);
         var uniqueVisitors = await _pageVisitRepository.CountUniqueVisitors(request.PageId);
 
-        return new PageVisitStatisticsDto
+        return new GetPageVisitStatisticsDto
         {
             TotalVisits = totalVisits,
             AuthorizedVisits = authorizedVisits,

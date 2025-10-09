@@ -1,0 +1,181 @@
+﻿@using CodeBlock.DevKit.Clients.WebApp.Helpers
+@using CodeBlock.DevKit.Contracts.Domain
+@using CodeBlock.DevKit.Contracts.Services
+@using CodeBlock.DevKit.Licensing.Resources
+@using CodeBlock.DevKit.Subscription.Dtos
+@using CodeBlock.DevKit.Subscription.Resources
+@using CodeBlock.DevKit.Subscription.Services.Subscriptions
+@using HeyItIsMe.Application.Dtos.Pages
+@inject IStringLocalizer<SubscriptionResource> SubscriptionLocalizer
+@inject ISettingAccessorService SettingAccessorService
+@inject IStringLocalizer<LicensingResource> LicensingLocalizer
+@inject ISubscriptionService SubscriptionService
+
+@if (IsLoading)
+{
+    <ComponentLoading />
+}
+else
+{
+    if (Subscription == null)
+    {
+        <div class="no-subscription-section">
+            <div class="no-subscription-content">
+                <i class="bi bi-inbox me-3"></i>
+                <div class="no-subscription-text">
+                    <span class="no-subscription-message">@WebAppClientLocalizer[WebAppClientResource.No_Active_Subscriptions]</span>
+                    <a href="/plans/order" class="browse-plans-link">@WebAppClientLocalizer[WebAppClientResource.Browse_Plans]</a>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Page == null)
+    {
+        <div class="no-subscription-section">
+            <div class="no-subscription-content">
+                <i class="bi bi-inbox me-3"></i>
+                <div class="no-subscription-text">
+                    <span class="no-subscription-message">@WebAppLocalizer[WebAppResource.No_Page_Alert]</span>
+                    <a href="https://hey-it-is.me/#pricing" class="browse-plans-link">@WebAppLocalizer[WebAppResource.Create_Page]</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="subscription-item">
+            <div class="row g-0">
+                <div class="col-md-7">
+                    <div class="subscription-info">
+                        <div class="d-flex align-items-center mb-2">
+                            <h5 class="subscription-name mb-0">@Subscription.PlanDisplayName</h5>
+                            <span class=" @Subscription.IsActive.GetBadgeClass() ms-3">@(Subscription.IsActive? SubscriptionLocalizer[SubscriptionResource.SubscriptionState_Active] : SubscriptionLocalizer[SubscriptionResource.SubscriptionState_Inactive])</span>
+                        </div>
+                        <p class="subscription-description">@Subscription.PlanDescription</p>
+                        <div class="subscription-details">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="detail-item subscription-detail-item">
+                                        <span class="detail-label">@WebAppClientLocalizer[WebAppClientResource.Auto_Renewal]</span>
+                                        <span class="detail-value @(Subscription.AutoRenewalEnabled ? "text-success" : "text-muted")">@(Subscription.AutoRenewalEnabled? CoreLocalizer[CoreResource.Enabled] : CoreLocalizer[CoreResource.Disabled])</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="detail-item subscription-detail-item">
+                                        <span class="detail-label">@WebAppClientLocalizer[WebAppClientResource.Billing_Cycle]</span>
+                                        <span class="detail-value">@Subscription.BillingCycle.GetEnumDisplayName()</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="detail-item subscription-detail-item">
+                                        <span class="detail-label">@WebAppClientLocalizer[WebAppClientResource.Next_Billing]</span>
+                                        <span class="detail-value">@(Subscription.EndTimeIsUnlimited? SubscriptionLocalizer[SubscriptionResource.SubscriptionEndTime_Unlimited] : Subscription.EndTime.ShortDate)</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="detail-item subscription-detail-item">
+                                        <span class="detail-label">@WebAppClientLocalizer[WebAppClientResource.Renewal]</span>
+                                        @if (Subscription.BillingCycle != BillingCycle.OneTime)
+                                        {
+                                            <span class="detail-value">@SettingAccessorService.Settings.Payment.Currency.Symbol @Subscription.RenewalPrice.ToThousandSeparated()</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="detail-value"> - </span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subscription-actions">
+                            <a href="/subscription/details/@Subscription.Id" class="subscription-details-link">@CoreLocalizer[CoreResource.Details]</a>
+                            <a href="/plans/upgrade/@Subscription.PlanCategorySystemName/@Subscription.PlanId/@Subscription.BotId" class="upgrade-link">@CoreLocalizer[CoreResource.Upgrade]</a>
+                            @if (Subscription.RenewalIsAllowed)
+                            {
+                                <a href="/payment/renewal/subscription/@Subscription.Id" class="renew-link">@CoreLocalizer[CoreResource.Renew]</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="subscription-features">
+                        <div class="feature-header">
+                            <h6 class="page-title">
+                                <i class="bi bi-shield-check me-2"></i>
+                                @WebAppLocalizer[WebAppResource.Page_Overview]
+                            </h6>
+                        </div>
+                        <div class="page-alert">
+                            @* @DevKit.Licensing.UI.Helpers.HtmlHelper.GetColoredExpirationStateName(Page.ExpireDateTime, Page.ExpirationWarningThresholdDays, LicensingLocalizer) *@
+                        </div>
+                        <div class="feature-details">
+                            <div class="applications-info">
+                                <div class="applications-display">
+                                    <i class="bi bi-graph-up me-2"></i>
+                                    <span class="applications-amount">@Page.Facts.Count</span>
+                                    <span class="applications-label">
+                                        <a class="usage-count-link" href="/page/details/">@SharedLocalizer[SharedResource.Facts]</a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="page-actions mt-2">
+                                <!--TODO: change this to have a link to the page public view-->
+                                <a href="/page/details/@Page.Id" class="page-details-link">@WebAppLocalizer[WebAppResource.See_Page]</a>
+                                <!--TODO: change this to have a link to the page edit view-->
+                                <a href="/page/details/@Page.Id" class="how-to-use-link">@WebAppLocalizer[WebAppResource.Edit_Page]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    }
+}
+
+@code {
+    protected GetSubscriptionDto Subscription;
+    protected GetPageDto Page;
+    protected bool IsLoading = true;
+
+    protected async override Task OnInitializedAsync()
+    {
+        await GetSubscription();
+        IsLoading = false;
+    }
+
+    protected virtual async Task GetSubscription()
+    {
+        var result = await SubscriptionService.GetUserSubscriptions(CurrentUser.GetUserId());
+
+        if (result.IsSuccess)
+        {
+            Subscription = result.Value.OrderByDescending(s => s.CreationTime.DateTime).FirstOrDefault();
+            StateHasChanged();
+        }
+        else
+        {
+            result.ShowErrorToast(ToastService);
+        }
+    }
+
+    protected virtual async Task GetPage()
+    {
+        var result = await PageService.GetPageByUserId(CurrentUser.GetUserId());
+
+        if (result.IsSuccess)
+        {
+            Page = result.Value;
+            StateHasChanged();
+        }
+        else
+        {
+            result.ShowErrorToast(ToastService);
+        }
+    }
+}

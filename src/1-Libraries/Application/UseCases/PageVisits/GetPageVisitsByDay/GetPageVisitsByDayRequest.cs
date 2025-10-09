@@ -2,11 +2,11 @@ using CodeBlock.DevKit.Application.Queries;
 using CodeBlock.DevKit.Core.Helpers;
 using HeyItIsMe.Application.Dtos.PageVisits;
 
-namespace HeyItIsMe.Application.UseCases.PageVisits.GetVisitsByDay;
+namespace HeyItIsMe.Application.UseCases.PageVisits.GetPageVisitsByDay;
 
-internal class GetVisitsByDayRequest : BaseQuery<IEnumerable<GetPageVisitstByDayDto>>
+internal class GetPageVisitsByDayRequest : BaseQuery<IEnumerable<GetPageVisitstByDayDto>>
 {
-    public GetVisitsByDayRequest(string pageId, DateTime fromDateTime, DateTime toDateTime, QueryOptions options = null)
+    public GetPageVisitsByDayRequest(string pageId, DateTime fromDateTime, DateTime toDateTime, QueryOptions options = null)
         : base(options)
     {
         PageId = pageId;

@@ -10,19 +10,19 @@ using HeyItIsMe.Core.Domain.Reports;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace HeyItIsMe.Application.UseCases.PageVisits.GetVisitsByDay;
+namespace HeyItIsMe.Application.UseCases.PageVisits.GetPageVisitsByDay;
 
-internal class GetVisitsByDayUseCase : BaseQueryHandler, IRequestHandler<GetVisitsByDayRequest, IEnumerable<GetPageVisitstByDayDto>>
+internal class GetPageVisitsByDayUseCase : BaseQueryHandler, IRequestHandler<GetPageVisitsByDayRequest, IEnumerable<GetPageVisitstByDayDto>>
 {
     private readonly IPageRepository _pageRepository;
     private readonly IPageVisitRepository _pageVisitRepository;
     private readonly ICurrentUser _currentUser;
 
-    public GetVisitsByDayUseCase(
+    public GetPageVisitsByDayUseCase(
         IPageRepository pageRepository,
         IPageVisitRepository pageVisitRepository,
         IMapper mapper,
-        ILogger<GetVisitsByDayUseCase> logger,
+        ILogger<GetPageVisitsByDayUseCase> logger,
         ICurrentUser currentUser
     )
         : base(mapper, logger)
@@ -32,7 +32,7 @@ internal class GetVisitsByDayUseCase : BaseQueryHandler, IRequestHandler<GetVisi
         _currentUser = currentUser;
     }
 
-    public async Task<IEnumerable<GetPageVisitstByDayDto>> Handle(GetVisitsByDayRequest request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<GetPageVisitstByDayDto>> Handle(GetPageVisitsByDayRequest request, CancellationToken cancellationToken)
     {
         var page = await _pageRepository.GetByIdAsync(request.PageId);
         if (page == null)
