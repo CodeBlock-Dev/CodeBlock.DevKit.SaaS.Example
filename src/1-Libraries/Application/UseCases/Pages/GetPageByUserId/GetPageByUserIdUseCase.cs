@@ -8,23 +8,23 @@ using HeyItIsMe.Core.Domain.Pages;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace HeyItIsMe.Application.UseCases.Pages.GetPage;
+namespace HeyItIsMe.Application.UseCases.Pages.GetPageByUserId;
 
-internal class GetPageUseCase : BaseQueryHandler, IRequestHandler<GetPageRequest, GetPageDto>
+internal class GetPageByUserIdUseCase : BaseQueryHandler, IRequestHandler<GetPageByUserIdRequest, GetPageDto>
 {
     private readonly IPageRepository _pageRepository;
     private readonly ICurrentUser _currentUser;
 
-    public GetPageUseCase(IPageRepository pageRepository, IMapper mapper, ILogger<GetPageUseCase> logger, ICurrentUser currentUser)
+    public GetPageByUserIdUseCase(IPageRepository pageRepository, IMapper mapper, ILogger<GetPageByUserIdUseCase> logger, ICurrentUser currentUser)
         : base(mapper, logger)
     {
         _pageRepository = pageRepository;
         _currentUser = currentUser;
     }
 
-    public async Task<GetPageDto> Handle(GetPageRequest request, CancellationToken cancellationToken)
+    public async Task<GetPageDto> Handle(GetPageByUserIdRequest request, CancellationToken cancellationToken)
     {
-        var page = await _pageRepository.GetByIdAsync(request.Id);
+        var page = await _pageRepository.GetByUserIdAsync(request.Id);
         if (page == null)
             throw PageApplicationExceptions.PageNotFound(request.Id);
 

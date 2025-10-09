@@ -5,10 +5,10 @@ using HeyItIsMe.Application.Dtos.Pages;
 using HeyItIsMe.Application.UseCases.Pages.CreatePage;
 using HeyItIsMe.Application.UseCases.Pages.GetPage;
 using HeyItIsMe.Application.UseCases.Pages.SearchPages;
-using HeyItIsMe.Application.UseCases.Pages.UpdatePageRoute;
-using HeyItIsMe.Application.UseCases.Pages.UpdatePageDisplayName;
 using HeyItIsMe.Application.UseCases.Pages.UpdatePageAvatarImage;
+using HeyItIsMe.Application.UseCases.Pages.UpdatePageDisplayName;
 using HeyItIsMe.Application.UseCases.Pages.UpdatePageReferenceImage;
+using HeyItIsMe.Application.UseCases.Pages.UpdatePageRoute;
 
 namespace HeyItIsMe.Application.Services.Pages;
 
@@ -16,6 +16,11 @@ internal class PageService : ApplicationService, IPageService
 {
     public PageService(IRequestDispatcher requestDispatcher)
         : base(requestDispatcher) { }
+
+    public async Task<Result<GetPageDto>> GetPageByUserId(string userId)
+    {
+        return await _requestDispatcher.SendQuery(new GetPageRequest(userId));
+    }
 
     public async Task<Result<GetPageDto>> GetPage(string id)
     {

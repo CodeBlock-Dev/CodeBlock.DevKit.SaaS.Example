@@ -20,6 +20,6 @@ public interface IPageRepository : IBaseAggregateRepository<Page>
 
     bool IsRouteInUse(string route, string excludePageId = null);
 
-    Task<IEnumerable<Page>> GetByUserIdAsync(string userId);
+    Task<Page> GetByUserIdAsync(string userId);
     Task<Page> GetByFactIdAsync(string factId);
 }

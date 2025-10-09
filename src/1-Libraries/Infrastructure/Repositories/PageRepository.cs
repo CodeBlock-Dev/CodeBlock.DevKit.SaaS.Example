@@ -76,15 +76,9 @@ internal class PageRepository : MongoDbBaseAggregateRepository<Page>, IPageRepos
         return _pages.Find(filter).Any();
     }
 
-    public async Task<IEnumerable<Page>> GetByUserIdAsync(string userId)
+    public async Task<Page> GetByUserIdAsync(string userId)
     {
-        if (userId.IsNullOrEmptyOrWhiteSpace())
-            return [];
-
-        var filter = Builders<Page>.Filter.Eq(p => p.UserId, userId);
-        var sortDefinition = Builders<Page>.Sort.Descending(p => p.CreationTime.DateTime);
-
-        return await _pages.Find(filter).Sort(sortDefinition).ToListAsync();
+        return await _pages.Find(p => p.UserId == userId).FirstOrDefaultAsync();
     }
 
     private FilterDefinition<Page> GetFilter(string term, DateTime? fromDateTime, DateTime? toDateTime)

@@ -7,7 +7,6 @@
                 <th scope="col">@CoreLocalizer[CoreResource.Row_Number]</th>
                 <th scope="col">@SharedLocalizer[SharedResource.Page_Route]</th>
                 <th scope="col">@SharedLocalizer[SharedResource.Page_DisplayName]</th>
-                <th scope="col">@SharedLocalizer[SharedResource.Email]</th>
                 <th scope="col">@CoreLocalizer[CoreResource.CreateDateTime]</th>
             </tr>
         </thead>
@@ -30,7 +29,6 @@
                         <td>@(++row)</td>
                         <td>@item.Route</td>
                         <td>@item.DisplayName</td>
-                        <td>@item.UserEmail</td>
                         <td class="f-xs">@item.CreationTime.FullDateLongTime</td>
                     </tr>
                 }

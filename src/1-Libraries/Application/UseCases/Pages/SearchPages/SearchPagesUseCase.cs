@@ -47,10 +47,6 @@ internal class SearchPagesUseCase : BaseQueryHandler, IRequestHandler<SearchPage
 
         var pagesDto = _mapper.Map<IEnumerable<GetPageDto>>(pages);
 
-        // Fetch the email associated with the user Id
-        foreach (var pageDto in pagesDto)
-            pageDto.UserEmail = await _userAccessorService.GetEmailByUserIdIfExists(pageDto.UserId);
-
         return new SearchOutputDto<GetPageDto> { TotalRecords = totalRecords, Items = pagesDto };
     }
 

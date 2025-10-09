@@ -22,12 +22,6 @@ public class GetPageDto : GetEntityDto
     public string UserId { get; set; }
 
     /// <summary>
-    /// The email address of the user who owns this page.
-    /// This is populated by the service layer for display purposes.
-    /// </summary>
-    public string UserEmail { get; set; }
-
-    /// <summary>
     /// Collection of contacts associated with this page.
     /// </summary>
     public ICollection<GetContactDto> Contacts { get; set; }
