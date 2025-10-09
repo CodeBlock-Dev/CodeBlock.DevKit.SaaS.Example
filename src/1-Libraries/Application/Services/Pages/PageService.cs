@@ -4,6 +4,8 @@ using CodeBlock.DevKit.Core.Helpers;
 using HeyItIsMe.Application.Dtos.Pages;
 using HeyItIsMe.Application.UseCases.Pages.CreatePage;
 using HeyItIsMe.Application.UseCases.Pages.GetPage;
+using HeyItIsMe.Application.UseCases.Pages.GetPageByUserId;
+using HeyItIsMe.Application.UseCases.Pages.UserHasAnyPage;
 using HeyItIsMe.Application.UseCases.Pages.SearchPages;
 using HeyItIsMe.Application.UseCases.Pages.UpdatePageAvatarImage;
 using HeyItIsMe.Application.UseCases.Pages.UpdatePageDisplayName;
@@ -19,7 +21,12 @@ internal class PageService : ApplicationService, IPageService
 
     public async Task<Result<GetPageDto>> GetPageByUserId(string userId)
     {
-        return await _requestDispatcher.SendQuery(new GetPageRequest(userId));
+        return await _requestDispatcher.SendQuery(new GetPageByUserIdRequest(userId));
+    }
+
+    public async Task<Result<bool>> UserHasAnyPage(string userId)
+    {
+        return await _requestDispatcher.SendQuery(new UserHasAnyPageRequest(userId));
     }
 
     public async Task<Result<GetPageDto>> GetPage(string id)

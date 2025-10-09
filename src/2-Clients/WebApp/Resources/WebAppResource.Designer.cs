@@ -484,6 +484,15 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Analytics.
+        /// </summary>
+        public static string Page_Analytics {
+            get {
+                return ResourceManager.GetString("Page_Analytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Overview.
         /// </summary>
         public static string Page_Overview {

@@ -12,13 +12,13 @@
 </div>
 
 <div class="subscriptions-section">
-    <SubscriptionOverview />
+    <SubscriptionOverview @ref="SubscriptionOverviewComponent" />
 </div>
 
 <div class="analytics-section">
     <div class="analytics-header">
         <h4 class="analytics-title" data-bs-toggle="collapse" data-bs-target="#filterForm" aria-expanded="false" aria-controls="filterForm">
-            @WebAppClientLocalizer[WebAppClientResource.Chatbot_Interactions]
+            @WebAppLocalizer[WebAppResource.Page_Analytics]
             <i class="bi bi-chevron-down ms-2"></i>
         </h4>
     </div>
@@ -36,7 +36,30 @@
 
 @code{
     protected PageVisitsByDay PageVisitsByDayComponent;
+    protected SubscriptionOverview SubscriptionOverviewComponent;
     protected SearchPageVisitsByDayInputDto SearchPageVisitsByDayInputDto = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && SubscriptionOverviewComponent != null)
+        {
+            // Wait a bit for SubscriptionOverview to load, then update PageId
+            await Task.Delay(100);
+            await UpdatePageIdFromSubscription();
+        }
+    }
+
+    protected virtual async Task UpdatePageIdFromSubscription()
+    {
+        if (SubscriptionOverviewComponent?.Page != null)
+        {
+            SearchPageVisitsByDayInputDto.PageId = SubscriptionOverviewComponent.Page.Id;
+            if (PageVisitsByDayComponent != null)
+            {
+                await PageVisitsByDayComponent.OnSearchChanged(SearchPageVisitsByDayInputDto);
+            }
+        }
+    }
 
     protected virtual async Task OnSearchChanged(SearchPageVisitsByDayInputDto searchInputDto)
     {

@@ -6,14 +6,11 @@ namespace HeyItIsMe.Application.UseCases.Pages.GetPageByUserId;
 
 internal class GetPageByUserIdRequest : BaseQuery<GetPageDto>
 {
-    public GetPageByUserIdRequest(string id, QueryOptions options = null)
+    public GetPageByUserIdRequest(string userId, QueryOptions options = null)
         : base(options)
     {
-        Id = id;
+        UserId = userId;
     }
 
-    /// <summary>
-    /// The unique identifier of the page to retrieve.
-    /// </summary>
-    public string Id { get; set; }
+    public string UserId { get; set; }
 }

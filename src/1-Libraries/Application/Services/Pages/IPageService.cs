@@ -12,6 +12,11 @@ public interface IPageService
     Task<Result<GetPageDto>> GetPageByUserId(string userId);
 
     /// <summary>
+    /// Checks if a user has any page.
+    /// </summary>
+    Task<Result<bool>> UserHasAnyPage(string userId);
+
+    /// <summary>
     /// Retrieves a page by its unique identifier.
     /// </summary>
     Task<Result<GetPageDto>> GetPage(string id);

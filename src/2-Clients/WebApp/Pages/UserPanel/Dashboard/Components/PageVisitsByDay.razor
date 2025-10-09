@@ -11,14 +11,17 @@ else
                Height="300"
                TItem="GetPageVisitstByDayDataPointsDto"
                Options="chartOptions">
-        @foreach (var series in PageInsights)
+        @if (PageInsights != null)
         {
-            <ApexPointSeries TItem="GetPageVisitstByDayDataPointsDto"
-                             Name="@series.Type.GetEnumDisplayName()"
-                             SeriesType="SeriesType.Area"
-                             XValue="e => e.Date"
-                             YValue="e => e.Value"
-                             Items="series.Data" />
+            @foreach (var series in PageInsights)
+            {
+                <ApexPointSeries TItem="GetPageVisitstByDayDataPointsDto"
+                                 Name="@series.Type.GetEnumDisplayName()"
+                                 SeriesType="SeriesType.Area"
+                                 XValue="e => e.Date"
+                                 YValue="e => e.Value"
+                                 Items="series.Data" />
+            }
         }
     </ApexChart>
 }
@@ -102,11 +105,21 @@ else
 
     protected virtual async Task GetPageInsights()
     {
+        // Don't fetch data if PageId is null or empty
+        if (string.IsNullOrEmpty(SearchInputDto.PageId))
+        {
+            PageInsights = new List<GetPageVisitstByDayDto>();
+            return;
+        }
+
         var result = await PageVisitService.GetPageVisitsByDay(SearchInputDto);
 
         if (result.IsSuccess)
             PageInsights = result.Value.ToList();
         else
+        {
+            PageInsights = new List<GetPageVisitstByDayDto>();
             result.ShowErrorToast(ToastService);
+        }
     }
 }

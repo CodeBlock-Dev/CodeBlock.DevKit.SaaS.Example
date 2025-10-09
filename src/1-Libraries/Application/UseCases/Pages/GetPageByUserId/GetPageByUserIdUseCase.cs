@@ -24,9 +24,9 @@ internal class GetPageByUserIdUseCase : BaseQueryHandler, IRequestHandler<GetPag
 
     public async Task<GetPageDto> Handle(GetPageByUserIdRequest request, CancellationToken cancellationToken)
     {
-        var page = await _pageRepository.GetByUserIdAsync(request.Id);
+        var page = await _pageRepository.GetByUserIdAsync(request.UserId);
         if (page == null)
-            throw PageApplicationExceptions.PageNotFound(request.Id);
+            throw PageApplicationExceptions.PageNotFound(request.UserId);
 
         // Ensures that the current user has permission to access the specified data
         EnsureUserHasAccess(page.UserId, _currentUser, Permissions.Page.PAGES);

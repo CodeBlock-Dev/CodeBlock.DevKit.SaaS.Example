@@ -81,6 +81,12 @@ internal class PageRepository : MongoDbBaseAggregateRepository<Page>, IPageRepos
         return await _pages.Find(p => p.UserId == userId).FirstOrDefaultAsync();
     }
 
+    public async Task<bool> UserHasAnyPageAsync(string userId)
+    {
+        var count = await _pages.CountDocumentsAsync(p => p.UserId == userId);
+        return count > 0;
+    }
+
     private FilterDefinition<Page> GetFilter(string term, DateTime? fromDateTime, DateTime? toDateTime)
     {
         var filterBuilder = Builders<Page>.Filter;

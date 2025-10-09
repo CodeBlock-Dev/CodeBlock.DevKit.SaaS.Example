@@ -21,5 +21,6 @@ public interface IPageRepository : IBaseAggregateRepository<Page>
     bool IsRouteInUse(string route, string excludePageId = null);
 
     Task<Page> GetByUserIdAsync(string userId);
+    Task<bool> UserHasAnyPageAsync(string userId);
     Task<Page> GetByFactIdAsync(string factId);
 }

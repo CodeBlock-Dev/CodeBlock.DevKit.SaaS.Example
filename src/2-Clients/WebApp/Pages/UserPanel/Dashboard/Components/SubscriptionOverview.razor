@@ -140,12 +140,13 @@ else
 
 @code {
     protected GetSubscriptionDto Subscription;
-    protected GetPageDto Page;
+    public GetPageDto Page { get; protected set; }
     protected bool IsLoading = true;
 
     protected async override Task OnInitializedAsync()
     {
         await GetSubscription();
+        await GetPage();
         IsLoading = false;
     }
 
@@ -166,6 +167,24 @@ else
 
     protected virtual async Task GetPage()
     {
+        // First check if user has any page
+        var hasPageResult = await PageService.UserHasAnyPage(CurrentUser.GetUserId());
+        
+        if (!hasPageResult.IsSuccess)
+        {
+            hasPageResult.ShowErrorToast(ToastService);
+            return;
+        }
+
+        // If user doesn't have a page, leave Page as null
+        if (!hasPageResult.Value)
+        {
+            Page = null;
+            StateHasChanged();
+            return;
+        }
+
+        // User has a page, fetch the page details
         var result = await PageService.GetPageByUserId(CurrentUser.GetUserId());
 
         if (result.IsSuccess)
