@@ -187,6 +187,15 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authorized Visits.
+        /// </summary>
+        public static string Authorized_Visits {
+            get {
+                return ResourceManager.GetString("Authorized_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Page.
         /// </summary>
         public static string Create_Page {
@@ -484,7 +493,16 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page Analytics.
+        ///   Looks up a localized string similar to No statistics available.
+        /// </summary>
+        public static string No_Statistics_Available {
+            get {
+                return ResourceManager.GetString("No_Statistics_Available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analytics.
         /// </summary>
         public static string Page_Analytics {
             get {
@@ -1127,6 +1145,33 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Visits.
+        /// </summary>
+        public static string Total_Visits {
+            get {
+                return ResourceManager.GetString("Total_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unauthorized Visits.
+        /// </summary>
+        public static string Unauthorized_Visits {
+            get {
+                return ResourceManager.GetString("Unauthorized_Visits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Visitors.
+        /// </summary>
+        public static string Unique_Visitors {
+            get {
+                return ResourceManager.GetString("Unique_Visitors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Watch a Sample Startup Launch with CodeBlock DevKit.
         /// </summary>
         public static string Video_Button_Text {
@@ -1159,51 +1204,6 @@ namespace HeyItIsMe.WebApp.Resources {
         public static string Video_Section_Title {
             get {
                 return ResourceManager.GetString("Video_Section_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total Visits.
-        /// </summary>
-        public static string Total_Visits {
-            get {
-                return ResourceManager.GetString("Total_Visits", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Authorized Visits.
-        /// </summary>
-        public static string Authorized_Visits {
-            get {
-                return ResourceManager.GetString("Authorized_Visits", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unauthorized Visits.
-        /// </summary>
-        public static string Unauthorized_Visits {
-            get {
-                return ResourceManager.GetString("Unauthorized_Visits", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unique Visitors.
-        /// </summary>
-        public static string Unique_Visitors {
-            get {
-                return ResourceManager.GetString("Unique_Visitors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No statistics available.
-        /// </summary>
-        public static string No_Statistics_Available {
-            get {
-                return ResourceManager.GetString("No_Statistics_Available", resourceCulture);
             }
         }
     }

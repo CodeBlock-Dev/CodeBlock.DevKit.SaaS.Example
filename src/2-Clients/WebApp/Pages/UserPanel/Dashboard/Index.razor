@@ -15,33 +15,38 @@
     <SubscriptionOverview @ref="SubscriptionOverviewComponent" />
 </div>
 
-<div class="analytics-section">
-    <div class="analytics-header">
-        <h2 class="analytics-title">
-            @WebAppLocalizer[WebAppResource.Page_Analytics]
-        </h2>
-    </div>
-    
-    <div class="statistics-overview">
-        <PageVisitStatistics @ref="PageVisitStatisticsComponent" Page="SubscriptionOverviewComponent?.Page" />
-    </div>
-    
-    <div class="mt-3" id="filterForm">
-        <div class="time-controls">
-            <SearchPageVisitsByDay SearchChangedCallback="OnSearchChanged" />
+@if (SubscriptionOverviewComponent?.Page != null)
+{
+    <div class="analytics-section mt-2">
+        <div class="analytics-header">
+            <h2 class="analytics-title">
+                @WebAppLocalizer[WebAppResource.Page_Analytics]
+            </h2>
+        </div>
+
+        <div class="statistics-overview mb-5">
+            <PageVisitStatistics @ref="PageVisitStatisticsComponent" Page="SubscriptionOverviewComponent?.Page" />
+        </div>
+
+        <div class="mt-3" id="filterForm">
+            <div class="time-controls">
+                <SearchPageVisitsByDay SearchChangedCallback="OnSearchChanged" />
+            </div>
+        </div>
+
+        <div class="chart-container mt-2">
+            <PageVisitsByDay @ref="PageVisitsByDayComponent" SearchInputDto="SearchPageVisitsByDayInputDto" />
         </div>
     </div>
 
-    <div class="chart-container mt-2">
-        <PageVisitsByDay @ref="PageVisitsByDayComponent" SearchInputDto="SearchPageVisitsByDayInputDto" />
-    </div>
-</div>
+}
 
 @code{
     protected PageVisitsByDay PageVisitsByDayComponent;
     protected SubscriptionOverview SubscriptionOverviewComponent;
     protected PageVisitStatistics PageVisitStatisticsComponent;
     protected SearchPageVisitsByDayInputDto SearchPageVisitsByDayInputDto = new();
+    protected bool UserHasAnyPage = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

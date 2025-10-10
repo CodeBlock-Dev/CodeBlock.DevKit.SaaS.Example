@@ -1,4 +1,17 @@
-﻿.main-content {
+﻿
+.analytics-header {
+    margin-bottom: 1rem !important;
+}
+.analytics-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
+.analytics-section {
+    margin-top: 2rem !important;
+}
+.main-content {
     margin-left: unset !important;
     padding: 0 15rem !important;
 }
