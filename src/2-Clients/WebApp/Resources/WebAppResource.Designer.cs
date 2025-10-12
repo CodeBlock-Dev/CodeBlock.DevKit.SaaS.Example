@@ -196,6 +196,15 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse Plans.
+        /// </summary>
+        public static string Browse_Plans {
+            get {
+                return ResourceManager.GetString("Browse_Plans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Page.
         /// </summary>
         public static string Create_Page {
@@ -376,6 +385,15 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get Started.
+        /// </summary>
+        public static string Get_Started_With_Subscription {
+            get {
+                return ResourceManager.GetString("Get_Started_With_Subscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a sample startup built with &lt;strong&gt;CodeBlock.DevKit&lt;/strong&gt;. Everything you see here comes from built-in modules - no coding required. Simply customize the design, content, and features to match your vision, then launch your own startup..
         /// </summary>
         public static string Hero_Subtitle {
@@ -484,6 +502,15 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Active Subscriptions.
+        /// </summary>
+        public static string No_Active_Subscriptions {
+            get {
+                return ResourceManager.GetString("No_Active_Subscriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have no page!.
         /// </summary>
         public static string No_Page_Alert {
@@ -493,11 +520,29 @@ namespace HeyItIsMe.WebApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have an active subscription but haven&apos;t created a page yet. Create your first fact page to get started..
+        /// </summary>
+        public static string No_Page_With_Subscription_Message {
+            get {
+                return ResourceManager.GetString("No_Page_With_Subscription_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No statistics available.
         /// </summary>
         public static string No_Statistics_Available {
             get {
                 return ResourceManager.GetString("No_Statistics_Available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You don&apos;t have an active subscription yet. Subscribe to a plan to start creating your fact page..
+        /// </summary>
+        public static string No_Subscription_Message {
+            get {
+                return ResourceManager.GetString("No_Subscription_Message", resourceCulture);
             }
         }
         

@@ -193,21 +193,21 @@
     <value>Answer</value>
   </data>
   <data name="AI_Response_Failed" xml:space="preserve">
-    <value />
+    <value>AI response failed</value>
   </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
-    <value />
+    <value>The required prompt was not found</value>
   </data>
   <data name="PageVisitType_Authorized" xml:space="preserve">
-    <value />
+    <value>Authorized Visits</value>
   </data>
   <data name="PageVisitType_Unauthorized" xml:space="preserve">
-    <value />
+    <value>Unauthorized Visits</value>
   </data>
   <data name="PageVisitType_Total" xml:space="preserve">
-    <value />
+    <value>Total Visits</value>
   </data>
   <data name="PageVisitType_UniqueVisitors" xml:space="preserve">
-    <value />
+    <value>Unique Visitors</value>
   </data>
 </root>

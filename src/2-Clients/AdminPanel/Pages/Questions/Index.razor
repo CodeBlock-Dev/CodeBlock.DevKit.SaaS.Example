@@ -12,6 +12,8 @@
     @AdminPanelLocalizer[AdminPanelResource.Questions]
 </h1>
 
+<SearchQuestions SearchChangedCallback="OnSearchChanged" />
+
 @if (IsLoading)
 {
     <ComponentLoading />

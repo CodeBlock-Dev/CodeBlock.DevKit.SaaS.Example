@@ -482,21 +482,52 @@
     <value>Blog</value>
   </data>
   <data name="No_Page_Alert" xml:space="preserve">
-    <value />
+    <value>Sie haben keine Seite!</value>
   </data>
   <data name="Create_Page" xml:space="preserve">
-    <value />
+    <value>Seite Erstellen</value>
   </data>
   <data name="Page_Overview" xml:space="preserve">
-    <value />
+    <value>Seitenübersicht</value>
   </data>
   <data name="See_Page" xml:space="preserve">
-    <value />
+    <value>Seite Anzeigen</value>
   </data>
   <data name="Edit_Page" xml:space="preserve">
-    <value />
+    <value>Seite Bearbeiten</value>
   </data>
   <data name="Page_Analytics" xml:space="preserve">
-    <value />
+    <value>Seitenanalytik</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="No_Active_Subscriptions" xml:space="preserve">
+    <value>Keine Aktiven Abonnements</value>
+  </data>
+  <data name="Browse_Plans" xml:space="preserve">
+    <value>Pläne Durchsuchen</value>
+  </data>
+  <data name="No_Subscription_Message" xml:space="preserve">
+    <value>Sie haben noch kein aktives Abonnement. Abonnieren Sie einen Plan, um mit der Erstellung Ihrer Faktenseite zu beginnen.</value>
+  </data>
+  <data name="No_Page_With_Subscription_Message" xml:space="preserve">
+    <value>Sie haben ein aktives Abonnement, aber noch keine Seite erstellt. Erstellen Sie Ihre erste Faktenseite, um zu beginnen.</value>
+  </data>
+  <data name="Get_Started_With_Subscription" xml:space="preserve">
+    <value>Loslegen</value>
+  </data>
+  <data name="Total_Visits" xml:space="preserve">
+    <value>Gesamtbesuche</value>
+  </data>
+  <data name="Authorized_Visits" xml:space="preserve">
+    <value>Autorisierte Besuche</value>
+  </data>
+  <data name="Unauthorized_Visits" xml:space="preserve">
+    <value>Nicht autorisierte Besuche</value>
+  </data>
+  <data name="Unique_Visitors" xml:space="preserve">
+    <value>Eindeutige Besucher</value>
+  </data>
+  <data name="No_Statistics_Available" xml:space="preserve">
+    <value>Keine Statistiken verfügbar</value>
   </data>
 </root>

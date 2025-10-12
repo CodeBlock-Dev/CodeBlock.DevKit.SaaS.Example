@@ -190,24 +190,24 @@
     <value>Ordem</value>
   </data>
   <data name="Answer" xml:space="preserve">
-    <value />
+    <value>Resposta</value>
   </data>
   <data name="AI_Response_Failed" xml:space="preserve">
-    <value />
+    <value>Resposta IA falhou</value>
   </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
-    <value />
+    <value>Prompt obrigatório ausente</value>
   </data>
   <data name="PageVisitType_Authorized" xml:space="preserve">
-    <value />
+    <value>Visitas Autorizadas</value>
   </data>
   <data name="PageVisitType_Unauthorized" xml:space="preserve">
-    <value />
+    <value>Visitas Não Autorizadas</value>
   </data>
   <data name="PageVisitType_Total" xml:space="preserve">
-    <value />
+    <value>Total de Visitas</value>
   </data>
   <data name="PageVisitType_UniqueVisitors" xml:space="preserve">
-    <value />
+    <value>Visitantes Únicos</value>
   </data>
 </root>

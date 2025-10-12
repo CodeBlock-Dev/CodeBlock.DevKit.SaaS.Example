@@ -61,7 +61,7 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to AI response failed.
         /// </summary>
         public static string AI_Response_Failed {
             get {
@@ -259,7 +259,7 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Authorized Visits.
         /// </summary>
         public static string PageVisitType_Authorized {
             get {
@@ -268,7 +268,7 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Total Visits.
         /// </summary>
         public static string PageVisitType_Total {
             get {
@@ -277,7 +277,7 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Unauthorized Visits.
         /// </summary>
         public static string PageVisitType_Unauthorized {
             get {
@@ -286,7 +286,7 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Unique Visitors.
         /// </summary>
         public static string PageVisitType_UniqueVisitors {
             get {
@@ -331,7 +331,7 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The required prompt was not found.
         /// </summary>
         public static string Required_Prompt_Is_Missing {
             get {
