@@ -1,0 +1,26 @@
+@page "/"
+@using CodeBlock.DevKit.Contracts.Models
+@using HeyItIsMe.WebApp.Pages.Website.Home
+@using Microsoft.JSInterop
+@inject ApplicationSettings ApplicationSettings
+@inject IConfiguration Configuration
+@inject IJSRuntime JS
+
+@{
+    Layout = "_WebsiteLayout";
+    ViewData["Title"] = @ApplicationSettings.Localized.Name;
+}
+
+<partial name="_Hero" />
+
+<partial name="_Steps" />
+
+<partial name="_Demo" />
+
+<partial name="_Why" />
+
+<component type="typeof(RecentPages)" render-mode="ServerPrerendered" />
+
+<component type="typeof(PricingPlans)" render-mode="ServerPrerendered" />
+
+<partial name="_Testimonials" />

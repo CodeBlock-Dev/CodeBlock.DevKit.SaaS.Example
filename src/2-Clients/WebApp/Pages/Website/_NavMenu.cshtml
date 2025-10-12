@@ -1,0 +1,24 @@
+@using CodeBlock.DevKit.Application.Srvices
+@using CodeBlock.DevKit.Contracts.Models
+@inject ApplicationSettings ApplicationSettings
+@inject IStringLocalizer<WebAppResource> WebAppLocalizer
+@inject ICurrentUser CurrentUser
+
+<nav class="top-navbar">
+    <div class="navbar-container">
+        <div class="navbar-links">
+
+            <a href="/" class="navbar-link active"> @WebAppLocalizer[WebAppResource.Nav_Home]</a>
+
+            @if (CurrentUser.IsAuthenticated())
+            {
+                <a href="/dashboard" class="navbar-link"> @WebAppLocalizer[WebAppResource.Nav_Dashboard]</a>
+            }
+            else
+            {
+                <a href="/login" class="navbar-link"> @WebAppLocalizer[WebAppResource.Nav_Login]</a>
+            }
+
+        </div>
+    </div>
+</nav>
