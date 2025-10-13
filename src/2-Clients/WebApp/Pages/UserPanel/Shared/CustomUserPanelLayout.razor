@@ -15,7 +15,7 @@
     <link href="css/cb.user.panel.spa.@(LocalizationSettings.GetCurrentLanguageDirection().ToLower()).min.css" rel="stylesheet" />
 </HeadContent>
 
-<SplashScreen BrandName="@ApplicationSettings.Localized.Name" BackgroundCssClass="simple-layout-dark-bg" ProgressBarCssClass="simple-layout-title-color" OnStarted="HandleSplashStarted" LogoUrl="/images/logos/logo.png" />
+<SplashScreen BrandName="@ApplicationSettings.Localized.Name" BackgroundCssClass="simple-layout-dark-bg" OnStarted="HandleSplashStarted" LogoUrl="/images/logos/logo.png" />
 
 @if (SplashScreenStarted)
 {
