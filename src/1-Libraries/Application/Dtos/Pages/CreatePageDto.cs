@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using CodeBlock.DevKit.Core.Resources;
 using HeyItIsMe.Core.Resources;
 
 namespace HeyItIsMe.Application.Dtos.Pages;
@@ -12,11 +11,4 @@ public class CreatePageDto
     [Display(Name = nameof(SharedResource.Page_Route), ResourceType = typeof(SharedResource))]
     [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Page_Route))]
     public string Route { get; set; }
-
-    /// <summary>
-    /// Identifier of the user who owns this page. Required field for ownership tracking.
-    /// </summary>
-    [Display(Name = nameof(SharedResource.Page_UserId), ResourceType = typeof(SharedResource))]
-    [Required(ErrorMessageResourceName = nameof(CoreResource.Required), ErrorMessageResourceType = typeof(CoreResource))]
-    public string UserId { get; set; }
 }

@@ -195,6 +195,9 @@
   <data name="AI_Response_Failed" xml:space="preserve">
     <value>Respuesta de IA falló</value>
   </data>
+  <data name="AI_Image_Generation_Failed" xml:space="preserve">
+    <value>La IA no pudo procesar su imagen de referencia por alguna razón. Inténtelo de nuevo o cambie la imagen de referencia.</value>
+  </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
     <value>Falta el prompt requerido</value>
   </data>

@@ -12,4 +12,9 @@ public static class ApplicationExceptions
     {
         return new ApplicationException(nameof(SharedResource.AI_Response_Failed), typeof(SharedResource));
     }
+
+    public static ApplicationException AIImageGenerationFailed()
+    {
+        return new ApplicationException(nameof(SharedResource.AI_Image_Generation_Failed), typeof(SharedResource));
+    }
 }

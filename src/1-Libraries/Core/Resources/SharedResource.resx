@@ -195,6 +195,9 @@
   <data name="AI_Response_Failed" xml:space="preserve">
     <value>AI response failed</value>
   </data>
+  <data name="AI_Image_Generation_Failed" xml:space="preserve">
+    <value>AI couldn't process your reference image for some reason. Please retry or change the reference image.</value>
+  </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
     <value>The required prompt was not found</value>
   </data>

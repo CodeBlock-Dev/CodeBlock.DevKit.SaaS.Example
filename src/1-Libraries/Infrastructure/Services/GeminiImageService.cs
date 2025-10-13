@@ -131,6 +131,16 @@ public class GeminiImageService : IAIImageService
                 if (geminiResponse?.Candidates?.Length > 0)
                 {
                     var candidate = geminiResponse.Candidates[0];
+                    
+                    // Check if there's a finish reason indicating failure
+                    if (!string.IsNullOrEmpty(candidate.FinishReason) && candidate.FinishReason != "STOP")
+                    {
+                        _logger.LogWarning("Gemini image generation failed with reason: {FinishReason}, message: {FinishMessage}", 
+                            candidate.FinishReason, candidate.FinishMessage);
+                        _logger.LogDebug("Full Gemini response: {ResponseContent}", responseContent);
+                        throw ApplicationExceptions.AIImageGenerationFailed();
+                    }
+                    
                     if (candidate.Content?.Parts?.Length > 0)
                     {
                         foreach (var part in candidate.Content.Parts)
@@ -142,6 +152,16 @@ public class GeminiImageService : IAIImageService
                             }
                         }
                     }
+                    
+                    // If we reach here, there were candidates but no image data
+                    _logger.LogWarning("Gemini returned candidates but no image data. Response: {ResponseContent}", responseContent);
+                    throw ApplicationExceptions.AIImageGenerationFailed();
+                }
+                else
+                {
+                    // No candidates returned
+                    _logger.LogWarning("Gemini returned no candidates. Response: {ResponseContent}", responseContent);
+                    throw ApplicationExceptions.AIImageGenerationFailed();
                 }
             }
             else

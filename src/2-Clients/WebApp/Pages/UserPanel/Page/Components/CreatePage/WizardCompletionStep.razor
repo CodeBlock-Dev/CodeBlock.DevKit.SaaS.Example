@@ -1,0 +1,65 @@
+<div class="wizard-step">
+    <div class="text-center mb-4">
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+        <h2 class="mt-3 mb-3 text-success">Congratulations!</h2>
+        <p class="lead text-muted">Your fact page has been created successfully!</p>
+    </div>
+    
+    <div class="completion-card mb-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Your Page is Ready!</h5>
+                <p class="card-text">Share your personalized fact page with the world:</p>
+                <div class="page-link-container">
+                    <a href="@PageUrl" target="_blank" class="btn btn-primary btn-lg">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>View Your Page
+                    </a>
+                </div>
+                <div class="mt-3">
+                    <small class="text-muted">@PageUrl</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="next-steps">
+        <h5 class="mb-3">What's Next?</h5>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex align-items-center">
+                <i class="bi bi-share me-3 text-primary"></i>
+                <div>
+                    <strong>Share your page</strong>
+                    <small class="d-block text-muted">Send the link to friends, family, or post it on social media</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <i class="bi bi-gear me-3 text-primary"></i>
+                <div>
+                    <strong>Customize in dashboard</strong>
+                    <small class="d-block text-muted">Add more facts, update contacts, or change your images anytime</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <i class="bi bi-plus-circle me-3 text-primary"></i>
+                <div>
+                    <strong>Keep it fresh</strong>
+                    <small class="d-block text-muted">Regularly update your page with new facts and information</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="/dashboard" class="btn btn-outline-primary me-3">
+            <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+        </a>
+        <button class="btn btn-primary" @onclick="OnStartOver">
+            <i class="bi bi-arrow-clockwise me-2"></i>Create Another Page
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string PageUrl { get; set; } = "";
+    [Parameter] public EventCallback OnStartOver { get; set; }
+}

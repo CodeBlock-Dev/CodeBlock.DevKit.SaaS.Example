@@ -1,0 +1,120 @@
+﻿@page "/page/create"
+@using HeyItIsMe.WebApp.Pages.UserPanel.Page.Components.CreatePage
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+<div class="create-page-wizard">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-6">
+                <div class="wizard-card">
+
+                    <WizardProgressBar CurrentStep="@CurrentStep" ProgressPercentage="@GetProgressPercentage()" />
+
+                    <div class="wizard-content">
+                        @if (CurrentStep == 0)
+                        {
+                            <WizardIntroStep OnNext="NextStep" />
+                        }
+                        else if (CurrentStep == 1)
+                        {
+                            <WizardRouteStep OnPrevious="PreviousStep"
+                                           OnPageCreated="HandlePageCreated" />
+                        }
+                        else if (CurrentStep == 2)
+                        {
+                            <WizardDisplayNameStep PageId="@PageId"
+                                                 OnPrevious="PreviousStep"
+                                                 OnNext="NextStep" />
+                        }
+                        else if (CurrentStep == 3)
+                        {
+                            <WizardAvatarStep PageId="@PageId"
+                                            OnPrevious="PreviousStep"
+                                            OnNext="NextStep" />
+                        }
+                        else if (CurrentStep == 4)
+                        {
+                            <WizardReferenceImageStep PageId="@PageId"
+                                                    OnPrevious="PreviousStep"
+                                                    OnNext="NextStep" />
+                        }
+                        else if (CurrentStep == 5)
+                        {
+                            <WizardContactsStep PageId="@PageId"
+                                               OnPrevious="PreviousStep"
+                                               OnNext="NextStep" />
+                        }
+                        else if (CurrentStep == 6)
+                        {
+                            <WizardQuestionsStep PageId="@PageId"
+                                               OnPrevious="PreviousStep"
+                                               OnComplete="NextStep" />
+                        }
+                        else if (CurrentStep == 7)
+                        {
+                            <WizardCompletionStep PageUrl="@PageUrl"
+                                                OnStartOver="StartOver" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int CurrentStep = 0;
+    private string PageId = "";
+    private string PageRoute = "";
+    private string PageUrl = "";
+    
+    private double GetProgressPercentage()
+    {
+        return CurrentStep * 100.0 / 7.0;
+    }
+    
+    private void NextStep()
+    {
+        CurrentStep++;
+    }
+    
+    private void PreviousStep()
+    {
+        if (CurrentStep > 0)
+        {
+            CurrentStep--;
+        }
+    }
+    
+    private async Task HandlePageCreated((string PageId, string PageRoute) pageData)
+    {
+        PageId = pageData.PageId;
+        PageRoute = pageData.PageRoute;
+        PageUrl = $"https://hey-it-is.me/{PageRoute}";
+        NextStep();
+    }
+    
+    private void StartOver()
+    {
+        CurrentStep = 0;
+        PageId = "";
+        PageRoute = "";
+        PageUrl = "";
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Initialize wizard functionality
+            await JSRuntime.InvokeVoidAsync("createPageWizard.initializeWizard");
+        }
+    }
+    
+    public void Dispose()
+    {
+        // Cleanup if needed
+    }
+}

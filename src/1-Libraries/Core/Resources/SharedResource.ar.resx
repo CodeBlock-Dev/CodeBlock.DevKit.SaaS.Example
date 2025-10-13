@@ -195,6 +195,9 @@
   <data name="AI_Response_Failed" xml:space="preserve">
     <value>فشل في استجابة الذكاء الاصطناعي</value>
   </data>
+  <data name="AI_Image_Generation_Failed" xml:space="preserve">
+    <value>لم يتمكن الذكاء الاصطناعي من معالجة صورة المرجع الخاصة بك لسبب ما. يرجى المحاولة مرة أخرى أو تغيير صورة المرجع.</value>
+  </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
     <value>الموجه المطلوب مفقود</value>
   </data>

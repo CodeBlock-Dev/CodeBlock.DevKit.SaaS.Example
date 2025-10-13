@@ -41,8 +41,11 @@ internal class UpdateFactImageUrlUseCase : BaseCommandHandler, IRequestHandler<U
 
         var loadedVersion = page.Version;
 
-        var fileName = $"{request.FactId}.jpg?v={RandomDataGenerator.GetRandomNumber(5)}";
+        var fileName = $"{request.FactId}.jpg";
         var imageUrl = await _imageService.SaveImageFileAsync(fileName, request.Base64Image, "pages", page.Id, "facts");
+        
+        // Add cache-busting query parameter to the URL
+        imageUrl = $"{imageUrl}?v={RandomDataGenerator.GetRandomNumber(5)}";
 
         page.UpdateFactImageUrl(request.FactId, imageUrl);
 

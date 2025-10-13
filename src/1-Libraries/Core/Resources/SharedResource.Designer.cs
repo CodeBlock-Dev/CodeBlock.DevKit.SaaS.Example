@@ -61,6 +61,15 @@ namespace HeyItIsMe.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AI couldn&apos;t process your reference image for some reason. Please retry or change the reference image..
+        /// </summary>
+        public static string AI_Image_Generation_Failed {
+            get {
+                return ResourceManager.GetString("AI_Image_Generation_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AI response failed.
         /// </summary>
         public static string AI_Response_Failed {

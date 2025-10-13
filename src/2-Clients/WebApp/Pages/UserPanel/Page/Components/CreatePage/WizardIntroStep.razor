@@ -1,0 +1,72 @@
+<div class="wizard-step">
+    <div class="text-center mb-4">
+        <i class="bi bi-magic text-primary" style="font-size: 3rem;"></i>
+        <h2 class="mt-3 mb-3">Welcome to Your Fact Page Creator!</h2>
+        <p class="lead text-muted">Let's create your personalized fact page step by step.</p>
+    </div>
+    
+    <div class="steps-overview">
+        <h5 class="mb-3">Here's what we'll do together:</h5>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">1</span>
+                <div>
+                    <strong>Choose your page route</strong>
+                    <small class="d-block text-muted">Create your unique link (e.g., hey-it-is.me/alex)</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">2</span>
+                <div>
+                    <strong>Set your display name</strong>
+                    <small class="d-block text-muted">How you want to be known on your page</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">3</span>
+                <div>
+                    <strong>Upload your avatar</strong>
+                    <small class="d-block text-muted">Your profile picture for the page</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">4</span>
+                <div>
+                    <strong>Add a reference image</strong>
+                    <small class="d-block text-muted">Help AI generate personalized images for your facts</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">5</span>
+                <div>
+                    <strong>Add your contacts</strong>
+                    <small class="d-block text-muted">Social media links, email, or other ways to reach you</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">6</span>
+                <div>
+                    <strong>Answer questions</strong>
+                    <small class="d-block text-muted">AI will create amazing facts from your answers</small>
+                </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+                <span class="step-number me-3">7</span>
+                <div>
+                    <strong>Complete & share</strong>
+                    <small class="d-block text-muted">Get your page link and start sharing!</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <button class="btn btn-primary btn-lg px-5" @onclick="OnNext">
+            <i class="bi bi-play-fill me-2"></i>Let's Get Started!
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public EventCallback OnNext { get; set; }
+}

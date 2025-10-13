@@ -1,0 +1,78 @@
+@using HeyItIsMe.Application.Services.Pages
+@using HeyItIsMe.Application.Dtos.Pages
+@inject IPageService PageService
+@inject IJSRuntime JSRuntime
+
+<div class="wizard-step">
+    <div class="text-center mb-4">
+        <i class="bi bi-link-45deg text-primary" style="font-size: 2.5rem;"></i>
+        <h3 class="mt-3 mb-3">Choose Your Page Route</h3>
+        <p class="text-muted">This will be your unique link on hey-it-is.me</p>
+    </div>
+    
+    <div class="form-group mb-4">
+        <label class="form-label fw-bold">What should your page link be?</label>
+        <div class="input-group">
+            <span class="input-group-text">hey-it-is.me/</span>
+            <input type="text" class="form-control" @bind="PageRoute" placeholder="alex" />
+        </div>
+        <div class="form-text">
+            <i class="bi bi-info-circle me-1"></i>
+            Choose something unique and memorable. Only letters, numbers, and hyphens are allowed.
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-outline-secondary" @onclick="OnPrevious">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <button class="btn btn-primary" @onclick="HandleCreatePage" disabled="@(string.IsNullOrWhiteSpace(PageRoute) || IsLoading)">
+            @if (IsLoading)
+            {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            else
+            {
+                <i class="bi bi-check-lg me-2"></i>
+            }
+            Create Page
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public EventCallback OnPrevious { get; set; }
+    [Parameter] public EventCallback<(string PageId, string PageRoute)> OnPageCreated { get; set; }
+    
+    private string PageRoute = "";
+    private bool IsLoading = false;
+    
+    private async Task HandleCreatePage()
+    {
+        if (string.IsNullOrWhiteSpace(PageRoute))
+            return;
+            
+        IsLoading = true;
+        try
+        {
+            var result = await PageService.CreatePage(new CreatePageDto { Route = PageRoute });
+            if (result.IsSuccess)
+            {
+                var pageId = result.Value.EntityId;
+                await OnPageCreated.InvokeAsync((pageId, PageRoute));
+            }
+            else
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Error creating page: " + string.Join(", ", result.Errors));
+            }
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Error: " + ex.Message);
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

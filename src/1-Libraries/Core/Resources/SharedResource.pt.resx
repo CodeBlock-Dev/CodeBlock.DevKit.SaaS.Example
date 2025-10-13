@@ -195,6 +195,9 @@
   <data name="AI_Response_Failed" xml:space="preserve">
     <value>Resposta IA falhou</value>
   </data>
+  <data name="AI_Image_Generation_Failed" xml:space="preserve">
+    <value>A IA não conseguiu processar sua imagem de referência por algum motivo. Tente novamente ou altere a imagem de referência.</value>
+  </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
     <value>Prompt obrigatório ausente</value>
   </data>

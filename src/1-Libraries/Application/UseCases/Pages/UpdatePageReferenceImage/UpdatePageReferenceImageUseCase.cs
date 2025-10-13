@@ -41,8 +41,11 @@ internal class UpdatePageReferenceImageUseCase : BaseCommandHandler, IRequestHan
 
         var loadedVersion = page.Version;
 
-        var fileName = $"reference.jpg?v={RandomDataGenerator.GetRandomNumber(5)}";
+        var fileName = $"reference.jpg";
         var imageUrl = await _imageService.SaveImageFileAsync(fileName, request.Base64Image, "pages", request.Id);
+        
+        // Add cache-busting query parameter to the URL
+        imageUrl = $"{imageUrl}?v={RandomDataGenerator.GetRandomNumber(5)}";
 
         page.UpdateReferenceImageUrl(imageUrl);
 

@@ -81,40 +81,33 @@ internal class GenerateFactUseCase : BaseCommandHandler, IRequestHandler<Generat
 
     private async Task<string> GetFactContent(Bot bot, string question, string answer)
     {
-        // Skip the fact title prompt as we handle it separately
-        var factTitlePrompt = bot.Prompts.FirstOrDefault(p => p.Title == Constants.FACT_TITLE_GENERATOR_PROMPT);
-        if (factTitlePrompt == null)
-            bot.RemovePrompt(factTitlePrompt.Id);
+        var prompt = bot.Prompts.FirstOrDefault(p => p.Title == Constants.FACT_CONTENT_GENERATOR_PROMPT);
+        if (prompt == null)
+            PageApplicationExceptions.RequiredPromptIsMissing();
 
-        foreach (var prompt in bot.Prompts)
+        if (prompt.Content.Contains("{QUESTIONS}") || prompt.Content.Contains("{ANSWER}"))
         {
-            if (prompt.Content.Contains("{QUESTIONS}") || prompt.Content.Contains("{ANSWER}"))
-            {
-                var promptContent = prompt.Content.Replace("{QUESTIONS}", question).Replace("{ANSWER}", answer);
-                bot.UpdatePrompt(prompt.Id, promptContent, prompt.Type, prompt.Title, prompt.Order, prompt.Status, prompt.Tokens);
-            }
+            var promptContent = prompt.Content.Replace("{QUESTIONS}", question).Replace("{ANSWER}", answer);
+            bot.UpdatePrompt(prompt.Id, promptContent, prompt.Type, prompt.Title, prompt.Order, prompt.Status, prompt.Tokens);
         }
 
-        return await _aiTextService.GenerateTextAsync(bot.LLMParameters, bot.Prompts);
+        return await _aiTextService.GenerateTextAsync(bot.LLMParameters, bot.Prompts.Where(p => p.Title == Constants.FACT_CONTENT_GENERATOR_PROMPT).ToList());
     }
 
     private async Task<string> GetFactTitle(Bot bot, string question, string answer, string content)
     {
-        // Skip the fact content prompt as we handle it separately
-        var factTitlePrompt = bot.Prompts.FirstOrDefault(p => p.Title == Constants.FACT_CONTENT_GENERATOR_PROMPT);
-        if (factTitlePrompt == null)
-            bot.RemovePrompt(factTitlePrompt.Id);
+        var prompt = bot.Prompts.FirstOrDefault(p => p.Title == Constants.FACT_TITLE_GENERATOR_PROMPT);
+        if (prompt == null)
+            PageApplicationExceptions.RequiredPromptIsMissing();
 
-        foreach (var prompt in bot.Prompts)
+        if (prompt.Content.Contains("{QUESTIONS}") || prompt.Content.Contains("{ANSWER}") || prompt.Content.Contains("{FACT_CONTENT}"))
         {
-            if (prompt.Content.Contains("{QUESTIONS}") || prompt.Content.Contains("{ANSWER}") || prompt.Content.Contains("{FACT_CONTENT}"))
-            {
-                var promptContent = prompt.Content.Replace("{QUESTIONS}", question).Replace("{ANSWER}", answer).Replace("{FACT_CONTENT}", content);
-                bot.UpdatePrompt(prompt.Id, promptContent, prompt.Type, prompt.Title, prompt.Order, prompt.Status, prompt.Tokens);
-            }
+            var promptContent = prompt.Content.Replace("{QUESTIONS}", question).Replace("{ANSWER}", answer).Replace("{FACT_CONTENT}", content);
+            bot.UpdatePrompt(prompt.Id, promptContent, prompt.Type, prompt.Title, prompt.Order, prompt.Status, prompt.Tokens);
         }
 
-        return await _aiTextService.GenerateTextAsync(bot.LLMParameters, bot.Prompts);
+        return await _aiTextService.GenerateTextAsync(bot.LLMParameters, bot.Prompts.Where(p => p.Title == Constants.FACT_TITLE_GENERATOR_PROMPT).ToList());
+
     }
 
     private async Task<string> GetFactBase64Image(Page page, Bot bot, string question, string answer, string title, string content)

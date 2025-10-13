@@ -195,6 +195,9 @@
   <data name="AI_Response_Failed" xml:space="preserve">
     <value>KI-Antwort fehlgeschlagen</value>
   </data>
+  <data name="AI_Image_Generation_Failed" xml:space="preserve">
+    <value>Die KI konnte Ihr Referenzbild aus irgendeinem Grund nicht verarbeiten. Bitte versuchen Sie es erneut oder ändern Sie das Referenzbild.</value>
+  </data>
   <data name="Required_Prompt_Is_Missing" xml:space="preserve">
     <value>Erforderlicher Prompt fehlt</value>
   </data>

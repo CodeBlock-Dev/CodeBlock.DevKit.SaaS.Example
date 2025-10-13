@@ -669,3 +669,6 @@ fabric.properties
 /.nuke/temp/execution-plan.html
 /.nuke/build.schema.json
 /codeblock.dev.license.lic
+
+# Pages folder - user-generated content
+src/2-Clients/WebApp/wwwroot/pages/

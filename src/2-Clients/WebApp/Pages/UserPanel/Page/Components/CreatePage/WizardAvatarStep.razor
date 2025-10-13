@@ -1,0 +1,129 @@
+<div class="wizard-step">
+    <div class="text-center mb-4">
+        <i class="bi bi-camera text-primary" style="font-size: 2.5rem;"></i>
+        <h3 class="mt-3 mb-3">Upload Your Avatar</h3>
+        <p class="text-muted">Add a profile picture that represents you</p>
+    </div>
+    
+    <div class="form-group mb-4">
+        <label class="form-label fw-bold">Profile Picture</label>
+        <InputFile OnChange="@OnAvatarFileSelected" accept="image/*" class="form-control" />
+        @if (AvatarPreview != null)
+        {
+            <div class="mt-3">
+                <img src="@AvatarPreview" alt="Avatar preview" style="max-width: 200px; max-height: 200px; border-radius: 8px;" />
+            </div>
+        }
+        <div class="form-text">
+            <i class="bi bi-info-circle me-1"></i>
+            A clear, well-lit photo works best. This will be shown as your profile picture.
+        </div>
+        <div class="mt-2">
+            <small class="text-muted">Debug: AvatarBase64 is @(AvatarBase64 == null ? "null" : $"set ({AvatarBase64.Length} chars)")</small>
+        </div>
+    </div>
+    
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-outline-secondary" @onclick="OnPrevious">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </button>
+        <button class="btn btn-primary" @onclick="HandleUpdateAvatar" disabled="@(AvatarBase64 == null || IsLoading)">
+            @if (IsLoading)
+            {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+            }
+            else
+            {
+                <i class="bi bi-check-lg me-2"></i>
+            }
+            Continue
+        </button>
+    </div>
+</div>
+
+@using HeyItIsMe.Application.Services.Pages
+@inject IPageService PageService
+@inject IJSRuntime JSRuntime
+
+@code {
+    [Parameter] public string PageId { get; set; }
+    [Parameter] public EventCallback OnPrevious { get; set; }
+    [Parameter] public EventCallback OnNext { get; set; }
+    
+    private string AvatarBase64;
+    private string AvatarPreview;
+    private bool IsLoading = false;
+    
+    private async Task OnAvatarFileSelected(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            Console.WriteLine("OnAvatarFileSelected called");
+            
+            var file = e.File;
+            if (file != null)
+            {
+                // Validate file size (max 10MB)
+                if (file.Size > 10 * 1024 * 1024)
+                {
+                    await JSRuntime.InvokeVoidAsync("alert", "File size must be less than 10MB.");
+                    return;
+                }
+
+                // Validate file type
+                if (!file.ContentType.StartsWith("image/"))
+                {
+                    await JSRuntime.InvokeVoidAsync("alert", "Please select an image file.");
+                    return;
+                }
+
+                // Convert to base64
+                using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
+                using var memoryStream = new MemoryStream();
+                await stream.CopyToAsync(memoryStream);
+                var imageBytes = memoryStream.ToArray();
+                AvatarBase64 = Convert.ToBase64String(imageBytes);
+                
+                // Create data URL for preview
+                AvatarPreview = $"data:{file.ContentType};base64,{AvatarBase64}";
+                
+                Console.WriteLine($"File processed successfully: {AvatarBase64.Length} chars");
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error processing file: {ex.Message}");
+            await JSRuntime.InvokeVoidAsync("alert", $"Error uploading file: {ex.Message}");
+        }
+    }
+    
+    
+    private async Task HandleUpdateAvatar()
+    {
+        if (AvatarBase64 == null || string.IsNullOrWhiteSpace(PageId))
+            return;
+            
+        IsLoading = true;
+        try
+        {
+            var result = await PageService.UpdatePageAvatarImage(PageId, AvatarBase64);
+            if (result.IsSuccess)
+            {
+                await OnNext.InvokeAsync();
+            }
+            else
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Error updating avatar: " + string.Join(", ", result.Errors));
+            }
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Error: " + ex.Message);
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

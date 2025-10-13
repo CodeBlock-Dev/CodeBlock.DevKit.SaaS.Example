@@ -13,6 +13,12 @@ public class GeminiImageCandidate
 {
     [JsonPropertyName("content")]
     public GeminiImageContent Content { get; set; }
+    
+    [JsonPropertyName("finishReason")]
+    public string FinishReason { get; set; }
+    
+    [JsonPropertyName("finishMessage")]
+    public string FinishMessage { get; set; }
 }
 
 public class GeminiImageContent

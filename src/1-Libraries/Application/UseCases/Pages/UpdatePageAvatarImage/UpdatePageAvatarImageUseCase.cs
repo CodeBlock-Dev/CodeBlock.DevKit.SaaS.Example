@@ -41,8 +41,11 @@ internal class UpdatePageAvatarImageUseCase : BaseCommandHandler, IRequestHandle
 
         var loadedVersion = page.Version;
 
-        var fileName = $"avatar.jpg?v={RandomDataGenerator.GetRandomNumber(5)}";
+        var fileName = $"avatar.jpg";
         var imageUrl = await _imageService.SaveImageFileAsync(fileName, request.Base64Image, "pages", request.Id);
+        
+        // Add cache-busting query parameter to the URL
+        imageUrl = $"{imageUrl}?v={RandomDataGenerator.GetRandomNumber(5)}";
 
         page.UpdateAvatarImageUrl(imageUrl);
 
